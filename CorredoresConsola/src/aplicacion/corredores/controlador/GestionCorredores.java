@@ -45,7 +45,7 @@ public class GestionCorredores {
         String varString;
         String constante = "";
         Scanner sc = new Scanner(System.in);
-        toString();
+        System.out.println(toString());
         System.out.println("Introduzca numero de corredor que desea modificar: ");
         varString = sc.nextLine();
         int numCorredor = Integer.parseInt(varString) - 1;
@@ -87,6 +87,7 @@ public class GestionCorredores {
         System.out.print("Nuevo telefono : ");
         sc.reset();
         int numaux=sc.nextInt();
+        String saltoDeLinea = sc.nextLine();
         if (Integer.toString(numaux).length()!=9) {
             System.out.println("Formato de numero incorrecto");
         }
