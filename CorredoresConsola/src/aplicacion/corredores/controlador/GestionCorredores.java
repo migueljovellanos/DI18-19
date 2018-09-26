@@ -96,17 +96,6 @@ public class GestionCorredores {
         corredores.set(numCorredor, corredor);
     }
 
-    public int buscarDni(String dni) {
-        int var = 0;
-        for (Corredor corredor : corredores) {
-            var = var++;
-            if (corredor.getDni().equals(dni)) {
-                return var;
-            }
-        }
-        return 0;
-    }
-
     public void ordenarCorredoresFechaNacimiento(){
         Collections.sort(corredores, new Comparator<Corredor>() {
             @Override
