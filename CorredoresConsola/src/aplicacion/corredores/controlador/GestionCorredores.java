@@ -7,6 +7,8 @@ package aplicacion.corredores.controlador;
 
 import aplicacion.corredores.modelo.Corredor;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 /**
@@ -18,6 +20,9 @@ public class GestionCorredores {
     //atributos
     private ArrayList<Corredor> corredores = new ArrayList<>();
 
+    public GestionCorredores() {
+    }
+    
     public boolean addCorredorr(Corredor corredor) {
         if (corredores.contains(corredor) == false) {
             corredores.add(corredor);
@@ -61,6 +66,10 @@ public class GestionCorredores {
         sc.reset();
         varString = sc.nextLine();
         if (!varString.equals(constante)) {
+            if(varString.length()!=9){
+                System.out.println("El DNI tiene un formato incorrecto"
+                        + "debe tener 8 digitos mas un digito de control");
+            }
             corredor.setDni(varString);
         }
         System.out.println("");
@@ -77,7 +86,11 @@ public class GestionCorredores {
         System.out.print("Telefono : " + corredor.getTelefono() + "     ");
         System.out.print("Nuevo telefono : ");
         sc.reset();
-        corredor.setTelefono(sc.nextInt());
+        int numaux=sc.nextInt();
+        if (Integer.toString(numaux).length()!=9) {
+            System.out.println("Formato de numero incorrecto");
+        }
+        corredor.setTelefono(numaux);
         System.out.println("");
 
         corredores.set(numCorredor, corredor);
@@ -87,14 +100,22 @@ public class GestionCorredores {
         int var = 0;
         for (Corredor corredor : corredores) {
             var = var++;
-            if (corredor.getDni() == dni) {
+            if (corredor.getDni().equals(dni)) {
                 return var;
             }
         }
         return 0;
     }
 
+    public void ordenarCorredoresFechaNacimiento(){
+        Collections.sort(corredores, new Comparator<Corredor>() {
+            @Override
+            public int compare(Corredor corredor1, Corredor corredor2) {
+                return corredor1.getFechaNacimiento().compareTo(corredor2.getFechaNacimiento());
+            }
+        });
     
+    }
 
     @Override
     public String toString() {
