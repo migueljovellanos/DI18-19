@@ -7,7 +7,9 @@ package aplicacion.corredores.vista;
 
 import aplicacion.corredores.controlador.GestionCorredores;
 import aplicacion.corredores.modelo.Corredor;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 /**
  *
@@ -165,6 +167,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
 
         jBMostrarCorredores.setText("Mostrar Corredores");
+        jBMostrarCorredores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBMostrarCorredoresActionPerformed(evt);
+            }
+        });
 
         jBguardarCsv.setText("Guardar corredores");
         jBguardarCsv.addActionListener(new java.awt.event.ActionListener() {
@@ -266,6 +273,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jBguardarCsvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarCsvActionPerformed
         gestion.escribirCsv();
     }//GEN-LAST:event_jBguardarCsvActionPerformed
+
+    private void jBMostrarCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMostrarCorredoresActionPerformed
+        ArrayList<Corredor> corredores = new ArrayList<Corredor>();
+        if(corredores.isEmpty()){
+            Iterator iterador=corredores.listIterator();
+            while(iterador.hasNext()){
+                jTACorredores.append(iterador.next().toString()+ "\n");
+            }
+        }
+    }//GEN-LAST:event_jBMostrarCorredoresActionPerformed
 
     /**
      * @param args the command line arguments
