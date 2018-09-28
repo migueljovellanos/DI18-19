@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,6 +35,11 @@ public class GestionCorredores {
     public GestionCorredores() {
     }
 
+    public ArrayList<Corredor> getCorredores() {
+        return corredores;
+    }
+
+    
     public boolean addCorredorr(Corredor corredor) {
         if (corredores.contains(corredor) == false) {
             corredores.add(corredor);
@@ -156,21 +162,21 @@ public class GestionCorredores {
     }
 
     public void leerCsv() {
-        String pattern = "dd-MM-yyyy";
-        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+ 
         try {
 
             CsvReader corredores_import = new CsvReader("C:\\Users\\migue\\Documents\\DI1819\\CorredoresConsola\\corredores.csv");
             corredores_import.readHeaders();
 
             while (corredores_import.readRecord()) {
-                String nombre = corredores_import.get("Nombre");
-                String dni = corredores_import.get("Dni");
-                String fechaNacimiento = corredores_import.get("Fecha Nacimiento");
-                String direccion = corredores_import.get("Direccion");
-                int telefono = Integer.getInteger(corredores_import.get("Numero Telefono"));
+                String nombre = corredores_import.get(0);
+                String dni = corredores_import.get(1);
+                String fechaNacimiento = corredores_import.get(2);
+                String direccion = corredores_import.get(3);
+                String telString = corredores_import.get(4);
 
-                corredores.add(new Corredor(nombre, dni, sdf.parse(fechaNacimiento), direccion, telefono));
+                //falla aqui en el date.valueof()
+                corredores.add(new Corredor(nombre, dni, Date.valueOf(fechaNacimiento), direccion, Integer.getInteger(telString)));
             }
 
             corredores_import.close();
@@ -184,8 +190,6 @@ public class GestionCorredores {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (ParseException ex) {
-            Logger.getLogger(GestionCorredores.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
