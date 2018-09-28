@@ -6,10 +6,21 @@
 package aplicacion.corredores.controlador;
 
 import aplicacion.corredores.modelo.Corredor;
+import com.csvreader.CsvReader;
+import com.csvreader.CsvWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,7 +33,7 @@ public class GestionCorredores {
 
     public GestionCorredores() {
     }
-    
+
     public boolean addCorredorr(Corredor corredor) {
         if (corredores.contains(corredor) == false) {
             corredores.add(corredor);
@@ -66,7 +77,7 @@ public class GestionCorredores {
         sc.reset();
         varString = sc.nextLine();
         if (!varString.equals(constante)) {
-            if(varString.length()!=9){
+            if (varString.length() != 9) {
                 System.out.println("El DNI tiene un formato incorrecto"
                         + "debe tener 8 digitos mas un digito de control");
             }
@@ -86,9 +97,9 @@ public class GestionCorredores {
         System.out.print("Telefono : " + corredor.getTelefono() + "     ");
         System.out.print("Nuevo telefono : ");
         sc.reset();
-        int numaux=sc.nextInt();
+        int numaux = sc.nextInt();
         String saltoDeLinea = sc.nextLine();
-        if (Integer.toString(numaux).length()!=9) {
+        if (Integer.toString(numaux).length() != 9) {
             System.out.println("Formato de numero incorrecto");
         }
         corredor.setTelefono(numaux);
@@ -97,14 +108,85 @@ public class GestionCorredores {
         corredores.set(numCorredor, corredor);
     }
 
-    public void ordenarCorredoresFechaNacimiento(){
+    public void ordenarCorredoresFechaNacimiento() {
         Collections.sort(corredores, new Comparator<Corredor>() {
             @Override
             public int compare(Corredor corredor1, Corredor corredor2) {
                 return corredor1.getFechaNacimiento().compareTo(corredor2.getFechaNacimiento());
             }
         });
-    
+
+    }
+
+    public void escribirCsv() {
+        String outputFile = "C:\\Users\\migue\\Documents\\DI1819\\CorredoresConsola\\corredores.csv";
+        boolean alreadyExists = new File(outputFile).exists();
+
+        if (alreadyExists) {
+            File ArchivoEmpleados = new File(outputFile);
+            ArchivoEmpleados.delete();
+        }
+
+        try {
+
+            CsvWriter csvOutput = new CsvWriter(new FileWriter(outputFile, true), ',');
+
+            csvOutput.write("Nombre");
+            csvOutput.write("Dni");
+            csvOutput.write("Fecha Nacimiento");
+            csvOutput.write("Direccion");
+            csvOutput.write("Numero Telefono");
+            csvOutput.endRecord();
+
+            for (Corredor corredor : corredores) {
+
+                csvOutput.write(corredor.getNombre());
+                csvOutput.write(corredor.getDni());
+                csvOutput.write(corredor.getFechaNacimiento().toString());
+                csvOutput.write(corredor.getDireccion());
+                csvOutput.write(String.valueOf(corredor.getTelefono()));
+                csvOutput.endRecord();
+            }
+
+            csvOutput.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void leerCsv() {
+        String pattern = "dd-MM-yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        try {
+
+            CsvReader corredores_import = new CsvReader("C:\\Users\\migue\\Documents\\DI1819\\CorredoresConsola\\corredores.csv");
+            corredores_import.readHeaders();
+
+            while (corredores_import.readRecord()) {
+                String nombre = corredores_import.get("Nombre");
+                String dni = corredores_import.get("Dni");
+                String fechaNacimiento = corredores_import.get("Fecha Nacimiento");
+                String direccion = corredores_import.get("Direccion");
+                int telefono = Integer.getInteger(corredores_import.get("Numero Telefono"));
+
+                corredores.add(new Corredor(nombre, dni, sdf.parse(fechaNacimiento), direccion, telefono));
+            }
+
+            corredores_import.close();
+
+            for (Corredor corredor : corredores) {
+
+                System.out.println(corredor.toString());
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException ex) {
+            Logger.getLogger(GestionCorredores.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
