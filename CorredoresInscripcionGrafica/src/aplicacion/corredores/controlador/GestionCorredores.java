@@ -30,7 +30,8 @@ import java.util.logging.Logger;
 public class GestionCorredores {
 
     //atributos
-    private ArrayList<Corredor> corredores = new ArrayList<>();
+    private ArrayList<Corredor> corredores = new ArrayList<Corredor>();
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public GestionCorredores() {
     }
@@ -39,7 +40,6 @@ public class GestionCorredores {
         return corredores;
     }
 
-    
     public boolean addCorredorr(Corredor corredor) {
         if (corredores.contains(corredor) == false) {
             corredores.add(corredor);
@@ -125,7 +125,7 @@ public class GestionCorredores {
     }
 
     public void escribirCsv() {
-        String outputFile = "C:\\Users\\migue\\Documents\\DI1819\\CorredoresConsola\\corredores.csv";
+        String outputFile = "C:\\Users\\migue\\Documents\\DI1819\\CorredoresInscripcionGrafica\\corredores.csv";
         boolean alreadyExists = new File(outputFile).exists();
 
         if (alreadyExists) {
@@ -148,7 +148,7 @@ public class GestionCorredores {
 
                 csvOutput.write(corredor.getNombre());
                 csvOutput.write(corredor.getDni());
-                csvOutput.write(corredor.getFechaNacimiento().toString());
+                csvOutput.write(sdf.format(corredor.getFechaNacimiento()));
                 csvOutput.write(corredor.getDireccion());
                 csvOutput.write(String.valueOf(corredor.getTelefono()));
                 csvOutput.endRecord();
@@ -162,34 +162,33 @@ public class GestionCorredores {
     }
 
     public void leerCsv() {
- 
+
         try {
 
-            CsvReader corredores_import = new CsvReader("C:\\Users\\migue\\Documents\\DI1819\\CorredoresConsola\\corredores.csv");
+            CsvReader corredores_import = new CsvReader("C:\\Users\\migue\\Documents\\DI1819\\CorredoresInscripcionGrafica\\corredores.csv");
             corredores_import.readHeaders();
 
             while (corredores_import.readRecord()) {
+
                 String nombre = corredores_import.get(0);
                 String dni = corredores_import.get(1);
                 String fechaNacimiento = corredores_import.get(2);
                 String direccion = corredores_import.get(3);
-                String telString = corredores_import.get(4);
+                int telefono = Integer.valueOf(corredores_import.get(4));
 
-                //falla aqui en el date.valueof()
-                corredores.add(new Corredor(nombre, dni, Date.valueOf(fechaNacimiento), direccion, Integer.getInteger(telString)));
+                Corredor corredorAux = new Corredor(nombre, dni, sdf.parse(fechaNacimiento), direccion,telefono);
+
+                corredores.add(corredorAux);
             }
 
             corredores_import.close();
-
-            for (Corredor corredor : corredores) {
-
-                System.out.println(corredor.toString());
-            }
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (ParseException ex) {
+            Logger.getLogger(GestionCorredores.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

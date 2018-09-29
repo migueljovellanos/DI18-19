@@ -7,22 +7,28 @@ package aplicacion.corredores.vista;
 
 import aplicacion.corredores.controlador.GestionCorredores;
 import aplicacion.corredores.modelo.Corredor;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author migue
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
-    GestionCorredores gestion = new GestionCorredores();   
+
+    private GestionCorredores gestion = new GestionCorredores();
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
     /**
      * Creates new form PantallaPrincipal
      */
     public PantallaPrincipal() {
-        
+
         initComponents();
+
     }
 
     /**
@@ -52,8 +58,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jBMostrarCorredores = new javax.swing.JButton();
         jBguardarCsv = new javax.swing.JButton();
         jBCargarCsv = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTACorredores = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableCorredores = new javax.swing.JTable();
 
         jDInscripcionCorredor.setTitle("InscripcionCorredor");
         jDInscripcionCorredor.setMinimumSize(new java.awt.Dimension(500, 400));
@@ -187,9 +193,18 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jTACorredores.setColumns(20);
-        jTACorredores.setRows(5);
-        jScrollPane1.setViewportView(jTACorredores);
+        jTableCorredores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTableCorredores);
 
         javax.swing.GroupLayout jPanelBotonAltaLayout = new javax.swing.GroupLayout(jPanelBotonAlta);
         jPanelBotonAlta.setLayout(jPanelBotonAltaLayout);
@@ -202,16 +217,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addComponent(jBInscribirCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBCargarCsv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBguardarCsv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelBotonAltaLayout.setVerticalGroup(
             jPanelBotonAltaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBotonAltaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelBotonAltaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelBotonAltaLayout.createSequentialGroup()
                         .addComponent(jBInscribirCorredor)
                         .addGap(18, 18, 18)
@@ -220,7 +235,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         .addComponent(jBCargarCsv)
                         .addGap(18, 18, 18)
                         .addComponent(jBguardarCsv)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -259,7 +274,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         Corredor corredorAux = new Corredor(nombre, dni, fechaNacimiento, direccion, telefono);
         gestion.addCorredorr(corredorAux);
         jDInscripcionCorredor.setVisible(false);
-        
+
     }//GEN-LAST:event_jBContinuarActionPerformed
 
     private void jBInscribirCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInscribirCorredorActionPerformed
@@ -275,13 +290,25 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBguardarCsvActionPerformed
 
     private void jBMostrarCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMostrarCorredoresActionPerformed
-        ArrayList<Corredor> corredores = new ArrayList<Corredor>();
-        if(corredores.isEmpty()){
-            Iterator iterador=corredores.listIterator();
-            while(iterador.hasNext()){
-                jTACorredores.append(iterador.next().toString()+ "\n");
-            }
+        ArrayList<Corredor> corredores = gestion.getCorredores();
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Nombre");
+        model.addColumn("Dni");
+        model.addColumn("Fecha Nacimiento");
+        model.addColumn("Direccion");
+        model.addColumn("Numero Telefono");
+        for (int i = 0; i < corredores.size(); i++) {
+            String nombre = corredores.get(i).getNombre();
+            String dni = corredores.get(i).getDni();
+            String fecha = sdf.format(corredores.get(i).getFechaNacimiento());
+            String direccion = corredores.get(i).getDireccion();
+            int telefono = corredores.get(i).getTelefono();
+
+            Object[] datosCorredor = {nombre, dni, fecha, direccion, telefono};
+
+            model.addRow(datosCorredor);
         }
+        jTableCorredores.setModel(model);
     }//GEN-LAST:event_jBMostrarCorredoresActionPerformed
 
     /**
@@ -333,12 +360,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLTelefono;
     private javax.swing.JLabel jLTituloFormulario;
     private javax.swing.JPanel jPanelBotonAlta;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinnerFechaCarrera;
-    private javax.swing.JTextArea jTACorredores;
     private javax.swing.JTextField jTFDireccion;
     private javax.swing.JTextField jTFDni;
     private javax.swing.JTextField jTFNombre;
     private javax.swing.JTextField jTFTelefono;
+    private javax.swing.JTable jTableCorredores;
     // End of variables declaration//GEN-END:variables
 }
