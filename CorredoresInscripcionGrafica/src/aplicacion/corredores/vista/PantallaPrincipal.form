@@ -28,14 +28,11 @@
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jSpinnerFechaCarrera" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTFNombre" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
-                                  <Component id="jTFDni" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTFDireccion" alignment="0" pref="250" max="32767" attributes="0"/>
-                                  <Component id="jTFTelefono" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jTFNombre" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
+                              <Component id="jTFDni" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTFDireccion" alignment="0" pref="250" max="32767" attributes="0"/>
+                              <Component id="jTFTelefono" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -74,11 +71,8 @@
                       <Component id="jTFTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jSpinnerFechaCarrera" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLFecha" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                  <Component id="jLFecha" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="25" max="32767" attributes="0"/>
                   <Component id="jBContinuar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -90,13 +84,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFTelefonoActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinnerFechaCarrera">
-          <Properties>
-            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="now" stepSize="5" type="date"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLTituloFormulario">
           <Properties>

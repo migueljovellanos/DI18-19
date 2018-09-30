@@ -7,6 +7,8 @@ package aplicacion.corredores.vista;
 
 import aplicacion.corredores.controlador.GestionCorredores;
 import aplicacion.corredores.modelo.Corredor;
+import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,6 +23,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private GestionCorredores gestion = new GestionCorredores();
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private JDateChooser dateChooser ;
 
     /**
      * Creates new form PantallaPrincipal
@@ -28,7 +31,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public PantallaPrincipal() {
 
         initComponents();
-
+        dateChooser = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
+        dateChooser.setBounds(150, 235, 200, 30);
+        jDInscripcionCorredor.add(dateChooser);
     }
 
     /**
@@ -42,7 +47,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jDInscripcionCorredor = new javax.swing.JDialog();
         jTFTelefono = new javax.swing.JTextField();
-        jSpinnerFechaCarrera = new javax.swing.JSpinner();
         jLTituloFormulario = new javax.swing.JLabel();
         jLFecha = new javax.swing.JLabel();
         jTFNombre = new javax.swing.JTextField();
@@ -69,8 +73,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 jTFTelefonoActionPerformed(evt);
             }
         });
-
-        jSpinnerFechaCarrera.setModel(new javax.swing.SpinnerDateModel());
 
         jLTituloFormulario.setText("Formulario Alta Corredor");
 
@@ -114,13 +116,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                                 .addComponent(jLDni, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(38, 38, 38)
-                        .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSpinnerFechaCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTFDni)
-                                .addComponent(jTFDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                .addComponent(jTFTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTFDni)
+                            .addComponent(jTFDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(jTFTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDInscripcionCorredorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -149,10 +149,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addComponent(jLTelefono)
                     .addComponent(jTFTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinnerFechaCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLFecha))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(jLFecha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jBContinuar)
                 .addContainerGap())
         );
@@ -268,9 +266,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         String nombre = jTFNombre.getText();
         String dni = jTFDni.getText();
-        Date fechaNacimiento = new Date();
+        Date fechaNacimiento = dateChooser.getDate();
         String direccion = jTFDireccion.getText();
-        int telefono = Integer.getInteger(jTFTelefono.getText());
+        String telefonoStr = jTFTelefono.getText();
+        int telefono=Integer.parseInt(telefonoStr);
         Corredor corredorAux = new Corredor(nombre, dni, fechaNacimiento, direccion, telefono);
         gestion.addCorredorr(corredorAux);
         jDInscripcionCorredor.setVisible(false);
@@ -361,7 +360,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLTituloFormulario;
     private javax.swing.JPanel jPanelBotonAlta;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinnerFechaCarrera;
     private javax.swing.JTextField jTFDireccion;
     private javax.swing.JTextField jTFDni;
     private javax.swing.JTextField jTFNombre;
