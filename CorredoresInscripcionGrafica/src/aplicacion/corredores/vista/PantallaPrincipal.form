@@ -8,6 +8,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[500, 400]"/>
         </Property>
+        <Property name="modal" type="boolean" value="true"/>
       </Properties>
 
       <Layout>
@@ -30,11 +31,14 @@
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jTFNombre" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
-                                      <Component id="jTFDni" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jTFDireccion" alignment="0" pref="250" max="32767" attributes="0"/>
-                                      <Component id="jTFTelefono" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jSpinnerFecha" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jTFNombre" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
+                                          <Component id="jTFDni" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jTFDireccion" alignment="0" pref="250" max="32767" attributes="0"/>
+                                          <Component id="jTFTelefono" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
@@ -77,7 +81,9 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLFecha" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="25" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="jSpinnerFecha" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="87" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jBContinuar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jBLimpiarCampos" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -148,6 +154,13 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBLimpiarCamposActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JSpinner" name="jSpinnerFecha">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="now" stepSize="5" type="date"/>
+            </Property>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
   </NonVisualComponents>
@@ -211,7 +224,6 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jBInscribirCorredor" max="32767" attributes="0"/>
-                      <Component id="jBCargarCsv" max="32767" attributes="0"/>
                       <Component id="jBguardarCsv" alignment="1" pref="149" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -228,8 +240,6 @@
                       <Component id="jScrollPane2" min="-2" pref="271" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="jBInscribirCorredor" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jBCargarCsv" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jBguardarCsv" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -254,14 +264,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBguardarCsvActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jBCargarCsv">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Cargar corredores"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBCargarCsvActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">

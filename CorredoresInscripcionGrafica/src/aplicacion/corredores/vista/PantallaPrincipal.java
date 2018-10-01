@@ -23,7 +23,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private GestionCorredores gestion = new GestionCorredores();
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    private JDateChooser dateChooser ;
+    private JDateChooser dateChooser;
 
     /**
      * Creates new form PantallaPrincipal
@@ -34,6 +34,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         dateChooser = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
         dateChooser.setBounds(150, 235, 200, 30);
         jDInscripcionCorredor.add(dateChooser);
+        gestion.leerCsv();
+        pintarTabla();
     }
 
     /**
@@ -58,15 +60,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jTFDireccion = new javax.swing.JTextField();
         jLTelefono = new javax.swing.JLabel();
         jBLimpiarCampos = new javax.swing.JButton();
+        jSpinnerFecha = new javax.swing.JSpinner();
         jPanelBotonAlta = new javax.swing.JPanel();
         jBInscribirCorredor = new javax.swing.JButton();
         jBguardarCsv = new javax.swing.JButton();
-        jBCargarCsv = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCorredores = new javax.swing.JTable();
 
         jDInscripcionCorredor.setTitle("InscripcionCorredor");
         jDInscripcionCorredor.setMinimumSize(new java.awt.Dimension(500, 400));
+        jDInscripcionCorredor.setModal(true);
 
         jTFTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +109,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jSpinnerFecha.setModel(new javax.swing.SpinnerDateModel());
+
         javax.swing.GroupLayout jDInscripcionCorredorLayout = new javax.swing.GroupLayout(jDInscripcionCorredor.getContentPane());
         jDInscripcionCorredor.getContentPane().setLayout(jDInscripcionCorredorLayout);
         jDInscripcionCorredorLayout.setHorizontalGroup(
@@ -125,11 +130,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                                         .addComponent(jLDni, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(38, 38, 38)
-                                .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTFDni)
-                                    .addComponent(jTFDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                    .addComponent(jTFTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSpinnerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTFDni)
+                                        .addComponent(jTFDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                        .addComponent(jTFTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDInscripcionCorredorLayout.createSequentialGroup()
                         .addComponent(jBLimpiarCampos)
@@ -160,7 +167,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addComponent(jTFTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLFecha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
+                .addComponent(jSpinnerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBContinuar)
                     .addComponent(jBLimpiarCampos))
@@ -189,13 +198,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jBCargarCsv.setText("Cargar corredores");
-        jBCargarCsv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBCargarCsvActionPerformed(evt);
-            }
-        });
-
         jTableCorredores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -217,7 +219,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelBotonAltaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jBInscribirCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBCargarCsv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBguardarCsv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,8 +232,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelBotonAltaLayout.createSequentialGroup()
                         .addComponent(jBInscribirCorredor)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBCargarCsv)
                         .addGap(18, 18, 18)
                         .addComponent(jBguardarCsv)))
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -271,10 +270,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         Date fechaNacimiento = dateChooser.getDate();
         String direccion = jTFDireccion.getText();
         String telefonoStr = jTFTelefono.getText();
-        int telefono=Integer.parseInt(telefonoStr);
+        int telefono = Integer.parseInt(telefonoStr);
         Corredor corredorAux = new Corredor(nombre, dni, fechaNacimiento, direccion, telefono);
         gestion.addCorredorr(corredorAux);
         jDInscripcionCorredor.setVisible(false);
+        
+        //Date fecha = (Date)jSpinnerFecha.getValue();
+        
         pintarTabla();
 
     }//GEN-LAST:event_jBContinuarActionPerformed
@@ -283,16 +285,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jDInscripcionCorredor.setVisible(true);
     }//GEN-LAST:event_jBInscribirCorredorActionPerformed
 
-    private void jBCargarCsvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCargarCsvActionPerformed
-        gestion.leerCsv();
-        pintarTabla();
-    }//GEN-LAST:event_jBCargarCsvActionPerformed
-
     private void jBguardarCsvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarCsvActionPerformed
         gestion.escribirCsv();
     }//GEN-LAST:event_jBguardarCsvActionPerformed
 
-    private void pintarTabla(){
+    private void pintarTabla() {
         ArrayList<Corredor> corredores = gestion.getCorredores();
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Nombre");
@@ -319,7 +316,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jTFDni.setText("");
         jTFTelefono.setText("");
         dateChooser.setDate(new Date());
-        
+
     }//GEN-LAST:event_jBLimpiarCamposActionPerformed
 
     /**
@@ -358,7 +355,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBCargarCsv;
     private javax.swing.JButton jBContinuar;
     private javax.swing.JButton jBInscribirCorredor;
     private javax.swing.JButton jBLimpiarCampos;
@@ -372,6 +368,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLTituloFormulario;
     private javax.swing.JPanel jPanelBotonAlta;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSpinner jSpinnerFecha;
     private javax.swing.JTextField jTFDireccion;
     private javax.swing.JTextField jTFDni;
     private javax.swing.JTextField jTFNombre;
