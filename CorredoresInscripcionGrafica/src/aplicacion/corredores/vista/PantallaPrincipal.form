@@ -210,7 +210,6 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jBMostrarCorredores" max="32767" attributes="0"/>
                       <Component id="jBInscribirCorredor" max="32767" attributes="0"/>
                       <Component id="jBCargarCsv" max="32767" attributes="0"/>
                       <Component id="jBguardarCsv" alignment="1" pref="149" max="32767" attributes="0"/>
@@ -230,8 +229,6 @@
                       <Group type="102" attributes="0">
                           <Component id="jBInscribirCorredor" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jBMostrarCorredores" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jBCargarCsv" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jBguardarCsv" min="-2" max="-2" attributes="0"/>
@@ -249,14 +246,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBInscribirCorredorActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jBMostrarCorredores">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Mostrar Corredores"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBMostrarCorredoresActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBguardarCsv">

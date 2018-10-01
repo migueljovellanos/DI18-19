@@ -60,7 +60,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jBLimpiarCampos = new javax.swing.JButton();
         jPanelBotonAlta = new javax.swing.JPanel();
         jBInscribirCorredor = new javax.swing.JButton();
-        jBMostrarCorredores = new javax.swing.JButton();
         jBguardarCsv = new javax.swing.JButton();
         jBCargarCsv = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -183,13 +182,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jBMostrarCorredores.setText("Mostrar Corredores");
-        jBMostrarCorredores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBMostrarCorredoresActionPerformed(evt);
-            }
-        });
-
         jBguardarCsv.setText("Guardar corredores");
         jBguardarCsv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,7 +216,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanelBotonAltaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelBotonAltaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBMostrarCorredores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBInscribirCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBCargarCsv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBguardarCsv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
@@ -240,8 +231,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelBotonAltaLayout.createSequentialGroup()
                         .addComponent(jBInscribirCorredor)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBMostrarCorredores)
                         .addGap(18, 18, 18)
                         .addComponent(jBCargarCsv)
                         .addGap(18, 18, 18)
@@ -286,6 +275,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         Corredor corredorAux = new Corredor(nombre, dni, fechaNacimiento, direccion, telefono);
         gestion.addCorredorr(corredorAux);
         jDInscripcionCorredor.setVisible(false);
+        pintarTabla();
 
     }//GEN-LAST:event_jBContinuarActionPerformed
 
@@ -295,13 +285,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void jBCargarCsvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCargarCsvActionPerformed
         gestion.leerCsv();
+        pintarTabla();
     }//GEN-LAST:event_jBCargarCsvActionPerformed
 
     private void jBguardarCsvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarCsvActionPerformed
         gestion.escribirCsv();
     }//GEN-LAST:event_jBguardarCsvActionPerformed
 
-    private void jBMostrarCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMostrarCorredoresActionPerformed
+    private void pintarTabla(){
         ArrayList<Corredor> corredores = gestion.getCorredores();
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Nombre");
@@ -321,8 +312,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             model.addRow(datosCorredor);
         }
         jTableCorredores.setModel(model);
-    }//GEN-LAST:event_jBMostrarCorredoresActionPerformed
-
+    }
     private void jBLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarCamposActionPerformed
         jTFNombre.setText("");
         jTFDireccion.setText("");
@@ -372,7 +362,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jBContinuar;
     private javax.swing.JButton jBInscribirCorredor;
     private javax.swing.JButton jBLimpiarCampos;
-    private javax.swing.JButton jBMostrarCorredores;
     private javax.swing.JButton jBguardarCsv;
     private javax.swing.JDialog jDInscripcionCorredor;
     private javax.swing.JLabel jLDireccion;
