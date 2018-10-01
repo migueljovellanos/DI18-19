@@ -60,7 +60,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jTFDireccion = new javax.swing.JTextField();
         jLTelefono = new javax.swing.JLabel();
         jBLimpiarCampos = new javax.swing.JButton();
-        jSpinnerFecha = new javax.swing.JSpinner();
         jPanelBotonAlta = new javax.swing.JPanel();
         jBInscribirCorredor = new javax.swing.JButton();
         jBguardarCsv = new javax.swing.JButton();
@@ -109,8 +108,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jSpinnerFecha.setModel(new javax.swing.SpinnerDateModel());
-
         javax.swing.GroupLayout jDInscripcionCorredorLayout = new javax.swing.GroupLayout(jDInscripcionCorredor.getContentPane());
         jDInscripcionCorredor.getContentPane().setLayout(jDInscripcionCorredorLayout);
         jDInscripcionCorredorLayout.setHorizontalGroup(
@@ -130,14 +127,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                                         .addComponent(jLDni, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(38, 38, 38)
-                                .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSpinnerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTFDni)
-                                        .addComponent(jTFDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                        .addComponent(jTFTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTFDni)
+                                    .addComponent(jTFDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(jTFTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 24, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDInscripcionCorredorLayout.createSequentialGroup()
                         .addComponent(jBLimpiarCampos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -167,9 +162,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addComponent(jTFTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLFecha)
-                .addGap(22, 22, 22)
-                .addComponent(jSpinnerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBContinuar)
                     .addComponent(jBLimpiarCampos))
@@ -368,7 +361,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLTituloFormulario;
     private javax.swing.JPanel jPanelBotonAlta;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinnerFecha;
     private javax.swing.JTextField jTFDireccion;
     private javax.swing.JTextField jTFDni;
     private javax.swing.JTextField jTFNombre;
