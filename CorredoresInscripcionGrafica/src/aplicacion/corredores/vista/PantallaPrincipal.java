@@ -57,6 +57,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLDireccion = new javax.swing.JLabel();
         jTFDireccion = new javax.swing.JTextField();
         jLTelefono = new javax.swing.JLabel();
+        jBLimpiarCampos = new javax.swing.JButton();
         jPanelBotonAlta = new javax.swing.JPanel();
         jBInscribirCorredor = new javax.swing.JButton();
         jBMostrarCorredores = new javax.swing.JButton();
@@ -99,6 +100,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jLTelefono.setText("Telefono Contacto :");
 
+        jBLimpiarCampos.setText("Limpiar Campos");
+        jBLimpiarCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBLimpiarCamposActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jDInscripcionCorredorLayout = new javax.swing.GroupLayout(jDInscripcionCorredor.getContentPane());
         jDInscripcionCorredor.getContentPane().setLayout(jDInscripcionCorredorLayout);
         jDInscripcionCorredorLayout.setHorizontalGroup(
@@ -106,25 +114,28 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             .addGroup(jDInscripcionCorredorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLTituloFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jDInscripcionCorredorLayout.createSequentialGroup()
                         .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLNombre)
-                            .addComponent(jLDireccion)
-                            .addComponent(jLFecha)
-                            .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLDni, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(38, 38, 38)
-                        .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTFDni)
-                            .addComponent(jTFDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(jTFTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDInscripcionCorredorLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBContinuar)
+                            .addComponent(jLTituloFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jDInscripcionCorredorLayout.createSequentialGroup()
+                                .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLNombre)
+                                    .addComponent(jLDireccion)
+                                    .addComponent(jLFecha)
+                                    .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLDni, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(38, 38, 38)
+                                .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTFDni)
+                                    .addComponent(jTFDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(jTFTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDInscripcionCorredorLayout.createSequentialGroup()
+                        .addComponent(jBLimpiarCampos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBContinuar)))
                 .addContainerGap())
         );
         jDInscripcionCorredorLayout.setVerticalGroup(
@@ -151,7 +162,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLFecha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(jBContinuar)
+                .addGroup(jDInscripcionCorredorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBContinuar)
+                    .addComponent(jBLimpiarCampos))
                 .addContainerGap())
         );
 
@@ -310,6 +323,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jTableCorredores.setModel(model);
     }//GEN-LAST:event_jBMostrarCorredoresActionPerformed
 
+    private void jBLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarCamposActionPerformed
+        jTFNombre.setText("");
+        jTFDireccion.setText("");
+        jTFDni.setText("");
+        jTFTelefono.setText("");
+        dateChooser.setDate(new Date());
+        
+    }//GEN-LAST:event_jBLimpiarCamposActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -349,6 +371,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jBCargarCsv;
     private javax.swing.JButton jBContinuar;
     private javax.swing.JButton jBInscribirCorredor;
+    private javax.swing.JButton jBLimpiarCampos;
     private javax.swing.JButton jBMostrarCorredores;
     private javax.swing.JButton jBguardarCsv;
     private javax.swing.JDialog jDInscripcionCorredor;
