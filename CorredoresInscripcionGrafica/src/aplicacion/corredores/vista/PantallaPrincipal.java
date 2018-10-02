@@ -266,7 +266,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         int telefono = Integer.parseInt(telefonoStr);
         Corredor corredorAux = new Corredor(nombre, dni, fechaNacimiento, direccion, telefono);
         gestion.addCorredorr(corredorAux);
-        jDInscripcionCorredor.setVisible(false);
+        jDInscripcionCorredor.dispose();
         
         //Date fecha = (Date)jSpinnerFecha.getValue();
         
