@@ -282,33 +282,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         gestion.escribirCsv();
     }//GEN-LAST:event_jBguardarCsvActionPerformed
 
-    private void pintarTabla() {
-        ArrayList<Corredor> corredores = gestion.getCorredores();
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Nombre");
-        model.addColumn("Dni");
-        model.addColumn("Fecha Nacimiento");
-        model.addColumn("Direccion");
-        model.addColumn("Numero Telefono");
-        for (int i = 0; i < corredores.size(); i++) {
-            String nombre = corredores.get(i).getNombre();
-            String dni = corredores.get(i).getDni();
-            String fecha = sdf.format(corredores.get(i).getFechaNacimiento());
-            String direccion = corredores.get(i).getDireccion();
-            int telefono = corredores.get(i).getTelefono();
-
-            Object[] datosCorredor = {nombre, dni, fecha, direccion, telefono};
-
-            model.addRow(datosCorredor);
-        }
-        jTableCorredores.setModel(model);
-    }
     private void jBLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarCamposActionPerformed
-        jTFNombre.setText("");
-        jTFDireccion.setText("");
-        jTFDni.setText("");
-        jTFTelefono.setText("");
-        dateChooser.setDate(new Date());
+        limpiarCamposJdialog();
 
     }//GEN-LAST:event_jBLimpiarCamposActionPerformed
 
@@ -367,4 +342,34 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jTFTelefono;
     private javax.swing.JTable jTableCorredores;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiarCamposJdialog() {
+       jTFNombre.setText("");
+        jTFDireccion.setText("");
+        jTFDni.setText("");
+        jTFTelefono.setText("");
+        dateChooser.setDate(new Date());
+    }
+    
+    private void pintarTabla() {
+        ArrayList<Corredor> corredores = gestion.getCorredores();
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Nombre");
+        model.addColumn("Dni");
+        model.addColumn("Fecha Nacimiento");
+        model.addColumn("Direccion");
+        model.addColumn("Numero Telefono");
+        for (int i = 0; i < corredores.size(); i++) {
+            String nombre = corredores.get(i).getNombre();
+            String dni = corredores.get(i).getDni();
+            String fecha = sdf.format(corredores.get(i).getFechaNacimiento());
+            String direccion = corredores.get(i).getDireccion();
+            int telefono = corredores.get(i).getTelefono();
+
+            Object[] datosCorredor = {nombre, dni, fecha, direccion, telefono};
+
+            model.addRow(datosCorredor);
+        }
+        jTableCorredores.setModel(model);
+    }
 }
