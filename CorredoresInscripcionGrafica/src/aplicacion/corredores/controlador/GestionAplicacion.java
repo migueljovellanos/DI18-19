@@ -5,6 +5,7 @@
  */
 package aplicacion.corredores.controlador;
 
+import aplicacion.corredores.modelo.Carrera;
 import aplicacion.corredores.modelo.Corredor;
 import aplicacion.corredores.utils.Utils;
 import com.csvreader.CsvReader;
@@ -25,17 +26,22 @@ import java.util.logging.Logger;
  *
  * @author migue
  */
-public class GestionCorredores {
+public class GestionAplicacion {
 
     //atributos
     private ArrayList<Corredor> corredores = new ArrayList<Corredor>();
+    private ArrayList<Carrera> carreras = new ArrayList<Carrera>();
    
 
-    public GestionCorredores() {
+    public GestionAplicacion() {
     }
 
     public ArrayList<Corredor> getCorredores() {
         return corredores;
+    }
+    
+    public ArrayList<Carrera> getCarreras() {
+        return carreras;
     }
 
     public boolean addCorredorr(Corredor corredor) {
@@ -46,10 +52,28 @@ public class GestionCorredores {
         return false;
     }
 
+    public boolean addCarrera(Carrera carrera) {
+        if (carreras.contains(carrera) == false) {
+            carreras.add(carrera);
+            return true;
+        }
+        return false;
+    }
+    
     public boolean deleteCorredor(String dni) {
         for (Corredor corredor : corredores) {
             if (corredor.getDni().equals(dni)) {
                 corredores.remove(corredor);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean deleteCarrera(String nombre) {
+        for (Carrera carrera : carreras) {
+            if(carrera.getNombre().equals(nombre)){
+                carreras.remove(carrera);
                 return true;
             }
         }
@@ -122,7 +146,7 @@ public class GestionCorredores {
 
     }
 
-    public void escribirCsv() {
+    public void escribirCsvCorredores() {
         String outputFile = "C:\\Users\\migue\\Documents\\DI1819\\CorredoresInscripcionGrafica\\corredores.csv";
         boolean alreadyExists = new File(outputFile).exists();
 
@@ -159,7 +183,7 @@ public class GestionCorredores {
         }
     }
 
-    public void leerCsv() {
+    public void leerCsvCorredores() {
 
         try {
 
@@ -186,7 +210,7 @@ public class GestionCorredores {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException ex) {
-            Logger.getLogger(GestionCorredores.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GestionAplicacion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -200,4 +224,6 @@ public class GestionCorredores {
         }
         return cad;
     }
+
+    
 }

@@ -5,17 +5,7 @@
  */
 package aplicacion.corredores.vista;
 
-import aplicacion.corredores.controlador.GestionCorredores;
-import aplicacion.corredores.modelo.Corredor;
-import aplicacion.corredores.vista.tableModels.TableModelCorredores;
-import com.toedter.calendar.JCalendar;
-import com.toedter.calendar.JDateChooser;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+import aplicacion.corredores.controlador.GestionAplicacion;
 
 /**
  *
@@ -23,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
 
-    private GestionCorredores gestion = new GestionCorredores();
+    private GestionAplicacion gestion = new GestionAplicacion();
 
     /**
      * Creates new form PantallaPrincipal
@@ -68,6 +58,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
 
         jButtonGestionCarreras.setText("Gestionar Carreras");
+        jButtonGestionCarreras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGestionCarrerasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPPantallaPrincipalLayout = new javax.swing.GroupLayout(jPPantallaPrincipal);
         jPPantallaPrincipal.setLayout(jPPantallaPrincipalLayout);
@@ -120,6 +115,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jDCorredores dialogCorredores = new jDCorredores(this, rootPaneCheckingEnabled, gestion);
         dialogCorredores.setVisible(true);
     }//GEN-LAST:event_jButtonGestionCorredoresActionPerformed
+
+    private void jButtonGestionCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionCarrerasActionPerformed
+        jDCarreras dialogCarreras = new jDCarreras(this, rootPaneCheckingEnabled, gestion);
+        dialogCarreras.setVisible(true);
+    }//GEN-LAST:event_jButtonGestionCarrerasActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,7 +5,7 @@
  */
 package aplicacion.corredores.vista;
 
-import aplicacion.corredores.controlador.GestionCorredores;
+import aplicacion.corredores.controlador.GestionAplicacion;
 import aplicacion.corredores.vista.tableModels.TableModelCorredores;
 import javax.swing.JOptionPane;
 
@@ -14,15 +14,15 @@ import javax.swing.JOptionPane;
  * @author migue
  */
 public class jDCorredores extends javax.swing.JDialog {
-    private GestionCorredores gestion;
+    private GestionAplicacion gestion;
     /**
      * Creates new form jDCorredores
      */
-    public jDCorredores(java.awt.Frame parent, boolean modal, GestionCorredores gestion) {
+    public jDCorredores(java.awt.Frame parent, boolean modal, GestionAplicacion gestion) {
         super(parent, modal);
         this.gestion=gestion;
         initComponents();
-        gestion.leerCsv();
+        gestion.leerCsvCorredores();
         jTableCorredores.setModel(new TableModelCorredores(gestion.getCorredores()));
         
     }
@@ -107,7 +107,7 @@ public class jDCorredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jBInscribirCorredorActionPerformed
 
     private void jBguardarCsvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarCsvActionPerformed
-        gestion.escribirCsv();
+        gestion.escribirCsvCorredores();
         JOptionPane.showMessageDialog(this, "Se han guardado los corredores en el CSV");
     }//GEN-LAST:event_jBguardarCsvActionPerformed
 
