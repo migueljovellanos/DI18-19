@@ -23,7 +23,6 @@ import javax.swing.table.DefaultTableModel;
 public class PantallaPrincipal extends javax.swing.JFrame {
 
     private GestionCorredores gestion = new GestionCorredores();
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     private JDateChooser dateChooser;
 
     /**

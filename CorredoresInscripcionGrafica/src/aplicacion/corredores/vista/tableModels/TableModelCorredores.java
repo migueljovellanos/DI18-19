@@ -6,7 +6,7 @@
 package aplicacion.corredores.vista.tableModels;
 
 import aplicacion.corredores.modelo.Corredor;
-import java.text.SimpleDateFormat;
+import static aplicacion.corredores.utils.Utils.sdf;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -18,7 +18,6 @@ public class TableModelCorredores extends AbstractTableModel {
 
     private final List<Corredor> listaCorredores;
     private final String[] columnas = {"Nombre", "DNI", "Fecha Nacimiento", "Direccion", "Numero Telefono"};
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public TableModelCorredores(List<Corredor> listaCorredores) {
         this.listaCorredores = listaCorredores;
