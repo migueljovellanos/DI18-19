@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,7 +24,6 @@ import javax.swing.table.DefaultTableModel;
 public class PantallaPrincipal extends javax.swing.JFrame {
 
     private GestionCorredores gestion = new GestionCorredores();
-    private JDateChooser dateChooser;
 
     /**
      * Creates new form PantallaPrincipal
@@ -31,8 +31,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public PantallaPrincipal() {
 
         initComponents();
-        gestion.leerCsv();
-        jTableCorredores.setModel(new TableModelCorredores(gestion.getCorredores()));
+        
     }
 
     /**
@@ -44,102 +43,83 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelBotonAlta = new javax.swing.JPanel();
-        jBInscribirCorredor = new javax.swing.JButton();
-        jBguardarCsv = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTableCorredores = new javax.swing.JTable();
+        jPPantallaPrincipal = new javax.swing.JPanel();
+        jLabelTituloAplicacion = new javax.swing.JLabel();
+        jButtonGestionCorredores = new javax.swing.JButton();
+        jButtonGestionCarreras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Formulario Alta Corredor");
         setMaximumSize(new java.awt.Dimension(21474836, 21474836));
         setMinimumSize(new java.awt.Dimension(500, 300));
 
-        jPanelBotonAlta.setToolTipText("");
-        jPanelBotonAlta.setMaximumSize(new java.awt.Dimension(3276, 3276));
+        jPPantallaPrincipal.setToolTipText("");
+        jPPantallaPrincipal.setMaximumSize(new java.awt.Dimension(3276, 3276));
 
-        jBInscribirCorredor.setText("Inscribir corredor");
-        jBInscribirCorredor.addActionListener(new java.awt.event.ActionListener() {
+        jLabelTituloAplicacion.setFont(new java.awt.Font("Dialog", 2, 36)); // NOI18N
+        jLabelTituloAplicacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTituloAplicacion.setText("Aplicacion para gestionar corredores y carreras");
+
+        jButtonGestionCorredores.setText("Gestionar Corredores");
+        jButtonGestionCorredores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBInscribirCorredorActionPerformed(evt);
+                jButtonGestionCorredoresActionPerformed(evt);
             }
         });
 
-        jBguardarCsv.setText("Guardar corredores");
-        jBguardarCsv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBguardarCsvActionPerformed(evt);
-            }
-        });
+        jButtonGestionCarreras.setText("Gestionar Carreras");
 
-        jTableCorredores.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTableCorredores);
-
-        javax.swing.GroupLayout jPanelBotonAltaLayout = new javax.swing.GroupLayout(jPanelBotonAlta);
-        jPanelBotonAlta.setLayout(jPanelBotonAltaLayout);
-        jPanelBotonAltaLayout.setHorizontalGroup(
-            jPanelBotonAltaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBotonAltaLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPPantallaPrincipalLayout = new javax.swing.GroupLayout(jPPantallaPrincipal);
+        jPPantallaPrincipal.setLayout(jPPantallaPrincipalLayout);
+        jPPantallaPrincipalLayout.setHorizontalGroup(
+            jPPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPPantallaPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelBotonAltaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBInscribirCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBguardarCsv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+                .addGroup(jPPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelTituloAplicacion, javax.swing.GroupLayout.DEFAULT_SIZE, 1011, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPPantallaPrincipalLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonGestionCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(jPPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPPantallaPrincipalLayout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(jButtonGestionCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(821, Short.MAX_VALUE)))
         );
-        jPanelBotonAltaLayout.setVerticalGroup(
-            jPanelBotonAltaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBotonAltaLayout.createSequentialGroup()
+        jPPantallaPrincipalLayout.setVerticalGroup(
+            jPPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPPantallaPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelBotonAltaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(jPanelBotonAltaLayout.createSequentialGroup()
-                        .addComponent(jBInscribirCorredor)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBguardarCsv)
-                        .addGap(0, 313, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(jLabelTituloAplicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonGestionCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(239, Short.MAX_VALUE))
+            .addGroup(jPPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPPantallaPrincipalLayout.createSequentialGroup()
+                    .addGap(91, 91, 91)
+                    .addComponent(jButtonGestionCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(229, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelBotonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPPantallaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelBotonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPPantallaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBInscribirCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInscribirCorredorActionPerformed
-        jDInscripcionCorredor inscipcion = new jDInscripcionCorredor(this, true, gestion);
-        inscipcion.setVisible(true);
-        jTableCorredores.setModel(new TableModelCorredores(gestion.getCorredores()));
-
-    }//GEN-LAST:event_jBInscribirCorredorActionPerformed
-
-    private void jBguardarCsvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarCsvActionPerformed
-        gestion.escribirCsv();
-    }//GEN-LAST:event_jBguardarCsvActionPerformed
+    private void jButtonGestionCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionCorredoresActionPerformed
+        jDCorredores dialogCorredores = new jDCorredores(this, rootPaneCheckingEnabled, gestion);
+        dialogCorredores.setVisible(true);
+    }//GEN-LAST:event_jButtonGestionCorredoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,11 +157,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBInscribirCorredor;
-    private javax.swing.JButton jBguardarCsv;
-    private javax.swing.JPanel jPanelBotonAlta;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTableCorredores;
+    private javax.swing.JButton jButtonGestionCarreras;
+    private javax.swing.JButton jButtonGestionCorredores;
+    private javax.swing.JLabel jLabelTituloAplicacion;
+    private javax.swing.JPanel jPPantallaPrincipal;
     // End of variables declaration//GEN-END:variables
 
     /* private void pintarTablaCorredores() {

@@ -9,6 +9,7 @@ import aplicacion.corredores.controlador.GestionCorredores;
 import aplicacion.corredores.modelo.Corredor;
 import com.toedter.calendar.JDateChooser;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,6 +24,15 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
      * Creates new form jDInscripcionCorredor
      */
     public jDInscripcionCorredor(java.awt.Frame parent, boolean modal, GestionCorredores gestionParametro) {
+        super(parent, modal);
+        this.gestion=gestionParametro;
+        initComponents();
+    }
+    
+    /**
+     * Creates new form jDInscripcionCorredor
+     */
+    public jDInscripcionCorredor(java.awt.Dialog parent, boolean modal, GestionCorredores gestionParametro) {
         super(parent, modal);
         this.gestion=gestionParametro;
         initComponents();
@@ -168,6 +178,7 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
         int telefono = Integer.parseInt(telefonoStr);
         Corredor corredorAux = new Corredor(nombre, dni, fechaNacimiento, direccion, telefono);
         gestion.addCorredorr(corredorAux);
+        JOptionPane.showMessageDialog(this, "Se ha añadido el corredor a la coleccion de corredores");
         this.dispose();
 
         //Date fecha = (Date)jSpinnerFecha.getValue();
@@ -181,6 +192,7 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
 
     private void jBLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarCamposActionPerformed
         limpiarCamposJdialog();
+        JOptionPane.showMessageDialog(this, "Se han limpiado los campos de este formulario");
     }//GEN-LAST:event_jBLimpiarCamposActionPerformed
 
     private void jTFNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNombreActionPerformed
