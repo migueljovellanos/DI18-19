@@ -5,6 +5,7 @@
  */
 package aplicacion.corredores.modelo;
 
+import aplicacion.corredores.utils.Utils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,8 +22,9 @@ public class Corredor {
     private String direccion;
     private int telefono;
 
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+   
 
+    
     public Corredor(String nombre, String dni, Date fechaNacimiento, String direccion, int telefono) {
         this.nombre = nombre;
         this.dni = dni;
@@ -74,7 +76,7 @@ public class Corredor {
     @Override
     public String toString() {
         
-        return "nombre= " + nombre + ", dni= " + dni + ", fechaNacimiento= " + sdf.format(fechaNacimiento) + ", direccion= " + direccion + ", telefono= " + telefono + '}';
+        return "nombre= " + nombre + ", dni= " + dni + ", fechaNacimiento= " + Utils.sdf.format(fechaNacimiento) + ", direccion= " + direccion + ", telefono= " + telefono + '}';
     }
 
 }
