@@ -7,6 +7,7 @@ package aplicacion.corredores.vista;
 
 import aplicacion.corredores.controlador.GestionCorredores;
 import aplicacion.corredores.modelo.Corredor;
+import aplicacion.corredores.vista.tableModels.TableModelCorredores;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 import java.text.SimpleDateFormat;
@@ -32,7 +33,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         initComponents();
         gestion.leerCsv();
-        pintarTabla();
+        jTableCorredores.setModel(new TableModelCorredores(gestion.getCorredores()));
     }
 
     /**
@@ -95,20 +96,21 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addComponent(jBInscribirCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBguardarCsv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanelBotonAltaLayout.setVerticalGroup(
             jPanelBotonAltaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBotonAltaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelBotonAltaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanelBotonAltaLayout.createSequentialGroup()
                         .addComponent(jBInscribirCorredor)
                         .addGap(18, 18, 18)
-                        .addComponent(jBguardarCsv)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(jBguardarCsv)
+                        .addGap(0, 313, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -130,10 +132,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBInscribirCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInscribirCorredorActionPerformed
-         jDInscripcionCorredor inscipcion = new jDInscripcionCorredor(this, true, gestion);
-         inscipcion.setVisible(true);
-         pintarTabla();
-         
+        jDInscripcionCorredor inscipcion = new jDInscripcionCorredor(this, true, gestion);
+        inscipcion.setVisible(true);
+        jTableCorredores.setModel(new TableModelCorredores(gestion.getCorredores()));
+
     }//GEN-LAST:event_jBInscribirCorredorActionPerformed
 
     private void jBguardarCsvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarCsvActionPerformed
@@ -183,12 +185,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable jTableCorredores;
     // End of variables declaration//GEN-END:variables
 
-    
-    private void pintarTabla() {
+    /* private void pintarTablaCorredores() {
         ArrayList<Corredor> corredores = gestion.getCorredores();
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Nombre");
-        model.addColumn("Dni");
+        model.addColumn("DNI");
         model.addColumn("Fecha Nacimiento");
         model.addColumn("Direccion");
         model.addColumn("Numero Telefono");
@@ -204,5 +205,5 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             model.addRow(datosCorredor);
         }
         jTableCorredores.setModel(model);
-    }
+    }*/
 }
