@@ -6,19 +6,17 @@
 package aplicacion.corredores.controlador;
 
 import aplicacion.corredores.modelo.Corredor;
+import aplicacion.corredores.utils.Utils;
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,7 +29,7 @@ public class GestionCorredores {
 
     //atributos
     private ArrayList<Corredor> corredores = new ArrayList<Corredor>();
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+   
 
     public GestionCorredores() {
     }
@@ -148,7 +146,7 @@ public class GestionCorredores {
 
                 csvOutput.write(corredor.getNombre());
                 csvOutput.write(corredor.getDni());
-                csvOutput.write(sdf.format(corredor.getFechaNacimiento()));
+                csvOutput.write(Utils.sdf.format(corredor.getFechaNacimiento()));
                 csvOutput.write(corredor.getDireccion());
                 csvOutput.write(String.valueOf(corredor.getTelefono()));
                 csvOutput.endRecord();
@@ -176,7 +174,7 @@ public class GestionCorredores {
                 String direccion = corredores_import.get(3);
                 int telefono = Integer.valueOf(corredores_import.get(4));
 
-                Corredor corredorAux = new Corredor(nombre, dni, sdf.parse(fechaNacimiento), direccion,telefono);
+                Corredor corredorAux = new Corredor(nombre, dni, Utils.sdf.parse(fechaNacimiento), direccion,telefono);
 
                 corredores.add(corredorAux);
             }
