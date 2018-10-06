@@ -151,8 +151,8 @@ public class GestionAplicacion {
         boolean alreadyExists = new File(outputFile).exists();
 
         if (alreadyExists) {
-            File ArchivoEmpleados = new File(outputFile);
-            ArchivoEmpleados.delete();
+            File ArchivoCorredores = new File(outputFile);
+            ArchivoCorredores.delete();
         }
 
         try {
@@ -183,6 +183,41 @@ public class GestionAplicacion {
         }
     }
 
+    public void escribirCsvCarreras() {
+        String outputFile = "C:\\Users\\migue\\Documents\\DI1819\\CorredoresInscripcionGrafica\\carreras.csv";
+        boolean alreadyExists = new File(outputFile).exists();
+
+        if (alreadyExists) {
+            File ArchivoCarreras = new File(outputFile);
+            ArchivoCarreras.delete();
+        }
+
+        try {
+
+            CsvWriter csvOutput = new CsvWriter(new FileWriter(outputFile, true), ',');
+
+            csvOutput.write("Nombre");
+            csvOutput.write("Fecha");
+            csvOutput.write("Lugar");
+            csvOutput.write("Max. participantes");
+            csvOutput.endRecord();
+
+            for (Carrera carrera : carreras) {
+                
+                csvOutput.write(carrera.getNombre());
+                csvOutput.write(Utils.sdf.format(carrera.getFecha()));
+                csvOutput.write(carrera.getLugar());
+                csvOutput.write(String.valueOf(carrera.getMaxCorredores()));
+                csvOutput.endRecord();
+            }
+
+            csvOutput.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void leerCsvCorredores() {
 
         try {
@@ -204,6 +239,35 @@ public class GestionAplicacion {
             }
 
             corredores_import.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException ex) {
+            Logger.getLogger(GestionAplicacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void leerCsvCarreras() {
+
+        try {
+
+            CsvReader carreras_import = new CsvReader("C:\\Users\\migue\\Documents\\DI1819\\CorredoresInscripcionGrafica\\corredores.csv");
+            carreras_import.readHeaders();
+
+            while (carreras_import.readRecord()) {
+
+                String nombre = carreras_import.get(0);
+                String fecha = carreras_import.get(1);
+                String lugar = carreras_import.get(2);
+                int telefono = Integer.valueOf(carreras_import.get(3));
+
+                Carrera carreraAux =new Carrera(nombre, Utils.sdf.parse(fecha), lugar, telefono);
+                carreras.add(carreraAux);
+            }
+
+            carreras_import.close();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
