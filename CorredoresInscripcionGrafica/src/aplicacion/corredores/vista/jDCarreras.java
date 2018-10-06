@@ -42,6 +42,11 @@ public class jDCarreras extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jBCrearCarrera.setText("Crear carrera");
+        jBCrearCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCrearCarreraActionPerformed(evt);
+            }
+        });
 
         jBGuardarCarreras.setText("Guardar carreras");
 
@@ -98,6 +103,12 @@ public class jDCarreras extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBCrearCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCrearCarreraActionPerformed
+        JDCreacionCarrera creacion = new JDCreacionCarrera(this, true, gestion);
+        creacion.setVisible(true);
+        jTCarreras.setModel(new TableModelCarreras(gestion.getCarreras()));
+    }//GEN-LAST:event_jBCrearCarreraActionPerformed
 
     
 

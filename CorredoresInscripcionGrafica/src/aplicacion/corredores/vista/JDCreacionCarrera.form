@@ -23,38 +23,39 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLTituloFormulario" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLNombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLDireccion" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLFecha" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jLDni" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLTelefono" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTFDni" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTFDireccion" alignment="0" pref="250" max="32767" attributes="0"/>
-                                  <Component id="dateChooser" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTFTelefono" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTFNombre" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="21" max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jBLimpiarCampos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jBContinuar" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLFecha" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="38" max="32767" attributes="0"/>
+                          <Component id="dateChooser" min="-2" pref="250" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLTituloFormulario" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLNombre" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLMaxParticipantes" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLLugar" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jTLugar" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jTFMaxParticipantes" alignment="0" pref="250" max="32767" attributes="0"/>
+                                      <Component id="jTFNombre" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -73,25 +74,20 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLDni" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTFDni" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLLugar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTLugar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTFDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTFTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLMaxParticipantes" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTFMaxParticipantes" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLFecha" min="-2" max="-2" attributes="0"/>
                   <Component id="dateChooser" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace pref="54" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jBContinuar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBLimpiarCampos" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -102,32 +98,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jBContinuar">
+    <Component class="javax.swing.JLabel" name="jLMaxParticipantes">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Continuar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBContinuarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTFDni">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLDireccion">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Direccion :"/>
+        <Property name="text" type="java.lang.String" value="Max. Particupantes"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTFDireccion">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLTelefono">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Telefono Contacto :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTFTelefono">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFTelefonoActionPerformed"/>
-      </Events>
+    <Component class="javax.swing.JTextField" name="jTFMaxParticipantes">
     </Component>
     <Component class="javax.swing.JButton" name="jBLimpiarCampos">
       <Properties>
@@ -139,7 +115,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLTituloFormulario">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Formulario Alta Corredor"/>
+        <Property name="text" type="java.lang.String" value="Formulario Cracion Carrera"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLFecha">
@@ -157,15 +133,22 @@
         <Property name="text" type="java.lang.String" value="Nombre :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLDni">
+    <Component class="javax.swing.JButton" name="jBContinuar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Dni"/>
+        <Property name="text" type="java.lang.String" value="Continuar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBContinuarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLLugar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Lugar"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JTextField" name="jTLugar">
+    </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="dateChooser">
-      <Properties>
-        <Property name="dateFormatString" type="java.lang.String" value="dd/MMM/yyyy"/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -101,6 +101,8 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
 
         jLDni.setText("Dni");
 
+        dateChooser.setDateFormatString("dd/MMM/yyyy");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
