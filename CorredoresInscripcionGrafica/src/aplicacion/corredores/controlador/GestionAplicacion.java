@@ -253,7 +253,7 @@ public class GestionAplicacion {
 
         try {
 
-            CsvReader carreras_import = new CsvReader("C:\\Users\\migue\\Documents\\DI1819\\CorredoresInscripcionGrafica\\corredores.csv");
+            CsvReader carreras_import = new CsvReader("C:\\Users\\migue\\Documents\\DI1819\\CorredoresInscripcionGrafica\\carreras.csv");
             carreras_import.readHeaders();
 
             while (carreras_import.readRecord()) {
@@ -278,16 +278,7 @@ public class GestionAplicacion {
         }
     }
 
-    @Override
-    public String toString() {
-        int var = 0;
-        String cad = "";
-        for (Corredor corredor : corredores) {
-            var = var + 1;
-            cad = cad + var + "      " + corredor.toString() + "\n";
-        }
-        return cad;
-    }
+    
 
     
 }

@@ -21,6 +21,7 @@ public class jDCarreras extends javax.swing.JDialog {
         super(parent, modal);
         this.gestion=gestion;
         initComponents();
+        gestion.leerCsvCarreras();
         jTCarreras.setModel(new TableModelCarreras(gestion.getCarreras()));
     }
 
@@ -49,6 +50,11 @@ public class jDCarreras extends javax.swing.JDialog {
         });
 
         jBGuardarCarreras.setText("Guardar carreras");
+        jBGuardarCarreras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarCarrerasActionPerformed(evt);
+            }
+        });
 
         jTCarreras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -109,6 +115,10 @@ public class jDCarreras extends javax.swing.JDialog {
         creacion.setVisible(true);
         jTCarreras.setModel(new TableModelCarreras(gestion.getCarreras()));
     }//GEN-LAST:event_jBCrearCarreraActionPerformed
+
+    private void jBGuardarCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarCarrerasActionPerformed
+        gestion.escribirCsvCarreras();
+    }//GEN-LAST:event_jBGuardarCarrerasActionPerformed
 
     
 
