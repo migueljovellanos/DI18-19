@@ -26,11 +26,13 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jBInscribirCorredor" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jBguardarCsv" alignment="1" pref="149" max="32767" attributes="0"/>
+                  <Component id="jBInscribirCorredor" pref="149" max="32767" attributes="0"/>
+                  <Component id="jBModificarCorredor" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jBguardarCsv" alignment="0" pref="149" max="32767" attributes="0"/>
+                  <Component id="jBEliminarCorredor" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" pref="836" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Component id="jScrollPane2" pref="814" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -40,12 +42,16 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane2" alignment="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" alignment="0" pref="494" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jBInscribirCorredor" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jBModificarCorredor" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jBEliminarCorredor" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jBguardarCsv" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="412" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -89,6 +95,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBguardarCsvActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBModificarCorredor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modificar corredor"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBModificarCorredorActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBEliminarCorredor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Eliminar corredor"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBEliminarCorredorActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

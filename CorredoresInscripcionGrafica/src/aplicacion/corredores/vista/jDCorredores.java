@@ -6,6 +6,7 @@
 package aplicacion.corredores.vista;
 
 import aplicacion.corredores.controlador.GestionAplicacion;
+import aplicacion.corredores.modelo.Corredor;
 import aplicacion.corredores.vista.tableModels.TableModelCorredores;
 import javax.swing.JOptionPane;
 
@@ -14,17 +15,19 @@ import javax.swing.JOptionPane;
  * @author migue
  */
 public class jDCorredores extends javax.swing.JDialog {
+
     private GestionAplicacion gestion;
+
     /**
      * Creates new form jDCorredores
      */
     public jDCorredores(java.awt.Frame parent, boolean modal, GestionAplicacion gestion) {
         super(parent, modal);
-        this.gestion=gestion;
+        this.gestion = gestion;
         initComponents();
         gestion.leerCsvCorredores();
         jTableCorredores.setModel(new TableModelCorredores(gestion.getCorredores()));
-        
+
     }
 
     /**
@@ -40,6 +43,8 @@ public class jDCorredores extends javax.swing.JDialog {
         jTableCorredores = new javax.swing.JTable();
         jBInscribirCorredor = new javax.swing.JButton();
         jBguardarCsv = new javax.swing.JButton();
+        jBModificarCorredor = new javax.swing.JButton();
+        jBEliminarCorredor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -70,6 +75,20 @@ public class jDCorredores extends javax.swing.JDialog {
             }
         });
 
+        jBModificarCorredor.setText("Modificar corredor");
+        jBModificarCorredor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBModificarCorredorActionPerformed(evt);
+            }
+        });
+
+        jBEliminarCorredor.setText("Eliminar corredor");
+        jBEliminarCorredor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarCorredorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,10 +96,12 @@ public class jDCorredores extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBInscribirCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBguardarCsv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE)
+                    .addComponent(jBInscribirCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                    .addComponent(jBModificarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBguardarCsv, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                    .addComponent(jBEliminarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -88,12 +109,16 @@ public class jDCorredores extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBInscribirCorredor)
                         .addGap(18, 18, 18)
+                        .addComponent(jBModificarCorredor)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBEliminarCorredor)
+                        .addGap(18, 18, 18)
                         .addComponent(jBguardarCsv)
-                        .addGap(0, 412, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -111,11 +136,26 @@ public class jDCorredores extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(this, "Se han guardado los corredores en el CSV");
     }//GEN-LAST:event_jBguardarCsvActionPerformed
 
-    
-    
+    private void jBModificarCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarCorredorActionPerformed
+        int seleccionado = jTableCorredores.getSelectedRow();
+        Corredor perSeleccionada = gestion.getCorredores().get(seleccionado);
+        jDInscripcionCorredor dialogoModificar = new jDInscripcionCorredor(this, true, gestion, perSeleccionada);
+        dialogoModificar.setVisible(true);
+        jTableCorredores.setModel(new TableModelCorredores(gestion.getCorredores()));
+    }//GEN-LAST:event_jBModificarCorredorActionPerformed
+
+    private void jBEliminarCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarCorredorActionPerformed
+        int seleccionado = jTableCorredores.getSelectedRow();
+        Corredor perSeleccionada = gestion.getCorredores().get(seleccionado);
+        gestion.getCorredores().remove(perSeleccionada);
+        jTableCorredores.setModel(new TableModelCorredores(gestion.getCorredores()));
+    }//GEN-LAST:event_jBEliminarCorredorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBEliminarCorredor;
     private javax.swing.JButton jBInscribirCorredor;
+    private javax.swing.JButton jBModificarCorredor;
     private javax.swing.JButton jBguardarCsv;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableCorredores;

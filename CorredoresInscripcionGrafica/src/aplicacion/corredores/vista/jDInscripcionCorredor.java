@@ -17,25 +17,37 @@ import javax.swing.JOptionPane;
  */
 public class jDInscripcionCorredor extends javax.swing.JDialog {
 
-   
     private GestionAplicacion gestion;
-    
-    /**
-     * Creates new form jDInscripcionCorredor
-     */
-    public jDInscripcionCorredor(java.awt.Frame parent, boolean modal, GestionAplicacion gestionParametro) {
-        super(parent, modal);
-        this.gestion=gestionParametro;
-        initComponents();
-    }
-    
+    private Corredor corredorSeleccionado = null;
+
     /**
      * Creates new form jDInscripcionCorredor
      */
     public jDInscripcionCorredor(java.awt.Dialog parent, boolean modal, GestionAplicacion gestionParametro) {
         super(parent, modal);
-        this.gestion=gestionParametro;
+        this.gestion = gestionParametro;
         initComponents();
+    }
+
+    /**
+     * Contructor para modificar
+     *
+     * @param parent
+     * @param modal
+     * @param gestionParametro
+     * @param corredorSeleccionadoParametro
+     */
+    public jDInscripcionCorredor(java.awt.Dialog parent, boolean modal, GestionAplicacion gestionParametro, Corredor corredorSeleccionadoParametro) {
+        super(parent, modal);
+        this.gestion = gestionParametro;
+        initComponents();
+        this.corredorSeleccionado = corredorSeleccionadoParametro;
+        jTFNombre.setText(corredorSeleccionado.getNombre());
+        jTFDireccion.setText(corredorSeleccionado.getDireccion());
+        jTFDni.setText(corredorSeleccionado.getDni());
+        jTFTelefono.setText(String.valueOf(corredorSeleccionado.getTelefono()));
+        dateChooser.setDate(corredorSeleccionado.getFechaNacimiento());
+
     }
 
     /**
@@ -178,14 +190,22 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
         String direccion = jTFDireccion.getText();
         String telefonoStr = jTFTelefono.getText();
         int telefono = Integer.parseInt(telefonoStr);
-        Corredor corredorAux = new Corredor(nombre, dni, fechaNacimiento, direccion, telefono);
-        gestion.addCorredorr(corredorAux);
-        JOptionPane.showMessageDialog(this, "Se ha añadido el corredor a la coleccion de corredores");
+
+        if (corredorSeleccionado == null) {
+            Corredor corredorAux = new Corredor(nombre, dni, fechaNacimiento, direccion, telefono);
+            gestion.addCorredorr(corredorAux);
+            JOptionPane.showMessageDialog(this, "Se ha añadido el corredor a la coleccion de corredores");
+        }else{
+            corredorSeleccionado.setNombre(nombre);
+            corredorSeleccionado.setDni(dni);
+            corredorSeleccionado.setDireccion(direccion);
+            corredorSeleccionado.setTelefono(telefono);
+            corredorSeleccionado.setFechaNacimiento(fechaNacimiento);
+        }
         this.dispose();
 
         //Date fecha = (Date)jSpinnerFecha.getValue();
 
-        
     }//GEN-LAST:event_jBContinuarActionPerformed
 
     private void jTFTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTelefonoActionPerformed
@@ -201,15 +221,14 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFNombreActionPerformed
 
-    
     private void limpiarCamposJdialog() {
-       jTFNombre.setText("");
+        jTFNombre.setText("");
         jTFDireccion.setText("");
         jTFDni.setText("");
         jTFTelefono.setText("");
         dateChooser.setDate(new Date());
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser dateChooser;

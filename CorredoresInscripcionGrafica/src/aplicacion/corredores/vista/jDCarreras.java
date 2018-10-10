@@ -7,6 +7,7 @@ package aplicacion.corredores.vista;
 
 import aplicacion.corredores.vista.tableModels.TableModelCarreras;
 import aplicacion.corredores.controlador.GestionAplicacion;
+import aplicacion.corredores.modelo.Carrera;
 
 /**
  *
@@ -39,6 +40,8 @@ public class jDCarreras extends javax.swing.JDialog {
         jBGuardarCarreras = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTCarreras = new javax.swing.JTable();
+        jBModificarCarrera = new javax.swing.JButton();
+        jBEliminarCarrera = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -69,14 +72,30 @@ public class jDCarreras extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTCarreras);
 
+        jBModificarCarrera.setText("Modificar carrera");
+        jBModificarCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBModificarCarreraActionPerformed(evt);
+            }
+        });
+
+        jBEliminarCarrera.setText("Eliminar carrera");
+        jBEliminarCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarCarreraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBGuardarCarreras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBCrearCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jBModificarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addComponent(jBCrearCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBEliminarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBGuardarCarreras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -89,6 +108,10 @@ public class jDCarreras extends javax.swing.JDialog {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jBCrearCarrera)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBModificarCarrera)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBEliminarCarrera)
                         .addGap(18, 18, 18)
                         .addComponent(jBGuardarCarreras)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -120,11 +143,28 @@ public class jDCarreras extends javax.swing.JDialog {
         gestion.escribirCsvCarreras();
     }//GEN-LAST:event_jBGuardarCarrerasActionPerformed
 
+    private void jBModificarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarCarreraActionPerformed
+        int seleccionado = jTCarreras.getSelectedRow();
+        Carrera carrera = gestion.getCarreras().get(seleccionado);
+        JDCreacionCarrera dialogoModificar = new JDCreacionCarrera(this, true, gestion , carrera);
+        dialogoModificar.setVisible(true);
+        jTCarreras.setModel(new TableModelCarreras(gestion.getCarreras()));
+    }//GEN-LAST:event_jBModificarCarreraActionPerformed
+
+    private void jBEliminarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarCarreraActionPerformed
+        int seleccionado = jTCarreras.getSelectedRow();
+        Carrera carreraSeleccionada = gestion.getCarreras().get(seleccionado);
+        gestion.getCarreras().remove(carreraSeleccionada);
+        jTCarreras.setModel(new TableModelCarreras(gestion.getCarreras()));
+    }//GEN-LAST:event_jBEliminarCarreraActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCrearCarrera;
+    private javax.swing.JButton jBEliminarCarrera;
     private javax.swing.JButton jBGuardarCarreras;
+    private javax.swing.JButton jBModificarCarrera;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTCarreras;

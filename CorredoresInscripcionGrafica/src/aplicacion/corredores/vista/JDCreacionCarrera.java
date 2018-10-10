@@ -15,7 +15,9 @@ import javax.swing.JOptionPane;
  * @author migue
  */
 public class JDCreacionCarrera extends javax.swing.JDialog {
-    GestionAplicacion gestion;
+
+    private GestionAplicacion gestion;
+    private Carrera carrera = null;
 
     /**
      * Creates new form JDCreacionCarrera
@@ -23,7 +25,18 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
     public JDCreacionCarrera(java.awt.Dialog parent, boolean modal, GestionAplicacion gestion) {
         super(parent, modal);
         initComponents();
-        this.gestion=gestion;
+        this.gestion = gestion;
+    }
+
+    JDCreacionCarrera(java.awt.Dialog parent, boolean modal, GestionAplicacion gestion, Carrera carreraSeleccionada) {
+        super(parent, modal);
+        initComponents();
+        this.gestion = gestion;
+        this.carrera = carreraSeleccionada;
+        jTLugar.setText(carrera.getLugar());
+        jTFMaxParticipantes.setText(String.valueOf(carrera.getMaxCorredores()));
+        jTFNombre.setText(carrera.getNombre());
+        dateChooser.setDate(carrera.getFecha());
     }
 
     /**
@@ -58,7 +71,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
             }
         });
 
-        jLTituloFormulario.setText("Formulario Cracion Carrera");
+        jLTituloFormulario.setText("Formulario  Carrera");
 
         jLFecha.setText("Fecha Nacimiento : ");
 
@@ -90,25 +103,24 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
                         .addComponent(jBLimpiarCampos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBContinuar))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLFecha)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                            .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLTituloFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLNombre)
-                                        .addComponent(jLMaxParticipantes)
-                                        .addComponent(jLLugar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(38, 38, 38)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTLugar)
-                                        .addComponent(jTFMaxParticipantes, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                        .addComponent(jTFNombre))))
-                            .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLFecha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLTituloFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLNombre)
+                                    .addComponent(jLMaxParticipantes)
+                                    .addComponent(jLLugar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(38, 38, 38)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTLugar)
+                                    .addComponent(jTFMaxParticipantes, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(jTFNombre))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -156,18 +168,24 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
         String nombre = jTFNombre.getText();
         String lugar = jTLugar.getText();
         Date fecha = dateChooser.getDate();
-        String maxParticipantes =jTFMaxParticipantes.getText();
+        String maxParticipantes = jTFMaxParticipantes.getText();
         int max = Integer.parseInt(maxParticipantes);
-        Carrera carreraAux = new Carrera(nombre, fecha, lugar, max);
-        gestion.addCarrera(carreraAux);
-        JOptionPane.showMessageDialog(this, "Se ha añadido la carrera a la coleccion de carreras");
+        if (carrera == null) {
+            Carrera carreraAux = new Carrera(nombre, fecha, lugar, max);
+            gestion.addCarrera(carreraAux);
+            JOptionPane.showMessageDialog(this, "Se ha añadido la carrera a la coleccion de carreras");
+        }else{
+            carrera.setFecha(fecha);
+            carrera.setLugar(lugar);
+            carrera.setMaxCorredores(max);
+            carrera.setNombre(nombre);
+        }
         this.dispose();
 
         //Date fecha = (Date)jSpinnerFecha.getValue();
 
     }//GEN-LAST:event_jBContinuarActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser dateChooser;
