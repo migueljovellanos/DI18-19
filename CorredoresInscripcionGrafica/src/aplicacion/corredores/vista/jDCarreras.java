@@ -140,7 +140,7 @@ public class jDCarreras extends javax.swing.JDialog {
     }//GEN-LAST:event_jBCrearCarreraActionPerformed
 
     private void jBGuardarCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarCarrerasActionPerformed
-        gestion.escribirCsvCarreras();
+        gestion.GuardarCsvCarreras();
     }//GEN-LAST:event_jBGuardarCarrerasActionPerformed
 
     private void jBModificarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarCarreraActionPerformed

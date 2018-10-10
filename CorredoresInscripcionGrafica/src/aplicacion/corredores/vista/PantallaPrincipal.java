@@ -6,6 +6,8 @@
 package aplicacion.corredores.vista;
 
 import aplicacion.corredores.controlador.GestionAplicacion;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  *
@@ -21,7 +23,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public PantallaPrincipal() {
 
         initComponents();
-        
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                gestion.GuardarCsvCarreras();
+                gestion.GuardarCsvCorredores();
+            }
+        });
+
     }
 
     /**

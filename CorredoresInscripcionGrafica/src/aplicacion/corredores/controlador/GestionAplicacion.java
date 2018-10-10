@@ -146,7 +146,7 @@ public class GestionAplicacion {
 
     }
 
-    public void escribirCsvCorredores() {
+    public void GuardarCsvCorredores() {
         String outputFile = "C:\\Users\\migue\\Documents\\DI1819\\CorredoresInscripcionGrafica\\corredores.csv";
         boolean alreadyExists = new File(outputFile).exists();
 
@@ -183,7 +183,7 @@ public class GestionAplicacion {
         }
     }
 
-    public void escribirCsvCarreras() {
+    public void GuardarCsvCarreras() {
         String outputFile = "C:\\Users\\migue\\Documents\\DI1819\\CorredoresInscripcionGrafica\\carreras.csv";
         boolean alreadyExists = new File(outputFile).exists();
 

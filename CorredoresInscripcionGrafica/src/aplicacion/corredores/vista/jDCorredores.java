@@ -132,7 +132,7 @@ public class jDCorredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jBInscribirCorredorActionPerformed
 
     private void jBguardarCsvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarCsvActionPerformed
-        gestion.escribirCsvCorredores();
+        gestion.GuardarCsvCorredores();
         JOptionPane.showMessageDialog(this, "Se han guardado los corredores en el CSV");
     }//GEN-LAST:event_jBguardarCsvActionPerformed
 
