@@ -71,7 +71,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             .addGroup(jPPantallaPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelTituloAplicacion, javax.swing.GroupLayout.DEFAULT_SIZE, 1011, Short.MAX_VALUE)
+                    .addComponent(jLabelTituloAplicacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPPantallaPrincipalLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonGestionCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -80,7 +80,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPPantallaPrincipalLayout.createSequentialGroup()
                     .addGap(16, 16, 16)
                     .addComponent(jButtonGestionCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(821, Short.MAX_VALUE)))
+                    .addContainerGap(566, Short.MAX_VALUE)))
         );
         jPPantallaPrincipalLayout.setVerticalGroup(
             jPPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,12 +89,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabelTituloAplicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonGestionCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(239, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
             .addGroup(jPPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPPantallaPrincipalLayout.createSequentialGroup()
                     .addGap(91, 91, 91)
                     .addComponent(jButtonGestionCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(229, Short.MAX_VALUE)))
+                    .addContainerGap(96, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -105,7 +105,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPPantallaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPPantallaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();

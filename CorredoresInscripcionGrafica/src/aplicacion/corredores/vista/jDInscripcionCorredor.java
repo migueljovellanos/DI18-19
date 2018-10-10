@@ -86,12 +86,6 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
 
         jLTelefono.setText("Telefono Contacto :");
 
-        jTFTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFTelefonoActionPerformed(evt);
-            }
-        });
-
         jBLimpiarCampos.setText("Limpiar Campos");
         jBLimpiarCampos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,12 +96,6 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
         jLTituloFormulario.setText("Formulario Alta Corredor");
 
         jLFecha.setText("Fecha Nacimiento : ");
-
-        jTFNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFNombreActionPerformed(evt);
-            }
-        });
 
         jLNombre.setText("Nombre :");
 
@@ -208,18 +196,10 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jBContinuarActionPerformed
 
-    private void jTFTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTelefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFTelefonoActionPerformed
-
     private void jBLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarCamposActionPerformed
         limpiarCamposJdialog();
         JOptionPane.showMessageDialog(this, "Se han limpiado los campos de este formulario");
     }//GEN-LAST:event_jBLimpiarCamposActionPerformed
-
-    private void jTFNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFNombreActionPerformed
 
     private void limpiarCamposJdialog() {
         jTFNombre.setText("");

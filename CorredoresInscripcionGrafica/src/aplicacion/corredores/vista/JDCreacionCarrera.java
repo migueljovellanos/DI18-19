@@ -75,12 +75,6 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
 
         jLFecha.setText("Fecha Nacimiento : ");
 
-        jTFNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFNombreActionPerformed(evt);
-            }
-        });
-
         jLNombre.setText("Nombre :");
 
         jBContinuar.setText("Continuar");
@@ -158,10 +152,6 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
         limpiarCamposJdialog();
         JOptionPane.showMessageDialog(this, "Se han limpiado los campos de este formulario");
     }//GEN-LAST:event_jBLimpiarCamposActionPerformed
-
-    private void jTFNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFNombreActionPerformed
 
     private void jBContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBContinuarActionPerformed
 

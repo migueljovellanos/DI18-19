@@ -35,7 +35,10 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPPantallaPrincipal" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPPantallaPrincipal" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -54,7 +57,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabelTituloAplicacion" alignment="0" pref="1011" max="32767" attributes="0"/>
+                      <Component id="jLabelTituloAplicacion" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Component id="jButtonGestionCorredores" min="-2" pref="186" max="-2" attributes="0"/>
@@ -66,7 +69,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       <Component id="jButtonGestionCarreras" min="-2" pref="186" max="-2" attributes="0"/>
-                      <EmptySpace pref="821" max="32767" attributes="0"/>
+                      <EmptySpace pref="566" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -78,13 +81,13 @@
                   <Component id="jLabelTituloAplicacion" min="-2" pref="57" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jButtonGestionCorredores" min="-2" pref="87" max="-2" attributes="0"/>
-                  <EmptySpace pref="239" max="32767" attributes="0"/>
+                  <EmptySpace pref="106" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
                       <Component id="jButtonGestionCarreras" min="-2" pref="87" max="-2" attributes="0"/>
-                      <EmptySpace pref="229" max="32767" attributes="0"/>
+                      <EmptySpace pref="96" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
