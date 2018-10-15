@@ -76,6 +76,7 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
         dateChooser = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Inscripcion / modificacion corredor");
 
         jBContinuar.setText("Continuar");
         jBContinuar.addActionListener(new java.awt.event.ActionListener() {

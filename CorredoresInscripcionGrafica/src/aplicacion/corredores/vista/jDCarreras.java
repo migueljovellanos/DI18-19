@@ -43,6 +43,7 @@ public class jDCarreras extends javax.swing.JDialog {
         jBEliminarCarrera = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Gestion carreras");
 
         jBCrearCarrera.setText("Crear carrera");
         jBCrearCarrera.addActionListener(new java.awt.event.ActionListener() {

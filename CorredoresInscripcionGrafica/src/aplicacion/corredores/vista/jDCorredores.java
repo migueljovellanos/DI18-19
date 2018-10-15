@@ -46,6 +46,7 @@ public class jDCorredores extends javax.swing.JDialog {
         jBEliminarCorredor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Gestion corredores");
 
         jTableCorredores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

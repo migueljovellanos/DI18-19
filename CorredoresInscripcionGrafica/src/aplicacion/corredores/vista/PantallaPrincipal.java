@@ -24,6 +24,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         initComponents();
         this.addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent e) {
                 gestion.GuardarCsvCarreras();
                 gestion.GuardarCsvCorredores();

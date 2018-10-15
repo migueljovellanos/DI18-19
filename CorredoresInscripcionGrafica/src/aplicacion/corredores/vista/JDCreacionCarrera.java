@@ -61,6 +61,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
         dateChooser = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Creacion / modificacion carrera");
 
         jLMaxParticipantes.setText("Max. Particupantes");
 
