@@ -7,7 +7,6 @@ package aplicacion.corredores.vista;
 
 import aplicacion.corredores.controlador.GestionAplicacion;
 import aplicacion.corredores.modelo.Corredor;
-import com.toedter.calendar.JDateChooser;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -21,7 +20,10 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
     private Corredor corredorSeleccionado = null;
 
     /**
-     * Creates new form jDInscripcionCorredor
+     * 
+     * @param parent
+     * @param modal
+     * @param gestionParametro 
      */
     public jDInscripcionCorredor(java.awt.Dialog parent, boolean modal, GestionAplicacion gestionParametro) {
         super(parent, modal);
