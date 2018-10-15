@@ -22,7 +22,6 @@ public class jDCarreras extends javax.swing.JDialog {
         super(parent, modal);
         this.gestion=gestion;
         initComponents();
-        gestion.leerCsvCarreras();
         jTCarreras.setModel(new TableModelCarreras(gestion.getCarreras()));
     }
 

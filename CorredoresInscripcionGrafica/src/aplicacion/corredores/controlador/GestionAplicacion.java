@@ -34,6 +34,8 @@ public class GestionAplicacion {
    
 
     public GestionAplicacion() {
+        leerCsvCarreras();
+        leerCsvCorredores();
     }
 
     public ArrayList<Corredor> getCorredores() {

@@ -25,7 +25,6 @@ public class jDCorredores extends javax.swing.JDialog {
         super(parent, modal);
         this.gestion = gestion;
         initComponents();
-        gestion.leerCsvCorredores();
         jTableCorredores.setModel(new TableModelCorredores(gestion.getCorredores()));
 
     }

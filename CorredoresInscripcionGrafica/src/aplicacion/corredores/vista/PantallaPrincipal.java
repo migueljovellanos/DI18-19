@@ -41,6 +41,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
         jPPantallaPrincipal = new javax.swing.JPanel();
         jLabelTituloAplicacion = new javax.swing.JLabel();
         jButtonGestionCorredores = new javax.swing.JButton();
@@ -170,6 +171,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonGestionCarreras;
     private javax.swing.JButton jButtonGestionCorredores;
     private javax.swing.JLabel jLabelTituloAplicacion;
+    private com.toedter.calendar.JMonthChooser jMonthChooser1;
     private javax.swing.JPanel jPPantallaPrincipal;
     // End of variables declaration//GEN-END:variables
 

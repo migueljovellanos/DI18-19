@@ -5,28 +5,36 @@
  */
 package aplicacion.corredores.modelo;
 
+import aplicacion.corredores.utils.Cola;
 import aplicacion.corredores.utils.Utils;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  *
  * @author migue
  */
 public class Carrera {
+
     private String nombre;
     private Date fecha;
     private String lugar;
     private int maxCorredores;
     private Map<Integer, Corredor> ColeccionDorsalesCorredores;
+    private Cola dorsales = new Cola();
 
     public Carrera(String nombre, Date fecha, String lugar, int maxCorredores) {
-        this.ColeccionDorsalesCorredores = new HashMap<Integer, Corredor>();
+        this.ColeccionDorsalesCorredores = new TreeMap<Integer, Corredor>();
         this.nombre = nombre;
         this.fecha = fecha;
         this.lugar = lugar;
         this.maxCorredores = maxCorredores;
+        for (int i = 1; i <= this.maxCorredores; i++) {
+            dorsales.push(i);
+        }
+
     }
 
     public String getNombre() {
@@ -49,6 +57,14 @@ public class Carrera {
         return ColeccionDorsalesCorredores;
     }
 
+    public Cola getDorsales() {
+        return dorsales;
+    }
+
+    public void setDorsales(Cola dorsales) {
+        this.dorsales = dorsales;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -65,17 +81,24 @@ public class Carrera {
         this.maxCorredores = maxCorredores;
     }
 
-    public void setColeccionDorsalesCorredores(Map<Integer, Corredor> ColeccionDorsalesCorredores) {
-        this.ColeccionDorsalesCorredores = ColeccionDorsalesCorredores;
+    public void addCorredorCarrera(Corredor corredor) {
+        ColeccionDorsalesCorredores.put(dorsales.pull(), corredor);
+        dorsales.sort();
+    }
+
+    public void removeCorredor(int dorsal) {
+        if (ColeccionDorsalesCorredores.containsKey(dorsal)) {
+            ColeccionDorsalesCorredores.remove(dorsal);
+            dorsales.push(dorsal);
+            dorsales.sort();
+        }
     }
 
     @Override
     public String toString() {
-        return "Carrera{" + "nombre=" + nombre + ", fecha=" + Utils.sdf.format(fecha) + ", lugar=" + lugar + ", maxCorredores=" + maxCorredores + ", ColeccionDorsalesCorredores=" + ColeccionDorsalesCorredores + '}';
+        return "Carrera{" + "nombre=" + nombre + ", fecha=" + Utils.sdf.format(fecha) + ", lugar=" + lugar + ", maxCorredores=" + maxCorredores + ", ColeccionDorsalesCorredores=" + ColeccionDorsalesCorredores + ", dorsales=" + dorsales.toString() + '}';
     }
 
     
-    
-    
-    
+
 }
