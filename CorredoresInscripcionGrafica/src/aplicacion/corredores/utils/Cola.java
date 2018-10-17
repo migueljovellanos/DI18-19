@@ -16,17 +16,23 @@ public class Cola {
 
     LinkedList cola = new LinkedList();
 
+    public Cola(int max) {
+        for (int i = 1; i <= max; i++) {
+            this.push(i);
+        }
+    }
+
+    
     public void push(int a) {
         cola.addFirst(a);
+        Collections.sort(cola);
     }
 
     public int pull() {
-        return (int) cola.removeLast();
+        return (int) cola.removeFirst();
     }
 
-    public void sort() {
-        Collections.sort(cola);
-    }
+    
 
     @Override
     public String toString() {

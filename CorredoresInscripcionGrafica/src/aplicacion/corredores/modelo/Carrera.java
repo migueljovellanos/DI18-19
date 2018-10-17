@@ -22,7 +22,7 @@ public class Carrera {
     private String lugar;
     private int maxCorredores;
     private final Map<Integer, Corredor> ColeccionDorsalesCorredores;
-    private Cola dorsales = new Cola();
+    private Cola dorsales;
 
     public Carrera(String nombre, Date fecha, String lugar, int maxCorredores) {
         this.ColeccionDorsalesCorredores = new TreeMap<>();
@@ -30,9 +30,7 @@ public class Carrera {
         this.fecha = fecha;
         this.lugar = lugar;
         this.maxCorredores = maxCorredores;
-        for (int i = 1; i <= this.maxCorredores; i++) {
-            dorsales.push(i);
-        }
+        this.dorsales = new Cola(maxCorredores);
 
     }
 
@@ -82,14 +80,12 @@ public class Carrera {
 
     public void addCorredorCarrera(Corredor corredor) {
         ColeccionDorsalesCorredores.put(dorsales.pull(), corredor);
-        dorsales.sort();
     }
 
     public void removeCorredor(int dorsal) {
         if (ColeccionDorsalesCorredores.containsKey(dorsal)) {
             ColeccionDorsalesCorredores.remove(dorsal);
             dorsales.push(dorsal);
-            dorsales.sort();
         }
     }
 
