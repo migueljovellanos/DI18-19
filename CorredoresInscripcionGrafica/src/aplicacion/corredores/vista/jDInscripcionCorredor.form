@@ -24,11 +24,16 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jBLimpiarCampos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jBContinuar" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLTituloFormulario" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -49,13 +54,9 @@
                                   <Component id="jTFNombre" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                          <Component id="validationPanel1" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="21" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jBLimpiarCampos" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jBContinuar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -68,6 +69,8 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLTituloFormulario" min="-2" pref="29" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="validationPanel1" min="-2" pref="65" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jTFNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLNombre" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -92,7 +95,7 @@
                   <Component id="jLFecha" min="-2" max="-2" attributes="0"/>
                   <Component id="dateChooser" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jBContinuar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBLimpiarCampos" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -112,6 +115,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTFDni">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="Dni" noResource="true"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLDireccion">
       <Properties>
@@ -119,6 +125,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTFDireccion">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="Direccion" noResource="true"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLTelefono">
       <Properties>
@@ -126,6 +135,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTFTelefono">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="Telefono" noResource="true"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jBLimpiarCampos">
       <Properties>
@@ -146,6 +158,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTFNombre">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="Nombre" noResource="true"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLNombre">
       <Properties>
@@ -161,6 +176,8 @@
       <Properties>
         <Property name="dateFormatString" type="java.lang.String" value="dd/MMM/yyyy"/>
       </Properties>
+    </Component>
+    <Component class="org.netbeans.validation.api.ui.swing.ValidationPanel" name="validationPanel1">
     </Component>
   </SubComponents>
 </Form>

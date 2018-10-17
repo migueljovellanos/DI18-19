@@ -8,7 +8,6 @@ package aplicacion.corredores.modelo;
 import aplicacion.corredores.utils.Cola;
 import aplicacion.corredores.utils.Utils;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -22,11 +21,11 @@ public class Carrera {
     private Date fecha;
     private String lugar;
     private int maxCorredores;
-    private Map<Integer, Corredor> ColeccionDorsalesCorredores;
+    private final Map<Integer, Corredor> ColeccionDorsalesCorredores;
     private Cola dorsales = new Cola();
 
     public Carrera(String nombre, Date fecha, String lugar, int maxCorredores) {
-        this.ColeccionDorsalesCorredores = new TreeMap<Integer, Corredor>();
+        this.ColeccionDorsalesCorredores = new TreeMap<>();
         this.nombre = nombre;
         this.fecha = fecha;
         this.lugar = lugar;

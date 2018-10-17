@@ -9,6 +9,10 @@ import aplicacion.corredores.controlador.GestionAplicacion;
 import aplicacion.corredores.modelo.Corredor;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import org.netbeans.validation.api.builtin.stringvalidation.StringValidators;
+import org.netbeans.validation.api.ui.ValidationGroup;
 
 /**
  *
@@ -29,6 +33,8 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
         super(parent, modal);
         this.gestion = gestionParametro;
         initComponents();
+        jBContinuar.setEnabled(false);
+        registrarValidador();
     }
 
     /**
@@ -49,6 +55,7 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
         jTFDni.setText(corredorSeleccionado.getDni());
         jTFTelefono.setText(String.valueOf(corredorSeleccionado.getTelefono()));
         dateChooser.setDate(corredorSeleccionado.getFechaNacimiento());
+        registrarValidador();
 
     }
 
@@ -74,6 +81,7 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
         jLNombre = new javax.swing.JLabel();
         jLDni = new javax.swing.JLabel();
         dateChooser = new com.toedter.calendar.JDateChooser();
+        validationPanel1 = new org.netbeans.validation.api.ui.swing.ValidationPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Inscripcion / modificacion corredor");
@@ -85,9 +93,15 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
             }
         });
 
+        jTFDni.setName("Dni"); // NOI18N
+
         jLDireccion.setText("Direccion :");
 
+        jTFDireccion.setName("Direccion"); // NOI18N
+
         jLTelefono.setText("Telefono Contacto :");
+
+        jTFTelefono.setName("Telefono"); // NOI18N
 
         jBLimpiarCampos.setText("Limpiar Campos");
         jBLimpiarCampos.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +113,8 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
         jLTituloFormulario.setText("Formulario Alta Corredor");
 
         jLFecha.setText("Fecha Nacimiento : ");
+
+        jTFNombre.setName("Nombre"); // NOI18N
 
         jLNombre.setText("Nombre :");
 
@@ -113,8 +129,12 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jBLimpiarCampos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBContinuar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLTituloFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,12 +150,9 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
                                     .addComponent(jTFDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                                     .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jTFTelefono)
-                                    .addComponent(jTFNombre))))
-                        .addGap(0, 21, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jBLimpiarCampos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBContinuar)))
+                                    .addComponent(jTFNombre)))
+                            .addComponent(validationPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -144,6 +161,8 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLTituloFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(validationPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLNombre))
@@ -163,7 +182,7 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLFecha)
                     .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBContinuar)
                     .addComponent(jBLimpiarCampos))
@@ -227,5 +246,25 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
     private javax.swing.JTextField jTFDni;
     private javax.swing.JTextField jTFNombre;
     private javax.swing.JTextField jTFTelefono;
+    private org.netbeans.validation.api.ui.swing.ValidationPanel validationPanel1;
     // End of variables declaration//GEN-END:variables
+
+    private void registrarValidador() {
+        ValidationGroup group = validationPanel1.getValidationGroup();
+        group.add(jTFNombre, StringValidators.REQUIRE_NON_EMPTY_STRING);
+        group.add(jTFDireccion, StringValidators.REQUIRE_NON_EMPTY_STRING);
+        group.add(jTFDni, StringValidators.REQUIRE_NON_EMPTY_STRING);
+        group.add(jTFTelefono, StringValidators.REQUIRE_NON_EMPTY_STRING,StringValidators.REQUIRE_VALID_INTEGER);
+        
+        validationPanel1.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if (validationPanel1.getProblem() == null) {
+                    jBContinuar.setEnabled(true);
+                } else {
+                    jBContinuar.setEnabled(false);
+                }
+            }
+        });
+    }
 }
