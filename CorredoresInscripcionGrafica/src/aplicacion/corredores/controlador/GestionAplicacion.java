@@ -149,7 +149,7 @@ public class GestionAplicacion {
     }
 
     public void GuardarCsvCorredores() {
-        String outputFile = "C:\\Users\\migue\\Documents\\DI1819\\CorredoresInscripcionGrafica\\corredores.csv";
+        String outputFile = getClass().getResource("/archivos/corredores.csv").getPath();;
         boolean alreadyExists = new File(outputFile).exists();
 
         if (alreadyExists) {
@@ -186,7 +186,7 @@ public class GestionAplicacion {
     }
 
     public void GuardarCsvCarreras() {
-        String outputFile = "C:\\Users\\migue\\Documents\\DI1819\\CorredoresInscripcionGrafica\\carreras.csv";
+        String outputFile = getClass().getResource("/archivos/carreras.csv").getPath();
         boolean alreadyExists = new File(outputFile).exists();
 
         if (alreadyExists) {
@@ -224,7 +224,7 @@ public class GestionAplicacion {
 
         try {
 
-            CsvReader corredores_import = new CsvReader("C:\\Users\\migue\\Documents\\DI1819\\CorredoresInscripcionGrafica\\corredores.csv");
+            CsvReader corredores_import = new CsvReader(getClass().getResource("/archivos/corredores.csv").getPath());
             corredores_import.readHeaders();
 
             while (corredores_import.readRecord()) {
@@ -255,7 +255,7 @@ public class GestionAplicacion {
 
         try {
 
-            CsvReader carreras_import = new CsvReader("C:\\Users\\migue\\Documents\\DI1819\\CorredoresInscripcionGrafica\\carreras.csv");
+            CsvReader carreras_import = new CsvReader(getClass().getResource("/archivos/carreras.csv").getPath());
             carreras_import.readHeaders();
 
             while (carreras_import.readRecord()) {
