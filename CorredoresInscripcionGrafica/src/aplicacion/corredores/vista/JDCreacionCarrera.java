@@ -43,7 +43,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
         jTLugar.setText(carrera.getLugar());
         jTFMaxParticipantes.setText(String.valueOf(carrera.getMaxCorredores()));
         jTFNombre.setText(carrera.getNombre());
-        dateChooser.setDate(carrera.getFecha());
+        dateTimePickerFecha.setDate(carrera.getFecha());
         registrarValidador();
     }
 
@@ -83,8 +83,8 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
         jBContinuar = new javax.swing.JButton();
         jLLugar = new javax.swing.JLabel();
         jTLugar = new javax.swing.JTextField();
-        dateChooser = new com.toedter.calendar.JDateChooser();
         validationPanel1 = new org.netbeans.validation.api.ui.swing.ValidationPanel();
+        dateTimePickerFecha = new com.lavantech.gui.comp.DateTimePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Creacion / modificacion carrera");
@@ -140,12 +140,11 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
                                     .addComponent(jLLugar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLFecha))
                                 .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTLugar)
-                                        .addComponent(jTFMaxParticipantes)
-                                        .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTLugar)
+                                    .addComponent(jTFMaxParticipantes)
+                                    .addComponent(jTFNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(dateTimePickerFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(validationPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -156,7 +155,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLTituloFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(validationPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(validationPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,8 +171,8 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLFecha)
-                    .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
+                    .addComponent(dateTimePickerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBContinuar)
                     .addComponent(jBLimpiarCampos))
@@ -192,7 +191,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
 
         String nombre = jTFNombre.getText();
         String lugar = jTLugar.getText();
-        Date fecha = dateChooser.getDate();
+        Date fecha = dateTimePickerFecha.getDate();
         String maxParticipantes = jTFMaxParticipantes.getText();
         int max = Integer.parseInt(maxParticipantes);
         if (carrera == null) {
@@ -213,7 +212,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser dateChooser;
+    private com.lavantech.gui.comp.DateTimePicker dateTimePickerFecha;
     private javax.swing.JButton jBContinuar;
     private javax.swing.JButton jBLimpiarCampos;
     private javax.swing.JLabel jLFecha;
@@ -231,6 +230,6 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
         jTLugar.setText("");
         jTFMaxParticipantes.setText("");
         jTFNombre.setText("");
-        dateChooser.setDate(new Date());
+        dateTimePickerFecha.setDate(new Date());
     }
 }

@@ -8,6 +8,7 @@ package aplicacion.corredores.modelo;
 import aplicacion.corredores.utils.Cola;
 import aplicacion.corredores.utils.Utils;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -22,10 +23,12 @@ public class Carrera {
     private String lugar;
     private int maxCorredores;
     private final Map<Integer, Corredor> ColeccionDorsalesCorredores;
+    private final Map<Date, Integer> ColeccionDorsalesTiempos;
     private Cola dorsales;
 
     public Carrera(String nombre, Date fecha, String lugar, int maxCorredores) {
         this.ColeccionDorsalesCorredores = new TreeMap<>();
+        this.ColeccionDorsalesTiempos = new HashMap<>();
         this.nombre = nombre;
         this.fecha = fecha;
         this.lugar = lugar;
@@ -58,6 +61,10 @@ public class Carrera {
         return dorsales;
     }
 
+    public Map<Date, Integer> getColeccionDorsalesTiempos() {
+        return ColeccionDorsalesTiempos;
+    }    
+
     public void setDorsales(Cola dorsales) {
         this.dorsales = dorsales;
     }
@@ -88,12 +95,10 @@ public class Carrera {
             dorsales.push(dorsal);
         }
     }
-
+    
     @Override
     public String toString() {
         return "Carrera{" + "nombre=" + nombre + ", fecha=" + Utils.sdf.format(fecha) + ", lugar=" + lugar + ", maxCorredores=" + maxCorredores + ", ColeccionDorsalesCorredores=" + ColeccionDorsalesCorredores + ", dorsales=" + dorsales.toString() + '}';
     }
-
-    
 
 }
