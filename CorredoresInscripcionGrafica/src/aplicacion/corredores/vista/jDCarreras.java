@@ -8,6 +8,8 @@ package aplicacion.corredores.vista;
 import aplicacion.corredores.vista.tableModels.TableModelCarreras;
 import aplicacion.corredores.controlador.GestionAplicacion;
 import aplicacion.corredores.modelo.Carrera;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -23,6 +25,18 @@ public class jDCarreras extends javax.swing.JDialog {
         this.gestion=gestion;
         initComponents();
         jTCarreras.setModel(new TableModelCarreras(gestion.getCarreras()));
+        jTCarreras.getSelectionModel().addListSelectionListener(new  ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent lse) {
+                if (jTCarreras.getSelectedRow() == -1) {
+                    jBEliminarCarrera.setEnabled(false);
+                    jBModificarCarrera.setEnabled(false);
+                }else{
+                    jBEliminarCarrera.setEnabled(true);
+                    jBModificarCarrera.setEnabled(true);
+                }
+            }
+        });
     }
 
     /**
@@ -73,6 +87,7 @@ public class jDCarreras extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTCarreras);
 
         jBModificarCarrera.setText("Modificar carrera");
+        jBModificarCarrera.setEnabled(false);
         jBModificarCarrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBModificarCarreraActionPerformed(evt);
@@ -80,6 +95,7 @@ public class jDCarreras extends javax.swing.JDialog {
         });
 
         jBEliminarCarrera.setText("Eliminar carrera");
+        jBEliminarCarrera.setEnabled(false);
         jBEliminarCarrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEliminarCarreraActionPerformed(evt);

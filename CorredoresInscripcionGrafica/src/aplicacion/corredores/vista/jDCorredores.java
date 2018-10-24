@@ -9,6 +9,8 @@ import aplicacion.corredores.controlador.GestionAplicacion;
 import aplicacion.corredores.modelo.Corredor;
 import aplicacion.corredores.vista.tableModels.TableModelCorredores;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -26,6 +28,18 @@ public class jDCorredores extends javax.swing.JDialog {
         this.gestion = gestion;
         initComponents();
         jTableCorredores.setModel(new TableModelCorredores(gestion.getCorredores()));
+        jTableCorredores.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent lse) {
+                if (jTableCorredores.getSelectedRow() == -1) {
+                    jBModificarCorredor.setEnabled(false);
+                    jBEliminarCorredor.setEnabled(false);
+                }else{
+                    jBEliminarCorredor.setEnabled(true);
+                    jBModificarCorredor.setEnabled(true);
+                }
+            }
+        });
 
     }
 
@@ -76,6 +90,7 @@ public class jDCorredores extends javax.swing.JDialog {
         });
 
         jBModificarCorredor.setText("Modificar corredor");
+        jBModificarCorredor.setEnabled(false);
         jBModificarCorredor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBModificarCorredorActionPerformed(evt);
@@ -83,6 +98,7 @@ public class jDCorredores extends javax.swing.JDialog {
         });
 
         jBEliminarCorredor.setText("Eliminar corredor");
+        jBEliminarCorredor.setEnabled(false);
         jBEliminarCorredor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEliminarCorredorActionPerformed(evt);

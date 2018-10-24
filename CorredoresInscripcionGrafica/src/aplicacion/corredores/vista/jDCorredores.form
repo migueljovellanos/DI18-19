@@ -101,6 +101,7 @@
     <Component class="javax.swing.JButton" name="jBModificarCorredor">
       <Properties>
         <Property name="text" type="java.lang.String" value="Modificar corredor"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBModificarCorredorActionPerformed"/>
@@ -109,6 +110,7 @@
     <Component class="javax.swing.JButton" name="jBEliminarCorredor">
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar corredor"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBEliminarCorredorActionPerformed"/>

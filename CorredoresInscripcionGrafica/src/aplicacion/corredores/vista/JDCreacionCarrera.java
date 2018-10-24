@@ -102,7 +102,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
 
         jLTituloFormulario.setText("Formulario  Carrera");
 
-        jLFecha.setText("Fecha Nacimiento : ");
+        jLFecha.setText("Fecha evento : ");
 
         jTFNombre.setName("Nombre"); // NOI18N
 
