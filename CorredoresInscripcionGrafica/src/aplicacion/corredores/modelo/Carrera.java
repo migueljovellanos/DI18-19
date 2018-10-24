@@ -23,7 +23,7 @@ public class Carrera {
     private String lugar;
     private int maxCorredores;
     private final Map<Integer, Corredor> ColeccionDorsalesCorredores;
-    private final Map<Date, Integer> ColeccionDorsalesTiempos;
+    private final Map<Integer, Date> ColeccionDorsalesTiempos;
     private Cola dorsales;
 
     public Carrera(String nombre, Date fecha, String lugar, int maxCorredores) {
@@ -61,7 +61,7 @@ public class Carrera {
         return dorsales;
     }
 
-    public Map<Date, Integer> getColeccionDorsalesTiempos() {
+    public Map<Integer,Date> getColeccionDorsalesTiempos() {
         return ColeccionDorsalesTiempos;
     }    
 
