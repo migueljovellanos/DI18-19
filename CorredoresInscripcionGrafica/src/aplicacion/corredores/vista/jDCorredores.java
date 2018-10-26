@@ -6,11 +6,16 @@
 package aplicacion.corredores.vista;
 
 import aplicacion.corredores.controlador.GestionAplicacion;
+import aplicacion.corredores.modelo.Carrera;
 import aplicacion.corredores.modelo.Corredor;
+import aplicacion.corredores.vista.tableModels.TableModelCarreras;
 import aplicacion.corredores.vista.tableModels.TableModelCorredores;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -27,14 +32,14 @@ public class jDCorredores extends javax.swing.JDialog {
         super(parent, modal);
         this.gestion = gestion;
         initComponents();
-        jTableCorredores.setModel(new TableModelCorredores(gestion.getCorredores()));
+        pintarTabla();
         jTableCorredores.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent lse) {
                 if (jTableCorredores.getSelectedRow() == -1) {
                     jBModificarCorredor.setEnabled(false);
                     jBEliminarCorredor.setEnabled(false);
-                }else{
+                } else {
                     jBEliminarCorredor.setEnabled(true);
                     jBModificarCorredor.setEnabled(true);
                 }
@@ -153,7 +158,7 @@ public class jDCorredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jBguardarCsvActionPerformed
 
     private void jBModificarCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarCorredorActionPerformed
-        int seleccionado = jTableCorredores.getSelectedRow();
+        int seleccionado = jTableCorredores.convertRowIndexToModel(jTableCorredores.getSelectedRow());
         Corredor perSeleccionada = gestion.getCorredores().get(seleccionado);
         jDInscripcionCorredor dialogoModificar = new jDInscripcionCorredor(this, true, gestion, perSeleccionada);
         dialogoModificar.setVisible(true);
@@ -161,7 +166,7 @@ public class jDCorredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jBModificarCorredorActionPerformed
 
     private void jBEliminarCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarCorredorActionPerformed
-        int seleccionado = jTableCorredores.getSelectedRow();
+        int seleccionado = jTableCorredores.convertRowIndexToModel(jTableCorredores.getSelectedRow());
         Corredor perSeleccionada = gestion.getCorredores().get(seleccionado);
         gestion.getCorredores().remove(perSeleccionada);
         jTableCorredores.setModel(new TableModelCorredores(gestion.getCorredores()));
@@ -176,4 +181,13 @@ public class jDCorredores extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableCorredores;
     // End of variables declaration//GEN-END:variables
+
+    private void pintarTabla() {
+        ArrayList<Corredor> listCorredors = gestion.getCorredores();
+        TableModelCorredores modelo = new TableModelCorredores(listCorredors);
+        jTableCorredores.setModel(modelo);
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<>(modelo);
+        jTableCorredores.setRowSorter(elQueOrdena);
+
+    }
 }

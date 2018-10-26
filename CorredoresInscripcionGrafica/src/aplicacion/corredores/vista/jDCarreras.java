@@ -8,30 +8,35 @@ package aplicacion.corredores.vista;
 import aplicacion.corredores.vista.tableModels.TableModelCarreras;
 import aplicacion.corredores.controlador.GestionAplicacion;
 import aplicacion.corredores.modelo.Carrera;
+import java.util.ArrayList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author migue
  */
 public class jDCarreras extends javax.swing.JDialog {
+
     private GestionAplicacion gestion;
+
     /**
      * Creates new form jDCarreras
      */
     public jDCarreras(java.awt.Frame parent, boolean modal, GestionAplicacion gestion) {
         super(parent, modal);
-        this.gestion=gestion;
+        this.gestion = gestion;
         initComponents();
-        jTCarreras.setModel(new TableModelCarreras(gestion.getCarreras()));
-        jTCarreras.getSelectionModel().addListSelectionListener(new  ListSelectionListener() {
+        pintartabla();
+        jTCarreras.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent lse) {
                 if (jTCarreras.getSelectedRow() == -1) {
                     jBEliminarCarrera.setEnabled(false);
                     jBModificarCarrera.setEnabled(false);
-                }else{
+                } else {
                     jBEliminarCarrera.setEnabled(true);
                     jBModificarCarrera.setEnabled(true);
                 }
@@ -152,7 +157,7 @@ public class jDCarreras extends javax.swing.JDialog {
     private void jBCrearCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCrearCarreraActionPerformed
         JDCreacionCarrera creacion = new JDCreacionCarrera(this, true, gestion);
         creacion.setVisible(true);
-        jTCarreras.setModel(new TableModelCarreras(gestion.getCarreras()));
+        pintartabla();
     }//GEN-LAST:event_jBCrearCarreraActionPerformed
 
     private void jBGuardarCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarCarrerasActionPerformed
@@ -160,21 +165,27 @@ public class jDCarreras extends javax.swing.JDialog {
     }//GEN-LAST:event_jBGuardarCarrerasActionPerformed
 
     private void jBModificarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarCarreraActionPerformed
-        int seleccionado = jTCarreras.getSelectedRow();
+        int seleccionado = jTCarreras.convertRowIndexToModel(jTCarreras.getSelectedRow());
         Carrera carrera = gestion.getCarreras().get(seleccionado);
-        JDCreacionCarrera dialogoModificar = new JDCreacionCarrera(this, true, gestion , carrera);
+        JDCreacionCarrera dialogoModificar = new JDCreacionCarrera(this, true, gestion, carrera);
         dialogoModificar.setVisible(true);
-        jTCarreras.setModel(new TableModelCarreras(gestion.getCarreras()));
+        pintartabla();
     }//GEN-LAST:event_jBModificarCarreraActionPerformed
 
     private void jBEliminarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarCarreraActionPerformed
-        int seleccionado = jTCarreras.getSelectedRow();
+        int seleccionado = jTCarreras.convertRowIndexToModel(jTCarreras.getSelectedRow());
         Carrera carreraSeleccionada = gestion.getCarreras().get(seleccionado);
         gestion.getCarreras().remove(carreraSeleccionada);
-        jTCarreras.setModel(new TableModelCarreras(gestion.getCarreras()));
+        pintartabla();
     }//GEN-LAST:event_jBEliminarCarreraActionPerformed
 
-    
+    private void pintartabla() {
+        ArrayList<Carrera> listaCarreras = gestion.getCarreras();
+        TableModelCarreras modelo = new TableModelCarreras(listaCarreras);
+        jTCarreras.setModel(modelo);
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<>(modelo);
+        jTCarreras.setRowSorter(elQueOrdena);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCrearCarrera;

@@ -6,7 +6,6 @@
 package aplicacion.corredores.modelo;
 
 import aplicacion.corredores.utils.Utils;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
