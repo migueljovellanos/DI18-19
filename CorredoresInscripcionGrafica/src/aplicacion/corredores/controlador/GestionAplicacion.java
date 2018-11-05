@@ -18,6 +18,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,12 +29,12 @@ import java.util.logging.Logger;
  */
 public class GestionAplicacion {
 
-    //atributos
-    private ArrayList<Corredor> corredores = new ArrayList<Corredor>();
-    private ArrayList<Carrera> carreras = new ArrayList<Carrera>();
-   
+    private final ArrayList<Corredor> corredores;
+    private final ArrayList<Carrera> carreras;
 
     public GestionAplicacion() {
+        this.carreras = new ArrayList<>();
+        this.corredores = new ArrayList<>();
         leerCsvCarreras();
         leerCsvCorredores();
     }
@@ -41,7 +42,7 @@ public class GestionAplicacion {
     public ArrayList<Corredor> getCorredores() {
         return corredores;
     }
-    
+
     public ArrayList<Carrera> getCarreras() {
         return carreras;
     }
@@ -61,7 +62,7 @@ public class GestionAplicacion {
         }
         return false;
     }
-    
+
     public boolean deleteCorredor(String dni) {
         for (Corredor corredor : corredores) {
             if (corredor.getDni().equals(dni)) {
@@ -71,12 +72,40 @@ public class GestionAplicacion {
         }
         return false;
     }
-    
+
     public boolean deleteCarrera(String nombre) {
         for (Carrera carrera : carreras) {
-            if(carrera.getNombre().equals(nombre)){
+            if (carrera.getNombre().equals(nombre)) {
                 carreras.remove(carrera);
                 return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean addCorredorToCarrera(Corredor corredor, String NombreCarrera) {
+        if (corredor != null) {
+            for (Carrera carrera : carreras) {
+                if ((carrera.getNombre().equals(NombreCarrera)) && (!carrera.getColeccionDorsalesCorredores().containsValue(corredor))) {
+                    carrera.addCorredorCarrera(corredor);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean deleteCorredorFromCarrera(Corredor corredor, String NombreCarrera) {
+        if (corredor != null) {
+            for (Carrera carrera : carreras) {
+                if ((carrera.getNombre().equals(NombreCarrera)) && (carrera.getColeccionDorsalesCorredores().containsValue(corredor))) {
+                    for (Entry<Integer, Corredor> entry : carrera.getColeccionDorsalesCorredores().entrySet()) {
+                        if (entry.getValue().equals(corredor)) {
+                            carrera.removeCorredor(entry.getKey());
+                            return true;
+                        }
+                    }
+                }
             }
         }
         return false;
@@ -149,7 +178,7 @@ public class GestionAplicacion {
     }
 
     public void GuardarCsvCorredores() {
-        String outputFile = getClass().getResource("/archivos/corredores.csv").getPath();;
+        String outputFile = getClass().getResource("/archivos/corredores.csv").getPath();
         boolean alreadyExists = new File(outputFile).exists();
 
         if (alreadyExists) {
@@ -205,7 +234,7 @@ public class GestionAplicacion {
             csvOutput.endRecord();
 
             for (Carrera carrera : carreras) {
-                
+
                 csvOutput.write(carrera.getNombre());
                 csvOutput.write(Utils.sdf.format(carrera.getFecha()));
                 csvOutput.write(carrera.getLugar());
@@ -219,7 +248,7 @@ public class GestionAplicacion {
             e.printStackTrace();
         }
     }
-    
+
     public void leerCsvCorredores() {
 
         try {
@@ -235,7 +264,7 @@ public class GestionAplicacion {
                 String direccion = corredores_import.get(3);
                 int telefono = Integer.valueOf(corredores_import.get(4));
 
-                Corredor corredorAux = new Corredor(nombre, dni, Utils.sdf.parse(fechaNacimiento), direccion,telefono);
+                Corredor corredorAux = new Corredor(nombre, dni, Utils.sdf.parse(fechaNacimiento), direccion, telefono);
 
                 corredores.add(corredorAux);
             }
@@ -250,7 +279,7 @@ public class GestionAplicacion {
             Logger.getLogger(GestionAplicacion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void leerCsvCarreras() {
 
         try {
@@ -265,7 +294,7 @@ public class GestionAplicacion {
                 String lugar = carreras_import.get(2);
                 int telefono = Integer.valueOf(carreras_import.get(3));
 
-                Carrera carreraAux =new Carrera(nombre, Utils.sdf.parse(fecha), lugar, telefono);
+                Carrera carreraAux = new Carrera(nombre, Utils.sdf.parse(fecha), lugar, telefono);
                 carreras.add(carreraAux);
             }
 
@@ -280,7 +309,4 @@ public class GestionAplicacion {
         }
     }
 
-    
-
-    
 }
