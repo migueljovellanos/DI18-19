@@ -65,7 +65,7 @@ public class Carrera {
         return ColeccionDorsalesTiempos;
     }    
 
-    public void setDorsales(Cola dorsales) {
+    private void setDorsales(Cola dorsales) {
         this.dorsales = dorsales;
     }
 
