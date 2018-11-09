@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -25,6 +26,9 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
 
     /**
      * Creates new form JDCreacionCarrera
+     * @param parent
+     * @param modal
+     * @param gestion
      */
     public JDCreacionCarrera(java.awt.Dialog parent, boolean modal, GestionAplicacion gestion) {
         super(parent, modal);

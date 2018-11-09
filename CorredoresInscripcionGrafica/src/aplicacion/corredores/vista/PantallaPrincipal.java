@@ -9,6 +9,12 @@ import aplicacion.corredores.controlador.GestionAplicacion;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Locale;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import mdlaf.MaterialLookAndFeel;
+import mdlaf.utils.MaterialColors;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -24,6 +30,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public PantallaPrincipal() {
 
         initComponents();
+        try {
+            UIManager.setLookAndFeel(new MaterialLookAndFeel());
+            UIManager.put("Button.background", MaterialColors.BLUE_GRAY_500);
+            UIManager.put("Button.foreground", MaterialColors.WHITE);
+            SwingUtilities.updateComponentTreeUI(this);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Exceptions.printStackTrace(ex);
+        }
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -163,6 +177,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 Locale.setDefault(new Locale("es", "ES"));
                 new PantallaPrincipal().setVisible(true);

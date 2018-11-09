@@ -14,5 +14,9 @@ import java.text.SimpleDateFormat;
  * @author migue
  */
 public class Utils {
+
+    /**
+     *
+     */
     public final static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 }

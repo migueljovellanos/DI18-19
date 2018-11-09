@@ -23,7 +23,10 @@ public class jDCarreras extends javax.swing.JDialog {
     private GestionAplicacion gestion;
 
     /**
-     * Creates new form jDCarreras
+     * 
+     * @param parent
+     * @param modal
+     * @param gestion 
      */
     public jDCarreras(java.awt.Frame parent, boolean modal, GestionAplicacion gestion) {
         super(parent, modal);

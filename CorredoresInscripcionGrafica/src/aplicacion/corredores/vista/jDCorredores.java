@@ -6,9 +6,7 @@
 package aplicacion.corredores.vista;
 
 import aplicacion.corredores.controlador.GestionAplicacion;
-import aplicacion.corredores.modelo.Carrera;
 import aplicacion.corredores.modelo.Corredor;
-import aplicacion.corredores.vista.tableModels.TableModelCarreras;
 import aplicacion.corredores.vista.tableModels.TableModelCorredores;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -26,7 +24,10 @@ public class jDCorredores extends javax.swing.JDialog {
     private GestionAplicacion gestion;
 
     /**
-     * Creates new form jDCorredores
+     * 
+     * @param parent
+     * @param modal
+     * @param gestion 
      */
     public jDCorredores(java.awt.Frame parent, boolean modal, GestionAplicacion gestion) {
         super(parent, modal);
