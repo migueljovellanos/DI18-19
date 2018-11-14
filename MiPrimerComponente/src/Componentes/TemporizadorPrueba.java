@@ -6,6 +6,8 @@
 package Componentes;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JLabel;
@@ -17,23 +19,11 @@ import javax.swing.JLabel;
 public class TemporizadorPrueba extends JLabel implements Serializable {
 
     public int segundos;
-    private CuentaAtrasFinalizada listener;
+    private List<CuentaAtrasFinalizada> listaListeners = new ArrayList();
 
     public TemporizadorPrueba() {
     }
 
-    public TemporizadorPrueba(int segundos) {
-        this.segundos = segundos;
-    }
-
-    public CuentaAtrasFinalizada getListener() {
-        return listener;
-    }
-
-    public void setListener(CuentaAtrasFinalizada listener) {
-        this.listener = listener;
-    }
-    
     public int getSegundos() {
         return segundos;
     }
@@ -42,8 +32,11 @@ public class TemporizadorPrueba extends JLabel implements Serializable {
         this.segundos = segundos;
     }
 
-    public void start( CuentaAtrasFinalizada listener) {
-        setListener(listener);
+    public void addCuentaAtrasFinalizadaListener(CuentaAtrasFinalizada listener) {
+        listaListeners.add(listener);
+    }
+
+    public void start(CuentaAtrasFinalizada listener) {
         setText(String.valueOf(getSegundos()));
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -52,11 +45,13 @@ public class TemporizadorPrueba extends JLabel implements Serializable {
                 if (getSegundos() >= 0) {
                     setText(String.valueOf(getSegundos()));
                     setSegundos(segundos - 1);
-                }else{
+                } else {
                     setText("Se ha acabado la cuenta atras");
                     timer.cancel();
-                    listener.ejecutar();
-                    
+                    for (CuentaAtrasFinalizada listener : listaListeners) {
+                        listener.ejecutar();
+                    }
+
                 }
             }
         }, 0, 1000);
