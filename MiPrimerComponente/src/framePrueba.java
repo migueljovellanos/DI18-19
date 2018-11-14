@@ -78,12 +78,13 @@ public class framePrueba extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Integer value = (Integer) jSpinner1.getValue();
         temporizadorPrueba2.setSegundos(value);
-        temporizadorPrueba2.start(new CuentaAtrasFinalizada() {
+        temporizadorPrueba2.addCuentaAtrasFinalizadaListener(new CuentaAtrasFinalizada() {
             @Override
             public void ejecutar() {
                 JOptionPane.showMessageDialog(framePrueba.this, "Cuenta atras finalizada.");
             }
         });
+        temporizadorPrueba2.start();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -101,21 +102,21 @@ public class framePrueba extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
+                    
                 }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(framePrueba.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(framePrueba.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(framePrueba.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(framePrueba.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);

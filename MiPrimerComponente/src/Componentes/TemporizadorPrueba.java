@@ -36,7 +36,7 @@ public class TemporizadorPrueba extends JLabel implements Serializable {
         listaListeners.add(listener);
     }
 
-    public void start(CuentaAtrasFinalizada listener) {
+    public void start() {
         setText(String.valueOf(getSegundos()));
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
