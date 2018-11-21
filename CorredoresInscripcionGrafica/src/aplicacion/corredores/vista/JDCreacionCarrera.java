@@ -8,10 +8,8 @@ package aplicacion.corredores.vista;
 
 import aplicacion.corredores.controlador.GestionAplicacion;
 import aplicacion.corredores.modelo.Carrera;
-import aplicacion.corredores.modelo.Corredor;
 import aplicacion.corredores.modelo.CorredorParaCarrera;
 import aplicacion.corredores.vista.tableModels.TableModelCorredorCarrera;
-import aplicacion.corredores.vista.tableModels.TableModelCorredores;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;

@@ -6,12 +6,8 @@
 package aplicacion.corredores.modelo;
 
 import aplicacion.corredores.utils.Cola;
-import aplicacion.corredores.utils.Utils;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  *

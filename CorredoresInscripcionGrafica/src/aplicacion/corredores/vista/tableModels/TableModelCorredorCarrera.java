@@ -5,7 +5,6 @@
  */
 package aplicacion.corredores.vista.tableModels;
 
-import aplicacion.corredores.modelo.Corredor;
 import aplicacion.corredores.modelo.CorredorParaCarrera;
 import static aplicacion.corredores.utils.Utils.sdf;
 import java.util.List;
