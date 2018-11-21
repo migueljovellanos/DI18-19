@@ -7,6 +7,7 @@ package aplicacion.corredores.controlador;
 
 import aplicacion.corredores.modelo.Carrera;
 import aplicacion.corredores.modelo.Corredor;
+import aplicacion.corredores.modelo.CorredorParaCarrera;
 import aplicacion.corredores.utils.Utils;
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
@@ -45,6 +46,26 @@ public class GestionAplicacion {
 
     public ArrayList<Carrera> getCarreras() {
         return carreras;
+    }
+
+    public ArrayList<Carrera> getCarrerasFinalizadas() {
+        ArrayList<Carrera> carrerasFinalizadas = new ArrayList<>();
+        for (Carrera carrera : carreras) {
+            if (carrera.isFinalizada()) {
+                carrerasFinalizadas.add(carrera);
+            }
+        }
+        return carrerasFinalizadas;
+    }
+
+    public ArrayList<Carrera> getCarrerasProximas() {
+        ArrayList<Carrera> carrerasProximas = new ArrayList<>();
+        for (Carrera carrera : carreras) {
+            if (!carrera.isFinalizada()) {
+                carrerasProximas.add(carrera);
+            }
+        }
+        return carrerasProximas;
     }
 
     public boolean addCorredorr(Corredor corredor) {
@@ -86,8 +107,8 @@ public class GestionAplicacion {
     public boolean addCorredorToCarrera(Corredor corredor, String NombreCarrera) {
         if (corredor != null) {
             for (Carrera carrera : carreras) {
-                if ((carrera.getNombre().equals(NombreCarrera)) && (!carrera.getColeccionDorsalesCorredores().containsValue(corredor))) {
-                    carrera.addCorredorCarrera(corredor);
+                if ((carrera.getNombre().equals(NombreCarrera)) && (!carrera.getCorredores().contains(corredor))) {
+                    carrera.addCorredorCarrera(corredor.getNombre(), corredor.getDni(), corredor.getFechaNacimiento(), corredor.getDireccion(), corredor.getTelefono());
                     return true;
                 }
             }
@@ -98,16 +119,18 @@ public class GestionAplicacion {
     public boolean deleteCorredorFromCarrera(Corredor corredor, String NombreCarrera) {
         if (corredor != null) {
             for (Carrera carrera : carreras) {
-                if ((carrera.getNombre().equals(NombreCarrera)) && (carrera.getColeccionDorsalesCorredores().containsValue(corredor))) {
-                    for (Entry<Integer, Corredor> entry : carrera.getColeccionDorsalesCorredores().entrySet()) {
-                        if (entry.getValue().equals(corredor)) {
-                            carrera.removeCorredor(entry.getKey());
+                if ((carrera.getNombre().equals(NombreCarrera))) {
+                    ArrayList<CorredorParaCarrera> corredoresCarrera = carrera.getCorredores();
+                    for (CorredorParaCarrera corredorCarrera : corredoresCarrera) {
+                        if ((corredor.getNombre().equals(corredorCarrera.getNombre())) && (corredor.getDni().equals(corredorCarrera.getDni())) && (corredor.getFechaNacimiento().equals(corredorCarrera.getFechaNacimiento()))) {
+                            carrera.removeCorredor(corredorCarrera.getDorsal());
                             return true;
                         }
                     }
                 }
             }
         }
+
         return false;
     }
 
@@ -275,8 +298,10 @@ public class GestionAplicacion {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+
         } catch (ParseException ex) {
-            Logger.getLogger(GestionAplicacion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GestionAplicacion.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -304,8 +329,10 @@ public class GestionAplicacion {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+
         } catch (ParseException ex) {
-            Logger.getLogger(GestionAplicacion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GestionAplicacion.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
