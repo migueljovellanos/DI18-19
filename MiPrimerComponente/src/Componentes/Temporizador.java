@@ -6,34 +6,91 @@
 package Componentes;
 
 import javax.swing.JButton;
-import javax.swing.Timer;
-import java.awt.event.*;
 import java.io.Serializable;
 import java.awt.Color;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.TimerTask;
+import javax.swing.ImageIcon;
 
-public class Temporizador extends JButton implements ActionListener, Serializable {
+public class Temporizador extends JButton implements Serializable {
 
-    Timer timer;
     public int segundos;
     public int minutos;
-    private boolean congelado = false;
-    private String min = "minutos";
+    public String texto;
+    public Color colorFinalizar;
+    public File imagen;
+    private int tiempoTotalEnsegundos;
+    private int tiempoTotalEnMilisegundos;
+    private List<CuentaAtrasFinalizada> listaListeners = new ArrayList();
+    java.util.Timer timer = new java.util.Timer();
 
     public Temporizador() {
-        timer = new Timer(1000, this);
-        this.setText("0" + " " + "Minutos" + " " + "0" + " " + "Segundos");
-        this.setEnabled(false);
+        this.setText("Pulse para iniciar la cuenta atras");
         this.setForeground(Color.RED);
         this.setBackground(Color.WHITE);
 
     }
 
-    public Temporizador(int minuto, int segundo) {
-        timer = new Timer(1000, this);
-        this.setText("0" + " " + "Minutos" + " " + "0" + " " + "Segundos");
-        estMinuto(minuto);
-        estSegundo(segundo);
+    private void calcularTiempoTotal() {
+        if (getMinutos() > 0) {
+            tiempoTotalEnsegundos = (getMinutos() * 60) + getSegundos();
+        } else {
+            tiempoTotalEnsegundos = getSegundos();
+        }
+    }
 
+    public void iniciar() {
+        setText(String.valueOf(getSegundos()));
+        calcularTiempoTotal();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+
+                if (tiempoTotalEnsegundos > 0) {
+                    tiempoTotalEnsegundos--;
+                    updateText();
+                } else {
+                    setBackground(colorFinalizar);
+                    setText(texto);
+                    ImageIcon icono = new ImageIcon(getImagen().getName());
+                    setIcon(icono);
+                    setImagen(imagen);
+                    timer.cancel();
+                    for (CuentaAtrasFinalizada listener : listaListeners) {
+                        listener.ejecutar(new Date());
+                    }
+                }
+            }
+
+        }, 0, 1000);
+
+    }
+
+    private void updateText() {
+        if (tiempoTotalEnsegundos > 60) {
+            int min = (int) tiempoTotalEnsegundos / 60;
+            int seg = (int) tiempoTotalEnsegundos % 60;
+            if (min == 1) {
+                this.setText(min + " minuto" + " " + "y" + " " + seg + " " + " segundos");
+            } else {
+                this.setText(min + " minutos" + " " + "y" + " " + seg + " " + " segundos");
+            }
+
+        } else {
+            this.setText(tiempoTotalEnsegundos + " " + " segundos");
+        }
+
+    }
+
+    public Color getColorFinalizar() {
+        return colorFinalizar;
+    }
+
+    public void setColorFinalizar(Color colorFinalizar) {
+        this.colorFinalizar = colorFinalizar;
     }
 
     public int getSegundos() {
@@ -52,70 +109,24 @@ public class Temporizador extends JButton implements ActionListener, Serializabl
         this.minutos = minutos;
     }
 
-    
-    public void estMinuto(int min) {
-        this.minutos = min;
+    public String getTexto() {
+        return texto;
     }
 
-    public void estSegundo(int seg) {
-        this.segundos = seg;
+    public void setTexto(String texto) {
+        this.texto = texto;
     }
 
-    public void iniciar() {
-        if (congelado) {
-
-        } else {
-
-            timer.start();
-        }
+    public File getImagen() {
+        return imagen;
     }
 
-    public boolean estaCorriendo() {
-        return timer.isRunning();
+    public void setImagen(File imagen) {
+        this.imagen = imagen;
     }
 
-    public void detenerse() {
-        //Stop the animating thread. 
-        timer.stop();
-    }
-
-    public void reiniciar() {
-        timer.stop();
-        segundos = 0;
-        minutos = 0;
-        this.setText("0" + " " + "Minutos" + " " + "0" + " " + "Segundos");
-
-    }
-
-    public int obtMinuto() {
-        return this.minutos;
-
-    }
-
-    public int obtSegundo() {
-        return this.segundos;
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        segundos++;
-
-        if (segundos <= 60) {
-            this.setText(minutos + " " + min + " " + "y" + " " + segundos + " " + " segundos");
-        } else {
-            minutos++;
-            segundos = 0;
-            if (minutos == 1) {
-                min = "minuto";
-            } else {
-                min = "minutos";
-            }
-        }
-
-    }
-
-    public static void main(String arg[]) {
-        Temporizador t = new Temporizador();
-
+    public void addCuentaAtrasFinalizadaListener(CuentaAtrasFinalizada listener) {
+        listaListeners.add(listener);
     }
 
 }

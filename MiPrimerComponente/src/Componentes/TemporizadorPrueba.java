@@ -7,6 +7,7 @@ package Componentes;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -49,7 +50,7 @@ public class TemporizadorPrueba extends JLabel implements Serializable {
                     setText("Se ha acabado la cuenta atras");
                     timer.cancel();
                     for (CuentaAtrasFinalizada listener : listaListeners) {
-                        listener.ejecutar();
+                        listener.ejecutar(new Date());
                     }
 
                 }

@@ -1,7 +1,7 @@
 
 import Componentes.CuentaAtrasFinalizada;
+import java.util.Date;
 import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -30,22 +30,19 @@ public class framePrueba extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jSpinner1 = new javax.swing.JSpinner();
-        temporizadorPrueba2 = new Componentes.TemporizadorPrueba();
+        temporizador1 = new Componentes.Temporizador();
+        temporizador3 = new Componentes.Temporizador();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Arrancar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        temporizador3.setMinutos(2);
+        temporizador3.setSegundos(5);
+        temporizador3.setTexto("por fin se acabo");
+        temporizador3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                temporizador3ActionPerformed(evt);
             }
         });
-
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel());
-
-        temporizadorPrueba2.setText("temporizadorPrueba2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -53,40 +50,23 @@ public class framePrueba extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(91, 91, 91)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(temporizadorPrueba2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(45, 45, 45))
+                .addComponent(temporizador3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
-                    .addComponent(temporizadorPrueba2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addGap(119, 119, 119)
+                .addComponent(temporizador3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Integer value = (Integer) jSpinner1.getValue();
-        temporizadorPrueba2.setSegundos(value);
-        temporizadorPrueba2.addCuentaAtrasFinalizadaListener(new CuentaAtrasFinalizada() {
-            @Override
-            public void ejecutar() {
-                JOptionPane.showMessageDialog(framePrueba.this, "Cuenta atras finalizada.");
-            }
-        });
-        temporizadorPrueba2.start();
-
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void temporizador3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_temporizador3ActionPerformed
+        temporizador3.iniciar();
+    }//GEN-LAST:event_temporizador3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,21 +82,21 @@ public class framePrueba extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
+
                 }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(framePrueba.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(framePrueba.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(framePrueba.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(framePrueba.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -132,8 +112,7 @@ public class framePrueba extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JSpinner jSpinner1;
-    private Componentes.TemporizadorPrueba temporizadorPrueba2;
+    private Componentes.Temporizador temporizador1;
+    private Componentes.Temporizador temporizador3;
     // End of variables declaration//GEN-END:variables
 }

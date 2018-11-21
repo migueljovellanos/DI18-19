@@ -5,10 +5,12 @@
  */
 package Componentes;
 
+import java.util.Date;
+
 /**
  *
  * @author Miguel
  */
 public interface CuentaAtrasFinalizada {
-    public void ejecutar();
+    public void ejecutar(Date horaFinalizada);
 }
