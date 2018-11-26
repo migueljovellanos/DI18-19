@@ -18,7 +18,7 @@ import javax.swing.table.AbstractTableModel;
 public class TableModelCarreras extends AbstractTableModel {
 
     private final List<Carrera> listaCarreras;
-    private final String[] columnas = {"Nombre", "Fecha", "Lugar", "Max. participantes"};
+    private final String[] columnas = {"Finalizada", "Nombre", "Fecha", "Lugar", "Max. participantes"};
 
     public TableModelCarreras(ArrayList<Carrera> carreras) {
         this.listaCarreras = carreras;
@@ -43,12 +43,18 @@ public class TableModelCarreras extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return listaCarreras.get(rowIndex).getNombre();
+                if (listaCarreras.get(rowIndex).isFinalizada()) {
+                    return "SI";
+                } else {
+                    return "NO";
+                }
             case 1:
-                return sdf.format(listaCarreras.get(rowIndex).getFecha());
+                return listaCarreras.get(rowIndex).getNombre();
             case 2:
-                return listaCarreras.get(rowIndex).getLugar();
+                return sdf.format(listaCarreras.get(rowIndex).getFecha());
             case 3:
+                return listaCarreras.get(rowIndex).getLugar();
+            case 4:
                 return listaCarreras.get(rowIndex).getMaxCorredores();
         }
         return null;

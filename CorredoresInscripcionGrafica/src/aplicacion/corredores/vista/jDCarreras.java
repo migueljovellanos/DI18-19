@@ -32,6 +32,7 @@ public class jDCarreras extends javax.swing.JDialog {
         super(parent, modal);
         this.gestion = gestion;
         initComponents();
+        this.setLocationRelativeTo(null);
         jComboBoxTipoCarrear.setSelectedIndex(0);
         pintartabla();
         jTCarreras.getSelectionModel().addListSelectionListener(new ListSelectionListener() {

@@ -1,6 +1,7 @@
 package aplicacion.corredores.utils;
 
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
 /*
@@ -13,7 +14,7 @@ import java.text.SimpleDateFormat;
  *
  * @author migue
  */
-public class Utils {
+public class Utils implements Serializable {
 
     /**
      *

@@ -12,9 +12,14 @@ import aplicacion.corredores.utils.Utils;
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,21 +27,25 @@ import java.util.Comparator;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.openide.util.Exceptions;
 
 /**
  *
  * @author migue
  */
-public class GestionAplicacion {
+public class GestionAplicacion implements Serializable {
 
-    private final ArrayList<Corredor> corredores;
-    private final ArrayList<Carrera> carreras;
+    private ArrayList<Corredor> corredores;
+    private ArrayList<Carrera> carreras;
 
     public GestionAplicacion() {
         this.carreras = new ArrayList<>();
         this.corredores = new ArrayList<>();
-        leerCsvCarreras();
-        leerCsvCorredores();
+        try {
+            cargar();
+        } catch (IOException | ClassNotFoundException ex) {
+            Exceptions.printStackTrace(ex);
+        }
     }
 
     public ArrayList<Corredor> getCorredores() {
@@ -335,4 +344,17 @@ public class GestionAplicacion {
         }
     }
 
+    public void grabar() throws FileNotFoundException, IOException {
+        ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("datos.data"));
+        output.writeObject(this);
+        output.close();
+    }
+
+    public void cargar() throws IOException, ClassNotFoundException {
+        ObjectInputStream input = new ObjectInputStream(new FileInputStream("datos.data"));
+        GestionAplicacion gestion = (GestionAplicacion) input.readObject();
+        this.carreras = gestion.getCarreras();
+        this.corredores = gestion.getCorredores();
+        input.close();
+    }
 }

@@ -6,6 +6,7 @@
 package aplicacion.corredores.modelo;
 
 import aplicacion.corredores.utils.Cola;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -13,7 +14,7 @@ import java.util.Date;
  *
  * @author migue
  */
-public class Carrera {
+public class Carrera implements Serializable{
     
     private String nombre;
     private Date fecha;
@@ -34,7 +35,7 @@ public class Carrera {
     }
     
     public void addCorredorCarrera(String nombre, String dni, Date fechaNacimiento, String direccion, int telefono) {
-        corredores.add(new CorredorParaCarrera(nombre, lugar, fecha, nombre, maxCorredores, maxCorredores));
+        corredores.add(new CorredorParaCarrera(nombre, dni, fechaNacimiento, direccion, telefono, dorsales.pull()));
     }
     
     public boolean removeCorredor(int dorsal) {

@@ -33,6 +33,7 @@ public class jDCorredores extends javax.swing.JDialog {
         super(parent, modal);
         this.gestion = gestion;
         initComponents();
+        this.setLocationRelativeTo(null);
         pintarTabla();
         jTableCorredores.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override

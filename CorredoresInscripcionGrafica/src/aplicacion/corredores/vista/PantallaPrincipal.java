@@ -8,6 +8,7 @@ package aplicacion.corredores.vista;
 import aplicacion.corredores.controlador.GestionAplicacion;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.util.Locale;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -22,7 +23,7 @@ import org.openide.util.Exceptions;
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
 
-    private GestionAplicacion gestion = new GestionAplicacion();
+    private GestionAplicacion gestion;
 
     /**
      * Creates new form PantallaPrincipal
@@ -30,6 +31,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public PantallaPrincipal() {
 
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.gestion = new GestionAplicacion();
         try {
             UIManager.setLookAndFeel(new MaterialLookAndFeel());
             UIManager.put("Button.background", MaterialColors.BLUE_GRAY_500);
@@ -43,6 +46,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             public void windowClosing(WindowEvent e) {
                 gestion.GuardarCsvCarreras();
                 gestion.GuardarCsvCorredores();
+                try {
+                    gestion.grabar();
+                } catch (IOException ex) {
+                    Exceptions.printStackTrace(ex);
+                }
             }
         });
 

@@ -12,6 +12,7 @@ import aplicacion.corredores.modelo.CorredorParaCarrera;
 import aplicacion.corredores.vista.tableModels.TableModelCorredorCarrera;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -31,6 +32,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
 
     /**
      * Creates new form JDCreacionCarrera
+     *
      * @param parent
      * @param modal
      * @param gestion
@@ -38,22 +40,27 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
     public JDCreacionCarrera(java.awt.Dialog parent, boolean modal, GestionAplicacion gestion) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
         this.gestion = gestion;
         jBContinuar.setEnabled(false);
         registrarValidador();
-        
+        jTableCorredoresCarrera.setEnabled(false);
+        jButton1.setEnabled(false);
+        jButtonBorrarCorredores.setEnabled(false);
+        jButtonFinalizarCarrera.setEnabled(false);
     }
 
     JDCreacionCarrera(java.awt.Dialog parent, boolean modal, GestionAplicacion gestion, Carrera carreraSeleccionada) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
         this.gestion = gestion;
         this.carrera = carreraSeleccionada;
         jTLugar.setText(carrera.getLugar());
         jTFMaxParticipantes.setText(String.valueOf(carrera.getMaxCorredores()));
         jTFNombre.setText(carrera.getNombre());
         dateTimePickerFecha.setDate(carrera.getFecha());
-        if(carrera.isFinalizada()){
+        if (carrera.isFinalizada() == true) {
             jTFMaxParticipantes.setEnabled(false);
             jTFNombre.setEnabled(false);
             jTLugar.setEnabled(false);
@@ -63,12 +70,12 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
         registrarValidador();
     }
 
-    private void registrarValidador(){
+    private void registrarValidador() {
         ValidationGroup group = validationPanel1.getValidationGroup();
         group.add(jTFNombre, StringValidators.REQUIRE_NON_EMPTY_STRING);
         group.add(jTLugar, StringValidators.REQUIRE_NON_EMPTY_STRING);
-        group.add(jTFMaxParticipantes, StringValidators.REQUIRE_NON_EMPTY_STRING,StringValidators.REQUIRE_VALID_INTEGER);
-        
+        group.add(jTFMaxParticipantes, StringValidators.REQUIRE_NON_EMPTY_STRING, StringValidators.REQUIRE_VALID_INTEGER);
+
         validationPanel1.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -80,6 +87,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
             }
         });
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,6 +113,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCorredoresCarrera = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jButtonBorrarCorredores = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Creacion / modificacion carrera");
@@ -166,6 +175,13 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
             }
         });
 
+        jButtonBorrarCorredores.setText("Borrar Corredores");
+        jButtonBorrarCorredores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarCorredoresActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,9 +193,10 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLTituloFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(validationPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
                                 .addComponent(jButtonFinalizarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(47, 47, 47)
                                 .addComponent(jButton1))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -195,9 +212,11 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
                             .addComponent(jTFNombre)
                             .addComponent(dateTimePickerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonBorrarCorredores)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBLimpiarCampos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBContinuar)))
@@ -234,7 +253,8 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
                     .addComponent(jBContinuar)
                     .addComponent(jBLimpiarCampos)
                     .addComponent(jButton1)
-                    .addComponent(jButtonFinalizarCarrera))
+                    .addComponent(jButtonFinalizarCarrera)
+                    .addComponent(jButtonBorrarCorredores))
                 .addContainerGap())
         );
 
@@ -257,7 +277,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
             Carrera carreraAux = new Carrera(nombre, fecha, lugar, max);
             gestion.addCarrera(carreraAux);
             JOptionPane.showMessageDialog(this, "Se ha añadido la carrera a la coleccion de carreras");
-        }else{
+        } else {
             carrera.setFecha(fecha);
             carrera.setLugar(lugar);
             carrera.setMaxCorredores(max);
@@ -275,9 +295,27 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonFinalizarCarreraActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JDSeleccionCorredoresCarrera dialogo = new JDSeleccionCorredoresCarrera(this, true, gestion);
+        JDSeleccionCorredoresCarrera dialogo = new JDSeleccionCorredoresCarrera(this, true, gestion, carrera);
         dialogo.setVisible(true);
+        pintarTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonBorrarCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarCorredoresActionPerformed
+        int[] selectedRows = jTableCorredoresCarrera.getSelectedRows();
+        ArrayList<CorredorParaCarrera> corredores = carrera.getCorredores();
+        ArrayList<CorredorParaCarrera> corredoresParaBorrar = new ArrayList<>();
+        if (selectedRows.length > 0) {
+            for (int selectedRow : selectedRows) {
+                CorredorParaCarrera corredor = corredores.get(selectedRow);
+                corredoresParaBorrar.add(corredor);
+            }
+        }
+        for (CorredorParaCarrera corredor : corredoresParaBorrar) {
+            carrera.removeCorredor(corredor.getDorsal());
+        }
+        pintarTabla();
+
+    }//GEN-LAST:event_jButtonBorrarCorredoresActionPerformed
 
     private void pintarTabla() {
         ArrayList<CorredorParaCarrera> corredores = carrera.getCorredores();
@@ -293,6 +331,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
     private javax.swing.JButton jBContinuar;
     private javax.swing.JButton jBLimpiarCampos;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonBorrarCorredores;
     private javax.swing.JButton jButtonFinalizarCarrera;
     private javax.swing.JLabel jLFecha;
     private javax.swing.JLabel jLLugar;

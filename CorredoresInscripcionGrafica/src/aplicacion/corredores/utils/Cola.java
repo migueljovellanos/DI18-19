@@ -5,6 +5,7 @@
  */
 package aplicacion.corredores.utils;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.LinkedList;
 
@@ -12,7 +13,7 @@ import java.util.LinkedList;
  *
  * @author migue
  */
-public class Cola {
+public class Cola implements Serializable{
 
     LinkedList cola = new LinkedList();
 

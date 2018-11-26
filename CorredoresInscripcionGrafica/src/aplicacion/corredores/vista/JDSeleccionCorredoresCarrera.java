@@ -6,9 +6,11 @@
 package aplicacion.corredores.vista;
 
 import aplicacion.corredores.controlador.GestionAplicacion;
+import aplicacion.corredores.modelo.Carrera;
 import aplicacion.corredores.modelo.Corredor;
 import aplicacion.corredores.vista.tableModels.TableModelCorredores;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -19,13 +21,16 @@ import javax.swing.table.TableRowSorter;
 public class JDSeleccionCorredoresCarrera extends javax.swing.JDialog {
 
     private GestionAplicacion gestion;
+    private Carrera carrera;
 
-    public JDSeleccionCorredoresCarrera(java.awt.Dialog parent, boolean modal, GestionAplicacion gestion) {
+    public JDSeleccionCorredoresCarrera(java.awt.Dialog parent, boolean modal, GestionAplicacion gestion, Carrera carrera) {
         super(parent, modal);
         this.gestion = gestion;
+        this.carrera = carrera;
         initComponents();
+        this.setLocationRelativeTo(null);
         pintarTabla();
-       
+
     }
 
     /**
@@ -39,6 +44,7 @@ public class JDSeleccionCorredoresCarrera extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCorredores = new javax.swing.JTable();
+        jButtonAddCorredoresToCarrera = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -55,12 +61,21 @@ public class JDSeleccionCorredoresCarrera extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTableCorredores);
 
+        jButtonAddCorredoresToCarrera.setText(org.openide.util.NbBundle.getMessage(JDSeleccionCorredoresCarrera.class, "JDSeleccionCorredoresCarrera.jButtonAddCorredoresToCarrera.text")); // NOI18N
+        jButtonAddCorredoresToCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddCorredoresToCarreraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(164, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jButtonAddCorredoresToCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -68,12 +83,32 @@ public class JDSeleccionCorredoresCarrera extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonAddCorredoresToCarrera)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonAddCorredoresToCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCorredoresToCarreraActionPerformed
+        int[] selectedRows = jTableCorredores.getSelectedRows();
+        ArrayList<Corredor> corredores = gestion.getCorredores();
+        if (selectedRows.length > 0) {
+            for (int selectedRow : selectedRows) {
+                Corredor corredor = corredores.get(selectedRow);
+                String nombre = corredor.getNombre();
+                String dni = corredor.getDni();
+                Date fechaNacimiento = corredor.getFechaNacimiento();
+                String direccion = corredor.getDireccion();
+                int telefono = corredor.getTelefono();
+                carrera.addCorredorCarrera(nombre, dni, fechaNacimiento, direccion, telefono);
+            }
+        }
+        
+        this.dispose();
+    }//GEN-LAST:event_jButtonAddCorredoresToCarreraActionPerformed
 
     private void pintarTabla() {
         ArrayList<Corredor> listCorredors = gestion.getCorredores();
@@ -84,6 +119,7 @@ public class JDSeleccionCorredoresCarrera extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAddCorredoresToCarrera;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableCorredores;
     // End of variables declaration//GEN-END:variables

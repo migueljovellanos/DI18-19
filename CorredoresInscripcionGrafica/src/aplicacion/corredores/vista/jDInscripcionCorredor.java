@@ -33,6 +33,7 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
         super(parent, modal);
         this.gestion = gestionParametro;
         initComponents();
+        this.setLocationRelativeTo(null);
         jBContinuar.setEnabled(false);
         registrarValidador();
     }
