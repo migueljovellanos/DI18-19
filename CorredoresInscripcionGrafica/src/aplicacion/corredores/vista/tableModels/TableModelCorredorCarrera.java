@@ -6,9 +6,9 @@
 package aplicacion.corredores.vista.tableModels;
 
 import aplicacion.corredores.modelo.CorredorParaCarrera;
-import static aplicacion.corredores.utils.Utils.sdf;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+import static aplicacion.corredores.utils.Utils.SDF;
 
 /**
  *
@@ -48,7 +48,7 @@ public class TableModelCorredorCarrera extends AbstractTableModel {
             case 2:
                 return listaCorredores.get(rowIndex).getDni();
             case 3:
-                return sdf.format(listaCorredores.get(rowIndex).getFechaNacimiento());
+                return SDF.format(listaCorredores.get(rowIndex).getFechaNacimiento());
         }
         return null;
     }

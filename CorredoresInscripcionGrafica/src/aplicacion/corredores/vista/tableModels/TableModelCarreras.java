@@ -6,10 +6,10 @@
 package aplicacion.corredores.vista.tableModels;
 
 import aplicacion.corredores.modelo.Carrera;
-import static aplicacion.corredores.utils.Utils.sdf;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+import static aplicacion.corredores.utils.Utils.SDF;
 
 /**
  *
@@ -51,7 +51,7 @@ public class TableModelCarreras extends AbstractTableModel {
             case 1:
                 return listaCarreras.get(rowIndex).getNombre();
             case 2:
-                return sdf.format(listaCarreras.get(rowIndex).getFecha());
+                return SDF.format(listaCarreras.get(rowIndex).getFecha());
             case 3:
                 return listaCarreras.get(rowIndex).getLugar();
             case 4:

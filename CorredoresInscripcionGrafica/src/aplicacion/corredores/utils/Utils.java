@@ -19,5 +19,5 @@ public class Utils implements Serializable {
     /**
      *
      */
-    public final static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    public final static SimpleDateFormat SDF = new SimpleDateFormat("dd/MM/yyyy");
 }

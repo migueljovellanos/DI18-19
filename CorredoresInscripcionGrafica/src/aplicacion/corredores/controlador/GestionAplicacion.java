@@ -232,7 +232,7 @@ public class GestionAplicacion implements Serializable {
 
                 csvOutput.write(corredor.getNombre());
                 csvOutput.write(corredor.getDni());
-                csvOutput.write(Utils.sdf.format(corredor.getFechaNacimiento()));
+                csvOutput.write(Utils.SDF.format(corredor.getFechaNacimiento()));
                 csvOutput.write(corredor.getDireccion());
                 csvOutput.write(String.valueOf(corredor.getTelefono()));
                 csvOutput.endRecord();
@@ -267,7 +267,7 @@ public class GestionAplicacion implements Serializable {
             for (Carrera carrera : carreras) {
 
                 csvOutput.write(carrera.getNombre());
-                csvOutput.write(Utils.sdf.format(carrera.getFecha()));
+                csvOutput.write(Utils.SDF.format(carrera.getFecha()));
                 csvOutput.write(carrera.getLugar());
                 csvOutput.write(String.valueOf(carrera.getMaxCorredores()));
                 csvOutput.endRecord();
@@ -295,7 +295,7 @@ public class GestionAplicacion implements Serializable {
                 String direccion = corredores_import.get(3);
                 int telefono = Integer.valueOf(corredores_import.get(4));
 
-                Corredor corredorAux = new Corredor(nombre, dni, Utils.sdf.parse(fechaNacimiento), direccion, telefono);
+                Corredor corredorAux = new Corredor(nombre, dni, Utils.SDF.parse(fechaNacimiento), direccion, telefono);
 
                 corredores.add(corredorAux);
             }
@@ -327,7 +327,7 @@ public class GestionAplicacion implements Serializable {
                 String lugar = carreras_import.get(2);
                 int telefono = Integer.valueOf(carreras_import.get(3));
 
-                Carrera carreraAux = new Carrera(nombre, Utils.sdf.parse(fecha), lugar, telefono);
+                Carrera carreraAux = new Carrera(nombre, Utils.SDF.parse(fecha), lugar, telefono);
                 carreras.add(carreraAux);
             }
 

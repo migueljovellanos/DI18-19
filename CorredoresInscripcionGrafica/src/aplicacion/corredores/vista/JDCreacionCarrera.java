@@ -12,7 +12,6 @@ import aplicacion.corredores.modelo.CorredorParaCarrera;
 import aplicacion.corredores.vista.tableModels.TableModelCorredorCarrera;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;

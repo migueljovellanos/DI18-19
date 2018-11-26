@@ -8,11 +8,23 @@ package aplicacion.corredores.vista;
 import aplicacion.corredores.vista.tableModels.TableModelCarreras;
 import aplicacion.corredores.controlador.GestionAplicacion;
 import aplicacion.corredores.modelo.Carrera;
+import aplicacion.corredores.modelo.CorredorParaCarrera;
+import aplicacion.corredores.utils.Utils;
+import java.awt.Component;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
+import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import mdlaf.utils.MaterialColors;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -67,6 +79,7 @@ public class jDCarreras extends javax.swing.JDialog {
         jBEliminarCarrera = new javax.swing.JButton();
         jComboBoxTipoCarrear = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        jBExportarCarrera = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestion carreras");
@@ -123,24 +136,29 @@ public class jDCarreras extends javax.swing.JDialog {
 
         jLabel1.setText("Tipo de carrera :");
 
+        jBExportarCarrera.setText("Exportar carrera");
+        jBExportarCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBExportarCarreraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBModificarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addComponent(jBCrearCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBEliminarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBGuardarCarreras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBExportarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxTipoCarrear, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBModificarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(jBCrearCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBEliminarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBGuardarCarreras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBoxTipoCarrear, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
@@ -151,6 +169,10 @@ public class jDCarreras extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxTipoCarrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jBCrearCarrera)
                         .addGap(18, 18, 18)
                         .addComponent(jBModificarCarrera)
@@ -158,10 +180,8 @@ public class jDCarreras extends javax.swing.JDialog {
                         .addComponent(jBEliminarCarrera)
                         .addGap(18, 18, 18)
                         .addComponent(jBGuardarCarreras)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxTipoCarrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jBExportarCarrera)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -176,8 +196,9 @@ public class jDCarreras extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -212,24 +233,75 @@ public class jDCarreras extends javax.swing.JDialog {
         pintartabla();
     }//GEN-LAST:event_jComboBoxTipoCarrearActionPerformed
 
+    private void jBExportarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExportarCarreraActionPerformed
+        int[] selectedRows = jTCarreras.getSelectedRows();
+        ArrayList<Carrera> carreras = gestion.getCarreras();
+        StringBuilder texto = new StringBuilder();
+        if (selectedRows.length > 0) {
+            for (Carrera carrera : carreras) {
+                texto.append(carrera.getNombre()).append("\n");
+                texto.append(Utils.SDF.format(carrera.getFecha())).append("\n");
+                ArrayList<CorredorParaCarrera> corredores = carrera.getCorredores();
+                corredores.sort(new ComparatorDorsales());
+                if (!corredores.isEmpty()) {
+                    for (CorredorParaCarrera corredor : corredores) {
+                        texto.append(corredor.getDorsal());
+                        texto.append(" / ");
+                        texto.append(" / ").append(corredor.getNombre());
+                        texto.append("\n");
+                    }
+                }
+                File file = new File(carrera.getNombre() + ".txt");
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                    writer.write(texto.toString());
+                } catch (IOException ex) {
+                    Exceptions.printStackTrace(ex);
+                }
+                texto = new StringBuilder();
+            }
+        }
+
+
+    }//GEN-LAST:event_jBExportarCarreraActionPerformed
+
     private void pintartabla() {
         ArrayList<Carrera> listaCarreras;
-        if (jComboBoxTipoCarrear.getSelectedIndex() == 0) {
-            listaCarreras = gestion.getCarreras();
-        } else if (jComboBoxTipoCarrear.getSelectedIndex() == 1) {
-            listaCarreras = gestion.getCarrerasFinalizadas();
-        } else {
-            listaCarreras = gestion.getCarrerasProximas();
+        switch (jComboBoxTipoCarrear.getSelectedIndex()) {
+            case 0:
+                listaCarreras = gestion.getCarreras();
+                break;
+            case 1:
+                listaCarreras = gestion.getCarrerasFinalizadas();
+                break;
+            default:
+                listaCarreras = gestion.getCarrerasProximas();
+                break;
         }
         TableModelCarreras modelo = new TableModelCarreras(listaCarreras);
         jTCarreras.setModel(modelo);
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<>(modelo);
         jTCarreras.setRowSorter(elQueOrdena);
+        jTCarreras.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                String status = (String) table.getModel().getValueAt(row, 0);
+                if ("SI".equals(status)) {
+                    setBackground(MaterialColors.BLUE_GRAY_300);
+                } else {
+                    setBackground(table.getBackground());
+                    setForeground(table.getForeground());
+                }
+                return this;
+            }
+
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCrearCarrera;
     private javax.swing.JButton jBEliminarCarrera;
+    private javax.swing.JButton jBExportarCarrera;
     private javax.swing.JButton jBGuardarCarreras;
     private javax.swing.JButton jBModificarCarrera;
     private javax.swing.JComboBox<String> jComboBoxTipoCarrear;
@@ -238,4 +310,23 @@ public class jDCarreras extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTCarreras;
     // End of variables declaration//GEN-END:variables
+
+    private static class ComparatorDorsales implements Comparator<CorredorParaCarrera> {
+
+        public ComparatorDorsales() {
+        }
+
+        @Override
+        public int compare(CorredorParaCarrera c1, CorredorParaCarrera c2) {
+            int dorsal1 = c1.getDorsal();
+            int dorsal2 = c2.getDorsal();
+            if (dorsal1 > dorsal2) {
+                return 1;
+            } else if (dorsal1 < dorsal2) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    }
 }

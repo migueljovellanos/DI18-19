@@ -76,7 +76,7 @@ public class Corredor implements Serializable{
     @Override
     public String toString() {
         
-        return "nombre= " + nombre + ", dni= " + dni + ", fechaNacimiento= " + Utils.sdf.format(fechaNacimiento) + ", direccion= " + direccion + ", telefono= " + telefono + '}';
+        return "nombre= " + nombre + ", dni= " + dni + ", fechaNacimiento= " + Utils.SDF.format(fechaNacimiento) + ", direccion= " + direccion + ", telefono= " + telefono + '}';
     }
 
 }
