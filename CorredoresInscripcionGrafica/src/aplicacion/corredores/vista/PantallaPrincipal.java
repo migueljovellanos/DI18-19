@@ -10,6 +10,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 import javax.swing.SwingUtilities;
@@ -26,6 +28,7 @@ import org.openide.util.Exceptions;
 public class PantallaPrincipal extends javax.swing.JFrame {
 
     private GestionAplicacion gestion;
+    private int minutos = 2;
 
     /**
      * Creates new form PantallaPrincipal
@@ -56,6 +59,35 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        Handler handler = new Handler() {
+            @Override
+            public void publish(LogRecord record) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void flush() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void close() throws SecurityException {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        };
+        Timer timer = new Timer();
+        TimerTask myTask = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    gestion.grabar();
+                } catch (IOException ex) {
+                    Exceptions.printStackTrace(ex);
+                }
+            }
+        };
+
+        timer.schedule(myTask, 0, minutos * 60000);
     }
 
     /**
