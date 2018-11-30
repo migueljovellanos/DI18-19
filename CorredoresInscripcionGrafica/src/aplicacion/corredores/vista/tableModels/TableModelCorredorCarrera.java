@@ -6,12 +6,13 @@
 package aplicacion.corredores.vista.tableModels;
 
 import aplicacion.corredores.modelo.CorredorParaCarrera;
-import java.util.List;
+
 import javax.swing.table.AbstractTableModel;
+import java.util.List;
+
 import static aplicacion.corredores.utils.Utils.SDF;
 
 /**
- *
  * @author Miguel
  */
 public class TableModelCorredorCarrera extends AbstractTableModel {

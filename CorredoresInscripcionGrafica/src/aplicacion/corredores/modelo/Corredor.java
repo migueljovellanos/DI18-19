@@ -6,14 +6,14 @@
 package aplicacion.corredores.modelo;
 
 import aplicacion.corredores.utils.Utils;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- *
  * @author migue
  */
-public class Corredor implements Serializable{
+public class Corredor implements Serializable {
 
     //Atributos
     private String nombre;
@@ -22,9 +22,7 @@ public class Corredor implements Serializable{
     private String direccion;
     private int telefono;
 
-   
 
-    
     public Corredor(String nombre, String dni, Date fechaNacimiento, String direccion, int telefono) {
         this.nombre = nombre;
         this.dni = dni;
@@ -75,7 +73,7 @@ public class Corredor implements Serializable{
 
     @Override
     public String toString() {
-        
+
         return "nombre= " + nombre + ", dni= " + dni + ", fechaNacimiento= " + Utils.SDF.format(fechaNacimiento) + ", direccion= " + direccion + ", telefono= " + telefono + '}';
     }
 

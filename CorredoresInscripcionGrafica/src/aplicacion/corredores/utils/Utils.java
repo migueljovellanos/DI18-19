@@ -11,7 +11,6 @@ import java.text.SimpleDateFormat;
  */
 
 /**
- *
  * @author migue
  */
 public class Utils implements Serializable {

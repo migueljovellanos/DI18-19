@@ -10,10 +10,9 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 /**
- *
  * @author migue
  */
-public class Cola implements Serializable{
+public class Cola implements Serializable {
 
     LinkedList cola = new LinkedList();
 
@@ -23,7 +22,7 @@ public class Cola implements Serializable{
         }
     }
 
-    
+
     public void push(int a) {
         cola.addFirst(a);
         Collections.sort(cola);
@@ -33,14 +32,13 @@ public class Cola implements Serializable{
         return (int) cola.removeFirst();
     }
 
-    
 
     @Override
     public String toString() {
         String msg = "";
 
         for (Object object : cola) {
-            msg = msg + object.toString()+"\n";
+            msg = msg + object.toString() + "\n";
         }
 
         return msg;

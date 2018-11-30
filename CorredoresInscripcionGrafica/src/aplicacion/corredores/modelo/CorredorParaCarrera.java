@@ -9,10 +9,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- *
  * @author Miguel
  */
-public class CorredorParaCarrera extends Corredor implements Serializable{
+public class CorredorParaCarrera extends Corredor implements Serializable {
 
     private int dorsal;
     private Date tiempo;

@@ -8,26 +8,33 @@ package aplicacion.corredores.vista;
 import aplicacion.corredores.controlador.GestionAplicacion;
 import aplicacion.corredores.modelo.Corredor;
 import aplicacion.corredores.vista.tableModels.TableModelCorredores;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
+
+import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import java.util.ArrayList;
 
 /**
- *
  * @author migue
  */
 public class jDCorredores extends javax.swing.JDialog {
 
     private GestionAplicacion gestion;
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBEliminarCorredor;
+    private javax.swing.JButton jBInscribirCorredor;
+    private javax.swing.JButton jBModificarCorredor;
+    private javax.swing.JButton jBguardarCsv;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableCorredores;
+
 
     /**
-     * 
      * @param parent
      * @param modal
-     * @param gestion 
+     * @param gestion
      */
     public jDCorredores(java.awt.Frame parent, boolean modal, GestionAplicacion gestion) {
         super(parent, modal);
@@ -70,15 +77,15 @@ public class jDCorredores extends javax.swing.JDialog {
         setTitle("Gestion corredores");
 
         jTableCorredores.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+                new Object[][]{
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                },
+                new String[]{
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }
         ));
         jScrollPane2.setViewportView(jTableCorredores);
 
@@ -115,34 +122,34 @@ public class jDCorredores extends javax.swing.JDialog {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBInscribirCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                    .addComponent(jBModificarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBguardarCsv, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                    .addComponent(jBEliminarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE)
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jBInscribirCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                                        .addComponent(jBModificarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jBguardarCsv, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                                        .addComponent(jBEliminarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(40, 40, 40)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE)
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBInscribirCorredor)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBModificarCorredor)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBEliminarCorredor)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBguardarCsv)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jBInscribirCorredor)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jBModificarCorredor)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jBEliminarCorredor)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jBguardarCsv)
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap())
         );
 
         pack();
@@ -173,15 +180,6 @@ public class jDCorredores extends javax.swing.JDialog {
         gestion.getCorredores().remove(perSeleccionada);
         jTableCorredores.setModel(new TableModelCorredores(gestion.getCorredores()));
     }//GEN-LAST:event_jBEliminarCorredorActionPerformed
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBEliminarCorredor;
-    private javax.swing.JButton jBInscribirCorredor;
-    private javax.swing.JButton jBModificarCorredor;
-    private javax.swing.JButton jBguardarCsv;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTableCorredores;
     // End of variables declaration//GEN-END:variables
 
     private void pintarTabla() {

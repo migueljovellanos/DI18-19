@@ -8,7 +8,7 @@ import java.io.Serializable;
  *
  * @return true si DNI es correcto. Desarrollado por Manuel Mato.
  */
-class ValidadorDNI implements Serializable{
+class ValidadorDNI implements Serializable {
 
     private String dni;
 

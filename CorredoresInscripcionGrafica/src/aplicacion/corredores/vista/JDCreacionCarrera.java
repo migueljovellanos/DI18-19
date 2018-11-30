@@ -10,24 +10,42 @@ import aplicacion.corredores.controlador.GestionAplicacion;
 import aplicacion.corredores.modelo.Carrera;
 import aplicacion.corredores.modelo.CorredorParaCarrera;
 import aplicacion.corredores.vista.tableModels.TableModelCorredorCarrera;
-import java.util.ArrayList;
-import java.util.Date;
-import javax.swing.JOptionPane;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import org.netbeans.validation.api.builtin.stringvalidation.StringValidators;
 import org.netbeans.validation.api.ui.ValidationGroup;
 
 /**
- *
  * @author migue
  */
 public class JDCreacionCarrera extends javax.swing.JDialog {
 
     private GestionAplicacion gestion;
     private Carrera carrera = null;
+    // Variables declaration - do not modify                     
+    private com.lavantech.gui.comp.DateTimePicker dateTimePickerFecha;
+    private javax.swing.JButton jBContinuar;
+    private javax.swing.JButton jBLimpiarCampos;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonBorrarCorredores;
+    private javax.swing.JButton jButtonComenzarCarrera;
+    private javax.swing.JLabel jLFecha;
+    private javax.swing.JLabel jLLugar;
+    private javax.swing.JLabel jLMaxParticipantes;
+    private javax.swing.JLabel jLNombre;
+    private javax.swing.JLabel jLTituloFormulario;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTFMaxParticipantes;
+    private javax.swing.JTextField jTFNombre;
+    private javax.swing.JTextField jTLugar;
+    private javax.swing.JTable jTableCorredoresCarrera;
+    private org.netbeans.validation.api.ui.swing.ValidationPanel validationPanel1;
 
     /**
      * Creates new form JDCreacionCarrera
@@ -46,7 +64,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
         jTableCorredoresCarrera.setEnabled(false);
         jButton1.setEnabled(false);
         jButtonBorrarCorredores.setEnabled(false);
-        jButtonFinalizarCarrera.setEnabled(false);
+        jButtonComenzarCarrera.setEnabled(false);
     }
 
     JDCreacionCarrera(java.awt.Dialog parent, boolean modal, GestionAplicacion gestion, Carrera carreraSeleccionada) {
@@ -108,7 +126,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
         jTLugar = new javax.swing.JTextField();
         validationPanel1 = new org.netbeans.validation.api.ui.swing.ValidationPanel();
         dateTimePickerFecha = new com.lavantech.gui.comp.DateTimePicker();
-        jButtonFinalizarCarrera = new javax.swing.JButton();
+        jButtonComenzarCarrera = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCorredoresCarrera = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -147,23 +165,23 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
 
         jTLugar.setName("Lugar"); // NOI18N
 
-        jButtonFinalizarCarrera.setText("Finalizar Carrera");
-        jButtonFinalizarCarrera.addActionListener(new java.awt.event.ActionListener() {
+        jButtonComenzarCarrera.setText("Comenzar Carrera");
+        jButtonComenzarCarrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFinalizarCarreraActionPerformed(evt);
+                jButtonComenzarCarreraActionPerformed(evt);
             }
         });
 
         jTableCorredoresCarrera.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+                new Object[][]{
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                },
+                new String[]{
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }
         ));
         jScrollPane1.setViewportView(jTableCorredoresCarrera);
 
@@ -184,77 +202,76 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLTituloFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(validationPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(jButtonFinalizarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(47, 47, 47)
-                                .addComponent(jButton1))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLNombre)
-                            .addComponent(jLMaxParticipantes)
-                            .addComponent(jLLugar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLFecha))
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTLugar)
-                            .addComponent(jTFMaxParticipantes)
-                            .addComponent(jTFNombre)
-                            .addComponent(dateTimePickerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonBorrarCorredores)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBLimpiarCampos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBContinuar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLTituloFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(validationPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLNombre)
+                                                        .addComponent(jLMaxParticipantes)
+                                                        .addComponent(jLLugar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLFecha))
+                                                .addGap(38, 38, 38)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(jTLugar)
+                                                        .addComponent(jTFMaxParticipantes)
+                                                        .addComponent(jTFNombre)
+                                                        .addComponent(dateTimePickerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(jButtonComenzarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jButton1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jButtonBorrarCorredores)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jBLimpiarCampos)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jBContinuar)))
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLTituloFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(validationPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLNombre))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLLugar)
-                            .addComponent(jTLugar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLMaxParticipantes)
-                            .addComponent(jTFMaxParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLFecha)
-                            .addComponent(dateTimePickerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBContinuar)
-                    .addComponent(jBLimpiarCampos)
-                    .addComponent(jButton1)
-                    .addComponent(jButtonFinalizarCarrera)
-                    .addComponent(jButtonBorrarCorredores))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLTituloFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(validationPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLNombre))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(jLLugar)
+                                                        .addComponent(jTLugar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(jLMaxParticipantes)
+                                                        .addComponent(jTFMaxParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLFecha)
+                                                        .addComponent(dateTimePickerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 6, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jBContinuar)
+                                        .addComponent(jBLimpiarCampos)
+                                        .addComponent(jButton1)
+                                        .addComponent(jButtonComenzarCarrera)
+                                        .addComponent(jButtonBorrarCorredores))
+                                .addContainerGap())
         );
 
         pack();
@@ -288,10 +305,10 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jBContinuarActionPerformed
 
-    private void jButtonFinalizarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarCarreraActionPerformed
+    private void jButtonComenzarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComenzarCarreraActionPerformed
         carrera.setFinalizada(true);
         this.dispose();
-    }//GEN-LAST:event_jButtonFinalizarCarreraActionPerformed
+    }//GEN-LAST:event_jButtonComenzarCarreraActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JDSeleccionCorredoresCarrera dialogo = new JDSeleccionCorredoresCarrera(this, true, gestion, carrera);
@@ -313,7 +330,6 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
             carrera.removeCorredor(corredor.getDorsal());
         }
         pintarTabla();
-
     }//GEN-LAST:event_jButtonBorrarCorredoresActionPerformed
 
     private void pintarTabla() {
@@ -324,26 +340,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
         jTableCorredoresCarrera.setRowSorter(elQueOrdena);
 
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.lavantech.gui.comp.DateTimePicker dateTimePickerFecha;
-    private javax.swing.JButton jBContinuar;
-    private javax.swing.JButton jBLimpiarCampos;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonBorrarCorredores;
-    private javax.swing.JButton jButtonFinalizarCarrera;
-    private javax.swing.JLabel jLFecha;
-    private javax.swing.JLabel jLLugar;
-    private javax.swing.JLabel jLMaxParticipantes;
-    private javax.swing.JLabel jLNombre;
-    private javax.swing.JLabel jLTituloFormulario;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTFMaxParticipantes;
-    private javax.swing.JTextField jTFNombre;
-    private javax.swing.JTextField jTLugar;
-    private javax.swing.JTable jTableCorredoresCarrera;
-    private org.netbeans.validation.api.ui.swing.ValidationPanel validationPanel1;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     private void limpiarCamposJdialog() {
         jTLugar.setText("");

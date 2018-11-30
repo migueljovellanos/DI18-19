@@ -11,15 +11,9 @@ import aplicacion.corredores.modelo.CorredorParaCarrera;
 import aplicacion.corredores.utils.Utils;
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import org.openide.util.Exceptions;
+
+import java.io.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,10 +21,8 @@ import java.util.Comparator;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.openide.util.Exceptions;
 
 /**
- *
  * @author migue
  */
 public class GestionAplicacion implements Serializable {
