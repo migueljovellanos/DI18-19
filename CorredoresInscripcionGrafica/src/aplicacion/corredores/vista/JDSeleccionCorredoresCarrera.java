@@ -9,11 +9,11 @@ import aplicacion.corredores.controlador.GestionAplicacion;
 import aplicacion.corredores.modelo.Carrera;
 import aplicacion.corredores.modelo.Corredor;
 import aplicacion.corredores.vista.tableModels.TableModelCorredores;
-
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  * @author Miguel
@@ -22,7 +22,7 @@ public class JDSeleccionCorredoresCarrera extends javax.swing.JDialog {
 
     private GestionAplicacion gestion;
     private Carrera carrera;
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton jButtonAddCorredoresToCarrera;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableCorredores;
@@ -102,12 +102,10 @@ public class JDSeleccionCorredoresCarrera extends javax.swing.JDialog {
         if (selectedRows.length > 0) {
             for (int selectedRow : selectedRows) {
                 Corredor corredor = corredores.get(selectedRow);
-                String nombre = corredor.getNombre();
-                String dni = corredor.getDni();
-                Date fechaNacimiento = corredor.getFechaNacimiento();
-                String direccion = corredor.getDireccion();
-                int telefono = corredor.getTelefono();
-                carrera.addCorredorCarrera(nombre, dni, fechaNacimiento, direccion, telefono);
+                boolean agregado = carrera.addCorredorCarrera(corredor);
+                if (agregado == false) {
+                    JOptionPane.showMessageDialog(rootPane, "Este corredor ya esta inscrito para esta carrera", "Error registro corredor", JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
 
@@ -121,5 +119,5 @@ public class JDSeleccionCorredoresCarrera extends javax.swing.JDialog {
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<>(modelo);
         jTableCorredores.setRowSorter(elQueOrdena);
     }
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }

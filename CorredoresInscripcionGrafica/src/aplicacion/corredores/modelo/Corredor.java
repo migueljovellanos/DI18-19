@@ -6,7 +6,6 @@
 package aplicacion.corredores.modelo;
 
 import aplicacion.corredores.utils.Utils;
-
 import java.io.Serializable;
 import java.util.Date;
 

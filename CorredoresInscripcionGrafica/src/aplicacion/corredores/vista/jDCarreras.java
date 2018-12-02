@@ -10,15 +10,6 @@ import aplicacion.corredores.modelo.Carrera;
 import aplicacion.corredores.modelo.CorredorParaCarrera;
 import aplicacion.corredores.utils.Utils;
 import aplicacion.corredores.vista.tableModels.TableModelCarreras;
-import mdlaf.utils.MaterialColors;
-import org.openide.util.Exceptions;
-
-import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,14 +17,22 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import mdlaf.utils.MaterialColors;
+import org.openide.util.Exceptions;
 
 /**
  * @author migue
  */
 public class jDCarreras extends javax.swing.JDialog {
-
+    
     private GestionAplicacion gestion;
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton jBCrearCarrera;
     private javax.swing.JButton jBEliminarCarrera;
     private javax.swing.JButton jBExportarCarrera;
@@ -44,6 +43,7 @@ public class jDCarreras extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTCarreras;
+
     /**
      * @param parent
      * @param modal
@@ -255,7 +255,7 @@ public class jDCarreras extends javax.swing.JDialog {
                 if (!corredores.isEmpty()) {
                     for (CorredorParaCarrera corredor : corredores) {
                         texto.append(corredor.getDorsal());
-                        texto.append(" / ");
+                        texto.append(" / ").append(corredor.getTiempo());
                         texto.append(" / ").append(corredor.getNombre());
                         texto.append("\n");
                     }
@@ -269,10 +269,10 @@ public class jDCarreras extends javax.swing.JDialog {
                 texto = new StringBuilder();
             }
         }
-
+        
 
     }//GEN-LAST:event_jBExportarCarreraActionPerformed
-
+    
     private void pintartabla() {
         ArrayList<Carrera> listaCarreras;
         switch (jComboBoxTipoCarrear.getSelectedIndex()) {
@@ -303,16 +303,16 @@ public class jDCarreras extends javax.swing.JDialog {
                 }
                 return this;
             }
-
+            
         });
     }
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     private static class ComparatorDorsales implements Comparator<CorredorParaCarrera> {
-
+        
         public ComparatorDorsales() {
         }
-
+        
         @Override
         public int compare(CorredorParaCarrera c1, CorredorParaCarrera c2) {
             int dorsal1 = c1.getDorsal();

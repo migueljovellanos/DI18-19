@@ -8,13 +8,12 @@ package aplicacion.corredores.vista;
 import aplicacion.corredores.controlador.GestionAplicacion;
 import aplicacion.corredores.modelo.Corredor;
 import aplicacion.corredores.vista.tableModels.TableModelCorredores;
-
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import java.util.ArrayList;
 
 /**
  * @author migue
@@ -22,7 +21,7 @@ import java.util.ArrayList;
 public class jDCorredores extends javax.swing.JDialog {
 
     private GestionAplicacion gestion;
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton jBEliminarCorredor;
     private javax.swing.JButton jBInscribirCorredor;
     private javax.swing.JButton jBModificarCorredor;
@@ -180,7 +179,7 @@ public class jDCorredores extends javax.swing.JDialog {
         gestion.getCorredores().remove(perSeleccionada);
         jTableCorredores.setModel(new TableModelCorredores(gestion.getCorredores()));
     }//GEN-LAST:event_jBEliminarCorredorActionPerformed
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     private void pintarTabla() {
         ArrayList<Corredor> listCorredors = gestion.getCorredores();

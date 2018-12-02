@@ -11,8 +11,6 @@ import aplicacion.corredores.modelo.CorredorParaCarrera;
 import aplicacion.corredores.utils.Utils;
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
-import org.openide.util.Exceptions;
-
 import java.io.*;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -21,6 +19,7 @@ import java.util.Comparator;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.openide.util.Exceptions;
 
 /**
  * @author migue
@@ -108,7 +107,7 @@ public class GestionAplicacion implements Serializable {
         if (corredor != null) {
             for (Carrera carrera : carreras) {
                 if ((carrera.getNombre().equals(NombreCarrera)) && (!carrera.getCorredores().contains(corredor))) {
-                    carrera.addCorredorCarrera(corredor.getNombre(), corredor.getDni(), corredor.getFechaNacimiento(), corredor.getDireccion(), corredor.getTelefono());
+                    carrera.addCorredorCarrera(corredor);
                     return true;
                 }
             }

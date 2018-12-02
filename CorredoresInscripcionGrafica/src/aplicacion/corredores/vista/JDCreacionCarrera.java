@@ -10,14 +10,13 @@ import aplicacion.corredores.controlador.GestionAplicacion;
 import aplicacion.corredores.modelo.Carrera;
 import aplicacion.corredores.modelo.CorredorParaCarrera;
 import aplicacion.corredores.vista.tableModels.TableModelCorredorCarrera;
-
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import java.util.ArrayList;
-import java.util.Date;
-import javax.swing.JOptionPane;
 import org.netbeans.validation.api.builtin.stringvalidation.StringValidators;
 import org.netbeans.validation.api.ui.ValidationGroup;
 
@@ -306,6 +305,8 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
     }//GEN-LAST:event_jBContinuarActionPerformed
 
     private void jButtonComenzarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComenzarCarreraActionPerformed
+        JDCronometro dialogCrono = new JDCronometro(this, rootPaneCheckingEnabled, gestion, carrera);
+        dialogCrono.setVisible(true);
         carrera.setFinalizada(true);
         this.dispose();
     }//GEN-LAST:event_jButtonComenzarCarreraActionPerformed

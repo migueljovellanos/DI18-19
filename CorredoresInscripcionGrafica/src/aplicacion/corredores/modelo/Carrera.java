@@ -6,7 +6,6 @@
 package aplicacion.corredores.modelo;
 
 import aplicacion.corredores.utils.Cola;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,8 +33,19 @@ public class Carrera implements Serializable {
 
     }
 
-    public void addCorredorCarrera(String nombre, String dni, Date fechaNacimiento, String direccion, int telefono) {
+    public boolean addCorredorCarrera(Corredor corredor) {
+        String nombre = corredor.getNombre();
+        String dni = corredor.getDni();
+        Date fechaNacimiento = corredor.getFechaNacimiento();
+        String direccion = corredor.getDireccion();
+        int telefono = corredor.getTelefono();
+        for (CorredorParaCarrera corredorCarrera : corredores) {
+            if (corredorCarrera.getNombre().equals(nombre) && corredorCarrera.getDni().equals(dni)) {
+                return false;
+            }
+        }
         corredores.add(new CorredorParaCarrera(nombre, dni, fechaNacimiento, direccion, telefono, dorsales.pull()));
+        return true;
     }
 
     public boolean removeCorredor(int dorsal) {
@@ -53,7 +63,6 @@ public class Carrera implements Serializable {
     public String toString() {
         return "Carrera{" + "nombre=" + nombre + ", fecha=" + fecha + ", lugar=" + lugar + ", maxCorredores=" + maxCorredores + ", finalizada=" + finalizada + ", corredores=" + corredores + ", dorsales=" + dorsales + '}';
     }
-
 
     // GETTERS
     public String getNombre() {

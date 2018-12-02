@@ -7,13 +7,12 @@ package aplicacion.corredores.vista;
 
 import aplicacion.corredores.controlador.GestionAplicacion;
 import aplicacion.corredores.modelo.Corredor;
-import org.netbeans.validation.api.builtin.stringvalidation.StringValidators;
-import org.netbeans.validation.api.ui.ValidationGroup;
-
+import java.util.Date;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import java.util.Date;
+import org.netbeans.validation.api.builtin.stringvalidation.StringValidators;
+import org.netbeans.validation.api.ui.ValidationGroup;
 
 /**
  * @author migue
@@ -22,7 +21,7 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
 
     private GestionAplicacion gestion;
     private Corredor corredorSeleccionado = null;
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JButton jBContinuar;
     private javax.swing.JButton jBLimpiarCampos;
@@ -243,7 +242,7 @@ public class jDInscripcionCorredor extends javax.swing.JDialog {
         jTFTelefono.setText("");
         dateChooser.setDate(new Date());
     }
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     private void registrarValidador() {
         ValidationGroup group = validationPanel1.getValidationGroup();

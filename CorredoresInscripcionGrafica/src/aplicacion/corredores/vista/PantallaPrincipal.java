@@ -1,10 +1,6 @@
 package aplicacion.corredores.vista;
 
 import aplicacion.corredores.controlador.GestionAplicacion;
-import mdlaf.MaterialLookAndFeel;
-import mdlaf.utils.MaterialColors;
-import org.openide.util.Exceptions;
-
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -16,6 +12,9 @@ import java.util.logging.LogRecord;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import mdlaf.MaterialLookAndFeel;
+import mdlaf.utils.MaterialColors;
+import org.openide.util.Exceptions;
 
 /**
  * @author migue

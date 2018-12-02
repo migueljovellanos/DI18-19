@@ -14,7 +14,7 @@ import java.util.Date;
 public class CorredorParaCarrera extends Corredor implements Serializable {
 
     private int dorsal;
-    private Date tiempo;
+    private String tiempo;
 
     public CorredorParaCarrera(String nombre, String dni, Date fechaNacimiento, String direccion, int telefono, int dorsal) {
         super(nombre, dni, fechaNacimiento, direccion, telefono);
@@ -29,11 +29,11 @@ public class CorredorParaCarrera extends Corredor implements Serializable {
         this.dorsal = dorsal;
     }
 
-    public Date getTiempo() {
+    public String getTiempo() {
         return tiempo;
     }
 
-    public void setTiempo(Date tiempo) {
+    public void setTiempo(String tiempo) {
         this.tiempo = tiempo;
     }
 
