@@ -91,7 +91,7 @@
               <Font name="Dialog" size="36" style="2"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Gestion carreras"/>
+            <Property name="text" type="java.lang.String" value="Gestion careras"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonGestionCorredores">
@@ -113,7 +113,7 @@
         <Component class="javax.swing.JLabel" name="jLabelImg">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/archivos/running 5.jpg"/>
+              <Image iconType="3" name="/archivos/OQ5DCB0.jpg"/>
             </Property>
           </Properties>
         </Component>

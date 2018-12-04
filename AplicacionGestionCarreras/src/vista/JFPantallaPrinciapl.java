@@ -98,7 +98,7 @@ public class JFPantallaPrinciapl extends javax.swing.JFrame {
 
         jLabelTituloAplicacion.setFont(new java.awt.Font("Dialog", 2, 36)); // NOI18N
         jLabelTituloAplicacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTituloAplicacion.setText("Gestion carreras");
+        jLabelTituloAplicacion.setText("Gestion careras");
 
         jButtonGestionCorredores.setText("Gestionar Corredores");
         jButtonGestionCorredores.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +114,7 @@ public class JFPantallaPrinciapl extends javax.swing.JFrame {
             }
         });
 
-        jLabelImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/archivos/running 5.jpg"))); // NOI18N
+        jLabelImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/archivos/OQ5DCB0.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPPantallaPrincipalLayout = new javax.swing.GroupLayout(jPPantallaPrincipal);
         jPPantallaPrincipal.setLayout(jPPantallaPrincipalLayout);
