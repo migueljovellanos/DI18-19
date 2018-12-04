@@ -17,6 +17,7 @@ public class Cronometro extends javax.swing.JPanel {
     private int minutos;
     private int segundos;
     private int milisegundos;
+    private boolean iniciado = false;
     private Timer timer;
 
     /**
@@ -24,6 +25,7 @@ public class Cronometro extends javax.swing.JPanel {
      */
     public Cronometro() {
         initComponents();
+        jLCronometroTexto.setText(minutos + ":" + segundos + ":" + milisegundos);
     }
 
     /**
@@ -97,12 +99,16 @@ public class Cronometro extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIniciarActionPerformed
+        if (iniciado) {
+            timer.cancel();
+        }
+        iniciado = true;
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 milisegundos++;
-                if (milisegundos == 100) {
+                if (milisegundos == 1000) {
                     segundos++;
                     milisegundos = 0;
                 }
@@ -112,7 +118,7 @@ public class Cronometro extends javax.swing.JPanel {
                 }
                 jLCronometroTexto.setText(minutos + ":" + segundos + ":" + milisegundos);
             }
-        }, 0, 10);
+        }, 0, 1);
     }//GEN-LAST:event_jBIniciarActionPerformed
 
     private void jBFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFinalizarActionPerformed
