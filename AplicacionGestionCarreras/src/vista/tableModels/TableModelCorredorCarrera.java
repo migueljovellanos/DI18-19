@@ -47,7 +47,7 @@ public class TableModelCorredorCarrera extends AbstractTableModel {
             case 2:
                 return listaCorredores.get(rowIndex).getDni();
             case 3:
-                return SDF.format(listaCorredores.get(rowIndex).getFechaNacimiento());
+                return listaCorredores.get(rowIndex).getTiempo();
         }
         return null;
     }

@@ -14,6 +14,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -88,14 +89,16 @@ public class JFPantallaPrinciapl extends javax.swing.JFrame {
         jLabelTituloAplicacion = new javax.swing.JLabel();
         jButtonGestionCorredores = new javax.swing.JButton();
         jButtonGestionCarreras = new javax.swing.JButton();
+        jLabelImg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPPantallaPrincipal.setToolTipText("");
 
         jLabelTituloAplicacion.setFont(new java.awt.Font("Dialog", 2, 36)); // NOI18N
         jLabelTituloAplicacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTituloAplicacion.setText("Aplicacion para gestionar corredores y carreras");
+        jLabelTituloAplicacion.setText("Gestion carreras");
 
         jButtonGestionCorredores.setText("Gestionar Corredores");
         jButtonGestionCorredores.addActionListener(new java.awt.event.ActionListener() {
@@ -111,6 +114,8 @@ public class JFPantallaPrinciapl extends javax.swing.JFrame {
             }
         });
 
+        jLabelImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/archivos/running 5.jpg"))); // NOI18N
+
         javax.swing.GroupLayout jPPantallaPrincipalLayout = new javax.swing.GroupLayout(jPPantallaPrincipal);
         jPPantallaPrincipal.setLayout(jPPantallaPrincipalLayout);
         jPPantallaPrincipalLayout.setHorizontalGroup(
@@ -118,16 +123,16 @@ public class JFPantallaPrinciapl extends javax.swing.JFrame {
             .addGroup(jPPantallaPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelTituloAplicacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPPantallaPrincipalLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonGestionCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(jPPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPPantallaPrincipalLayout.createSequentialGroup()
-                    .addGap(16, 16, 16)
-                    .addComponent(jButtonGestionCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(566, Short.MAX_VALUE)))
+                    .addGroup(jPPantallaPrincipalLayout.createSequentialGroup()
+                        .addComponent(jLabelTituloAplicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPPantallaPrincipalLayout.createSequentialGroup()
+                        .addGroup(jPPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonGestionCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonGestionCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelImg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 0, 0))
         );
         jPPantallaPrincipalLayout.setVerticalGroup(
             jPPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,20 +140,20 @@ public class JFPantallaPrinciapl extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabelTituloAplicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonGestionCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
-            .addGroup(jPPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPPantallaPrincipalLayout.createSequentialGroup()
-                    .addGap(91, 91, 91)
-                    .addComponent(jButtonGestionCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(96, Short.MAX_VALUE)))
+                .addGroup(jPPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPPantallaPrincipalLayout.createSequentialGroup()
+                        .addComponent(jButtonGestionCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonGestionCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelImg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPPantallaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPPantallaPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,6 +222,7 @@ public class JFPantallaPrinciapl extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonGestionCarreras;
     private javax.swing.JButton jButtonGestionCorredores;
+    private javax.swing.JLabel jLabelImg;
     private javax.swing.JLabel jLabelTituloAplicacion;
     private javax.swing.JPanel jPPantallaPrincipal;
     // End of variables declaration//GEN-END:variables

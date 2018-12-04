@@ -3,6 +3,7 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -25,47 +26,46 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLNombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLMaxParticipantes" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLLugar" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
-                          <Component id="jLFecha" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTLugar" alignment="0" pref="201" max="32767" attributes="0"/>
-                          <Component id="jTFNombre" alignment="0" max="32767" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="1" attributes="0">
-                              <Component id="jButtonComenzarCarrera" min="-2" pref="135" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLNombre" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLMaxParticipantes" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLLugar" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
+                                  <Component id="jLFecha" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jTLugar" alignment="0" pref="201" max="32767" attributes="0"/>
+                                  <Component id="jTFNombre" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTFMaxParticipantes" max="32767" attributes="0"/>
                                   <Component id="dateChooser" max="32767" attributes="0"/>
                               </Group>
+                              <EmptySpace min="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLTituloFormulario" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
+                                  <Component id="validationPanel1" min="-2" pref="349" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="13" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="565" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLTituloFormulario" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
-                          <Component id="validationPanel1" min="-2" pref="349" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="13" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jButtonComenzarCarrera" min="-2" pref="362" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButtonAddCorredores" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jButtonBorrarCorredores" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jBLimpiarCampos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jBContinuar" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBContinuar" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" min="-2" pref="565" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -99,7 +99,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jLFecha" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="54" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="dateChooser" min="-2" max="-2" attributes="0"/>
@@ -116,7 +116,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jBContinuar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBLimpiarCampos" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonAddCorredores" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonBorrarCorredores" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonComenzarCarrera" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -143,6 +143,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButtonComenzarCarrera">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
           <ResourceString bundle="vista/Bundle.properties" key="JDCreacionCarrera.jButtonComenzarCarrera.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
@@ -239,14 +242,14 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBorrarCorredoresActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="jButtonAddCorredores">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="vista/Bundle.properties" key="JDCreacionCarrera.jButton1.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="vista/Bundle.properties" key="JDCreacionCarrera.jButtonAddCorredores.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAddCorredoresActionPerformed"/>
       </Events>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="dateChooser">

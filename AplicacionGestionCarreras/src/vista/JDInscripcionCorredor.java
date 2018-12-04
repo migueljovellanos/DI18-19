@@ -79,6 +79,7 @@ public class JDInscripcionCorredor extends javax.swing.JDialog {
         validationPanel1 = new org.netbeans.validation.api.ui.swing.ValidationPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jTFTelefono.setName("Telefono"); // NOI18N
 

@@ -47,6 +47,7 @@ public class JDSeleccionCorredoresCarrera extends javax.swing.JDialog {
         jTableCorredores = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jButtonAddCorredoresToCarrera.setText(org.openide.util.NbBundle.getMessage(JDSeleccionCorredoresCarrera.class, "JDSeleccionCorredoresCarrera.jButtonAddCorredoresToCarrera.text")); // NOI18N
         jButtonAddCorredoresToCarrera.addActionListener(new java.awt.event.ActionListener() {
