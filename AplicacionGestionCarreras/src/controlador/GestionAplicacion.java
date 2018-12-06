@@ -16,7 +16,9 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.*;
+import org.openide.util.Exceptions;
 import utils.Utils;
+import vista.JDCarreras;
 
 /**
  * @author migue
@@ -344,5 +346,54 @@ public class GestionAplicacion implements Serializable {
         this.carreras = gestion.getCarreras();
         this.corredores = gestion.getCorredores();
         input.close();
+    }
+
+    public void exportarCarrera(Carrera carrera) throws IOException {
+        StringBuilder texto = new StringBuilder();
+        texto.append(carrera.getNombre()).append("\n");
+        texto.append(utils.Utils.SDF.format(carrera.getFecha())).append("\n");
+        ArrayList<CorredorParaCarrera> corredores = carrera.getCorredores();
+        corredores.sort(new GestionAplicacion.ComparatorDorsales());
+        if (!corredores.isEmpty()) {
+            for (CorredorParaCarrera corredor : corredores) {
+                texto.append(corredor.getDorsal());
+                texto.append(" / ").append(corredor.getTiempo());
+                texto.append(" / ").append(corredor.getNombre());
+                texto.append("\n");
+            }
+        }
+        System.out.println(texto);
+
+        String ruta = carrera.getNombre() + ".txt";
+        File archivo = new File(ruta);
+        BufferedWriter bw;
+        if (archivo.exists()) {
+            bw = new BufferedWriter(new FileWriter(archivo));
+            bw.write(texto.toString());
+        } else {
+            bw = new BufferedWriter(new FileWriter(archivo));
+            bw.write(texto.toString());
+        }
+        bw.close();
+
+    }
+
+    private static class ComparatorDorsales implements Comparator<CorredorParaCarrera> {
+
+        public ComparatorDorsales() {
+        }
+
+        @Override
+        public int compare(CorredorParaCarrera c1, CorredorParaCarrera c2) {
+            int dorsal1 = c1.getDorsal();
+            int dorsal2 = c2.getDorsal();
+            if (dorsal1 > dorsal2) {
+                return 1;
+            } else if (dorsal1 < dorsal2) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
     }
 }

@@ -27,6 +27,7 @@ public class JDCronometro extends javax.swing.JDialog {
         this.carrera = carreraSeleccionada;
         jLNombreCarrera.setText(carrera.getNombre());
         rellenarCombo();
+        cronometro1.cambiarTextoBotonFinalizar("Finalizar Carrera");
         jTextAreaLog.append("\ndorsal ----- tiempo \n");
     }
 

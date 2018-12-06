@@ -24,6 +24,7 @@ import javax.swing.table.TableRowSorter;
 import mdlaf.utils.MaterialColors;
 import modelo.Carrera;
 import modelo.CorredorParaCarrera;
+import org.openide.util.Exceptions;
 import vista.tableModels.TableModelCarreras;
 
 /**
@@ -235,30 +236,13 @@ public class JDCarreras extends javax.swing.JDialog {
     private void jBExportarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExportarCarreraActionPerformed
         int[] selectedRows = jTCarreras.getSelectedRows();
         ArrayList<Carrera> carreras = gestion.getCarreras();
-        StringBuilder texto = new StringBuilder();
         if (selectedRows.length > 0) {
             for (Carrera carrera : carreras) {
-                texto.append(carrera.getNombre()).append("\n");
-                texto.append(utils.Utils.SDF.format(carrera.getFecha())).append("\n");
-                ArrayList<CorredorParaCarrera> corredores = carrera.getCorredores();
-                corredores.sort(new ComparatorDorsales());
-                if (!corredores.isEmpty()) {
-                    for (CorredorParaCarrera corredor : corredores) {
-                        texto.append(corredor.getDorsal());
-                        texto.append(" / ").append(corredor.getTiempo());
-                        texto.append(" / ").append(corredor.getNombre());
-                        texto.append("\n");
-                    }
-                }
-                File file = new File(carrera.getNombre() + ".txt");
-                BufferedWriter writer;
                 try {
-                    writer = new BufferedWriter(new FileWriter(file));
-                    writer.write(texto.toString());
+                    gestion.exportarCarrera(carrera);
                 } catch (IOException ex) {
-                    Logger.getLogger(JDCarreras.class.getName()).log(Level.SEVERE, null, ex);
+                    Exceptions.printStackTrace(ex);
                 }
-                texto = new StringBuilder();
             }
         }
 
@@ -313,22 +297,4 @@ public class JDCarreras extends javax.swing.JDialog {
     }
     // End of variables declaration                   
 
-    private static class ComparatorDorsales implements Comparator<CorredorParaCarrera> {
-
-        public ComparatorDorsales() {
-        }
-
-        @Override
-        public int compare(CorredorParaCarrera c1, CorredorParaCarrera c2) {
-            int dorsal1 = c1.getDorsal();
-            int dorsal2 = c2.getDorsal();
-            if (dorsal1 > dorsal2) {
-                return 1;
-            } else if (dorsal1 < dorsal2) {
-                return -1;
-            } else {
-                return 0;
-            }
-        }
-    }
 }
