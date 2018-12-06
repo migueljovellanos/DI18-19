@@ -143,4 +143,8 @@ public class Cronometro extends javax.swing.JPanel {
     private javax.swing.JButton jBReiniciar;
     private javax.swing.JLabel jLCronometroTexto;
     // End of variables declaration//GEN-END:variables
+
+    public void cambiarTextoBotonFinalizar(String finalizar_Carrera) {
+        jBFinalizar.setText(finalizar_Carrera);
+    }
 }
