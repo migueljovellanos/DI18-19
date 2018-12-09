@@ -6,7 +6,11 @@
 package vista;
 
 import controlador.GestionAplicacion;
+import java.io.File;
+import java.net.URL;
 import java.util.Date;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -27,6 +31,7 @@ public class JDInscripcionCorredor extends javax.swing.JDialog {
         super(parent, modal);
         this.gestion = gestionParametro;
         initComponents();
+        ponLaAyuda();
         this.setLocationRelativeTo(null);
         jBContinuar.setEnabled(false);
         registrarValidador();
@@ -77,6 +82,9 @@ public class JDInscripcionCorredor extends javax.swing.JDialog {
         jLNombre = new javax.swing.JLabel();
         dateChooser = new com.toedter.calendar.JDateChooser();
         validationPanel1 = new org.netbeans.validation.api.ui.swing.ValidationPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuAyuda = new javax.swing.JMenu();
+        jMenuItemAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -116,6 +124,15 @@ public class JDInscripcionCorredor extends javax.swing.JDialog {
         jLNombre.setText("Nombre :");
 
         dateChooser.setDateFormatString("dd/MMM/yyyy");
+
+        jMenuAyuda.setText("Ayuda");
+
+        jMenuItemAyuda.setText("mostrar ayuda");
+        jMenuAyuda.add(jMenuItemAyuda);
+
+        jMenuBar1.add(jMenuAyuda);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -228,6 +245,9 @@ public class JDInscripcionCorredor extends javax.swing.JDialog {
     private javax.swing.JLabel jLNombre;
     private javax.swing.JLabel jLTelefono;
     private javax.swing.JLabel jLTituloFormulario;
+    private javax.swing.JMenu jMenuAyuda;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemAyuda;
     private javax.swing.JTextField jTFDireccion;
     private javax.swing.JTextField jTFDni;
     private javax.swing.JTextField jTFNombre;
@@ -260,5 +280,24 @@ public class JDInscripcionCorredor extends javax.swing.JDialog {
         jTFDni.setText("");
         jTFTelefono.setText("");
         dateChooser.setDate(new Date());
+    }
+
+    private void ponLaAyuda() {
+        try {
+            // Carga el fichero de ayuda
+            File fichero = new File("help" + File.separator + "help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
+
+            // Crea el HelpSet y el HelpBroker
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+
+            // Pone ayuda a item de menu al pulsarlo y a F1 en ventana
+            // principal y secundaria.
+            hb.enableHelpOnButton(jMenuItemAyuda, "ventana_inscripcioncorredor", helpset);
+            hb.enableHelpKey(getRootPane(), "ventana_inscripcioncorredor", helpset);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -6,7 +6,11 @@
 package vista;
 
 import controlador.GestionAplicacion;
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -32,6 +36,7 @@ public class JDCorredores extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         pintarTabla();
+        ponLaAyuda();
         jTableCorredores.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent lse) {
@@ -61,6 +66,9 @@ public class JDCorredores extends javax.swing.JDialog {
         jBguardarCsv = new javax.swing.JButton();
         jBModificarCorredor = new javax.swing.JButton();
         jBEliminarCorredor = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuAyuda = new javax.swing.JMenu();
+        jMenuItemAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -108,6 +116,15 @@ public class JDCorredores extends javax.swing.JDialog {
             }
         });
 
+        jMenuAyuda.setText("Ayuda");
+
+        jMenuItemAyuda.setText("mostrar ayuda");
+        jMenuAyuda.add(jMenuItemAyuda);
+
+        jMenuBar1.add(jMenuAyuda);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,7 +145,7 @@ public class JDCorredores extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBInscribirCorredor)
                         .addGap(18, 18, 18)
@@ -176,6 +193,9 @@ public class JDCorredores extends javax.swing.JDialog {
     private javax.swing.JButton jBInscribirCorredor;
     private javax.swing.JButton jBModificarCorredor;
     private javax.swing.JButton jBguardarCsv;
+    private javax.swing.JMenu jMenuAyuda;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemAyuda;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableCorredores;
     // End of variables declaration//GEN-END:variables
@@ -187,5 +207,23 @@ public class JDCorredores extends javax.swing.JDialog {
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<>(modelo);
         jTableCorredores.setRowSorter(elQueOrdena);
 
+    }
+    private void ponLaAyuda() {
+        try {
+            // Carga el fichero de ayuda
+            File fichero = new File("help" + File.separator + "help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
+
+            // Crea el HelpSet y el HelpBroker
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+
+            // Pone ayuda a item de menu al pulsarlo y a F1 en ventana
+            // principal y secundaria.
+            hb.enableHelpOnButton(jMenuItemAyuda, "ventana_corredores", helpset);
+            hb.enableHelpKey(getRootPane(), "ventana_corredores", helpset);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

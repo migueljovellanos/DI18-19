@@ -6,8 +6,12 @@
 package vista;
 
 import controlador.GestionAplicacion;
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -24,7 +28,7 @@ import vista.tableModels.TableModelCorredorCarrera;
  * @author Miguel
  */
 public class JDCreacionCarrera extends javax.swing.JDialog {
-    
+
     private GestionAplicacion gestion;
     private Carrera carrera;
 
@@ -40,6 +44,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         this.gestion = gestion;
+        ponLaAyuda();
         jBContinuar.setEnabled(false);
         registrarValidador();
         jTableCorredoresCarrera.setEnabled(false);
@@ -47,7 +52,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
         jButtonBorrarCorredores.setEnabled(false);
         jButtonComenzarCarrera.setEnabled(false);
     }
-    
+
     public JDCreacionCarrera(java.awt.Dialog parent, boolean modal, GestionAplicacion gestion, Carrera carreraSeleccionada) {
         super(parent, modal);
         initComponents();
@@ -98,6 +103,9 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
         jButtonBorrarCorredores = new javax.swing.JButton();
         jButtonAddCorredores = new javax.swing.JButton();
         dateChooser = new com.toedter.calendar.JDateChooser();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuAyuda = new javax.swing.JMenu();
+        jMenuItemAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -168,6 +176,15 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
         });
 
         dateChooser.setDateFormatString(org.openide.util.NbBundle.getMessage(JDCreacionCarrera.class, "JDCreacionCarrera.dateChooser.dateFormatString")); // NOI18N
+
+        jMenuAyuda.setText(org.openide.util.NbBundle.getMessage(JDCreacionCarrera.class, "JDCreacionCarrera.jMenuAyuda.text")); // NOI18N
+
+        jMenuItemAyuda.setText(org.openide.util.NbBundle.getMessage(JDCreacionCarrera.class, "JDCreacionCarrera.jMenuItemAyuda.text")); // NOI18N
+        jMenuAyuda.add(jMenuItemAyuda);
+
+        jMenuBar1.add(jMenuAyuda);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -255,7 +272,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBContinuarActionPerformed
-        
+
         String nombre = jTFNombre.getText();
         String lugar = jTLugar.getText();
         Date fecha = dateChooser.getDate();
@@ -323,6 +340,9 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
     private javax.swing.JLabel jLMaxParticipantes;
     private javax.swing.JLabel jLNombre;
     private javax.swing.JLabel jLTituloFormulario;
+    private javax.swing.JMenu jMenuAyuda;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemAyuda;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTFMaxParticipantes;
     private javax.swing.JTextField jTFNombre;
@@ -336,7 +356,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
         group.add(jTFNombre, StringValidators.REQUIRE_NON_EMPTY_STRING);
         group.add(jTLugar, StringValidators.REQUIRE_NON_EMPTY_STRING);
         group.add(jTFMaxParticipantes, StringValidators.REQUIRE_NON_EMPTY_STRING, StringValidators.REQUIRE_VALID_INTEGER);
-        
+
         validationPanel1.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -348,7 +368,7 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
             }
         });
     }
-    
+
     private void pintarTabla() {
         ArrayList<CorredorParaCarrera> corredores = carrera.getCorredores();
         TableModelCorredorCarrera modelo = new TableModelCorredorCarrera(corredores);
@@ -356,11 +376,30 @@ public class JDCreacionCarrera extends javax.swing.JDialog {
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<>(modelo);
         jTableCorredoresCarrera.setRowSorter(elQueOrdena);
     }
-    
+
     private void limpiarCamposJdialog() {
         jTLugar.setText("");
         jTFMaxParticipantes.setText("");
         jTFNombre.setText("");
         dateChooser.setDate(new Date());
+    }
+
+    private void ponLaAyuda() {
+        try {
+            // Carga el fichero de ayuda
+            File fichero = new File("help" + File.separator + "help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
+
+            // Crea el HelpSet y el HelpBroker
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+
+            // Pone ayuda a item de menu al pulsarlo y a F1 en ventana
+            // principal y secundaria.
+            hb.enableHelpOnButton(jMenuItemAyuda, "ventana_creacioncarreras", helpset);
+            hb.enableHelpKey(getRootPane(), "ventana_creacioncarreras", helpset);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

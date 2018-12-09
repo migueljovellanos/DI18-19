@@ -1,0 +1,7 @@
+<map version="1.0">
+   <mapID target="aplicacion" url="html/main.html" />
+   <mapID target="ventana_carreras" url="html/carreras.html" />
+   <mapID target="ventana_corredores" url="html/corredores.html" />
+   <mapID target="ventana_creacioncarreras" url="html/creacionCarrera.html" />
+   <mapID target="ventana_inscripcioncorredor" url="html/inscribirCorredor.html" />
+</map>

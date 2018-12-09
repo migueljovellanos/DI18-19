@@ -11,10 +11,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -45,6 +48,7 @@ public class JDCarreras extends javax.swing.JDialog {
         this.gestion = gestion;
         initComponents();
         this.setLocationRelativeTo(null);
+        ponLaAyuda();
         jComboBoxTipoCarrear.setSelectedIndex(0);
         pintartabla();
         jTCarreras.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -80,6 +84,9 @@ public class JDCarreras extends javax.swing.JDialog {
         jComboBoxTipoCarrear = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jBExportarCarrera = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuAyuda = new javax.swing.JMenu();
+        jMenuItemAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -153,10 +160,11 @@ public class JDCarreras extends javax.swing.JDialog {
                     .addComponent(jBCrearCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBEliminarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBGuardarCarreras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBExportarCarrera)
                     .addComponent(jComboBoxTipoCarrear, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBExportarCarrera)
+                            .addComponent(jLabel1))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -184,6 +192,15 @@ public class JDCarreras extends javax.swing.JDialog {
                         .addComponent(jBExportarCarrera)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jMenuAyuda.setText("Ayuda");
+
+        jMenuItemAyuda.setText("mostrar ayuda");
+        jMenuAyuda.add(jMenuItemAyuda);
+
+        jMenuBar1.add(jMenuAyuda);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -257,6 +274,9 @@ public class JDCarreras extends javax.swing.JDialog {
     private javax.swing.JButton jBModificarCarrera;
     private javax.swing.JComboBox<String> jComboBoxTipoCarrear;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenuAyuda;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemAyuda;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTCarreras;
@@ -297,4 +317,22 @@ public class JDCarreras extends javax.swing.JDialog {
     }
     // End of variables declaration                   
 
+    private void ponLaAyuda() {
+        try {
+            // Carga el fichero de ayuda
+            File fichero = new File("help" + File.separator + "help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
+
+            // Crea el HelpSet y el HelpBroker
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+
+            // Pone ayuda a item de menu al pulsarlo y a F1 en ventana
+            // principal y secundaria.
+            hb.enableHelpOnButton(jMenuItemAyuda, "ventana_carreras", helpset);
+            hb.enableHelpKey(getRootPane(), "ventana_carreras", helpset);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
