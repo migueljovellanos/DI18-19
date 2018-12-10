@@ -5,6 +5,7 @@
  */
 package cronometro;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,6 +20,7 @@ public class Cronometro extends javax.swing.JPanel {
     private int milisegundos;
     private boolean iniciado = false;
     private Timer timer;
+    private LlegadaListener llegadaListener;
 
     /**
      * Creates new form Cronometro
@@ -41,6 +43,8 @@ public class Cronometro extends javax.swing.JPanel {
         jBIniciar = new javax.swing.JButton();
         jBFinalizar = new javax.swing.JButton();
         jBReiniciar = new javax.swing.JButton();
+        jComboBoxDorsales = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         jLCronometroTexto.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLCronometroTexto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -68,6 +72,13 @@ public class Cronometro extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Registrar tiempo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,13 +86,19 @@ public class Cronometro extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLCronometroTexto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLCronometroTexto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(83, 83, 83))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBIniciar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBReiniciar, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBFinalizar)))
+                        .addComponent(jBFinalizar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jComboBoxDorsales, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(48, 48, 48)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -94,7 +111,11 @@ public class Cronometro extends javax.swing.JPanel {
                     .addComponent(jBIniciar)
                     .addComponent(jBFinalizar)
                     .addComponent(jBReiniciar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxDorsales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -133,14 +154,33 @@ public class Cronometro extends javax.swing.JPanel {
         jLCronometroTexto.setText(minutos + ":" + segundos + ":" + milisegundos);
     }//GEN-LAST:event_jBReiniciarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (llegadaListener != null) {
+            llegadaListener.registraLlegada(Integer.parseInt(jComboBoxDorsales.getSelectedItem().toString()), getTiempo());
+        }    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void rellenarCombo(ArrayList array) {
+        ArrayList lista = array;
+        for (Object object : lista) {
+            jComboBoxDorsales.addItem(String.valueOf(object));
+        }
+    }
+
     public String getTiempo() {
         String tiempo = minutos + ":" + segundos + ":" + milisegundos;
         return tiempo;
     }
+
+    public void addListener(LlegadaListener llegada) {
+        this.llegadaListener = llegada;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBFinalizar;
     private javax.swing.JButton jBIniciar;
     private javax.swing.JButton jBReiniciar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBoxDorsales;
     private javax.swing.JLabel jLCronometroTexto;
     // End of variables declaration//GEN-END:variables
 
