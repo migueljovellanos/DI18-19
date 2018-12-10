@@ -6,6 +6,7 @@
 package vista;
 
 import controlador.GestionAplicacion;
+import cronometro.LlegadaListener;
 import java.util.ArrayList;
 import modelo.Carrera;
 import modelo.CorredorParaCarrera;
@@ -15,10 +16,10 @@ import modelo.CorredorParaCarrera;
  * @author Miguel
  */
 public class JDCronometro extends javax.swing.JDialog {
-
+    
     private final GestionAplicacion gestion;
     private final Carrera carrera;
-
+    
     public JDCronometro(java.awt.Dialog parent, boolean modal, GestionAplicacion gestion, Carrera carreraSeleccionada) {
         super(parent, modal);
         initComponents();
@@ -26,8 +27,32 @@ public class JDCronometro extends javax.swing.JDialog {
         this.gestion = gestion;
         this.carrera = carreraSeleccionada;
         jLNombreCarrera.setText(carrera.getNombre());
-        rellenarCombo();
+        cronometro1.rellenarCombo(getArrayDorsales());
         cronometro1.cambiarTextoBotonFinalizar("Finalizar Carrera");
+        cronometro1.addListener(new LlegadaListener() {
+            @Override
+            public void registraLlegada(int dorsal, String tiempo) {
+                ArrayList<CorredorParaCarrera> corredores = carrera.getCorredores();
+                for (CorredorParaCarrera corredor : corredores) {
+                    if (corredor.getDorsal() == dorsal) {
+                        if (corredor.getTiempo().equals("00:00:00")) {
+                            corredor.setTiempo(tiempo);
+                            if (corredor.getDorsal() < 10) {
+                                jTextAreaLog.append(corredor.getDorsal() + " ------------ " + corredor.getTiempo() + "\n");
+                            } else if (corredor.getDorsal() < 100) {
+                                jTextAreaLog.append(corredor.getDorsal() + " ----------- " + corredor.getTiempo() + "\n");
+                            } else if (corredor.getDorsal() < 1000) {
+                                jTextAreaLog.append(corredor.getDorsal() + " ---------- " + corredor.getTiempo() + "\n");
+                            } else if (corredor.getDorsal() < 10000) {
+                                jTextAreaLog.append(corredor.getDorsal() + " --------- " + corredor.getTiempo() + "\n");
+                            } else {
+                                jTextAreaLog.append(corredor.getDorsal() + " -------- " + corredor.getTiempo() + "\n");
+                            }
+                        }
+                    }
+                }
+            }
+        });
         jTextAreaLog.append("\ndorsal ----- tiempo \n");
     }
 
@@ -40,12 +65,10 @@ public class JDCronometro extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cronometro1 = new cronometro.Cronometro();
         jLNombreCarrera = new javax.swing.JLabel();
-        jComboBoxDorsales = new javax.swing.JComboBox<>();
-        jBRegistrarTiempo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaLog = new javax.swing.JTextArea();
+        cronometro1 = new cronometro.Cronometro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -53,13 +76,6 @@ public class JDCronometro extends javax.swing.JDialog {
         jLNombreCarrera.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLNombreCarrera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLNombreCarrera.setText(org.openide.util.NbBundle.getMessage(JDCronometro.class, "JDCronometro.jLNombreCarrera.text")); // NOI18N
-
-        jBRegistrarTiempo.setText(org.openide.util.NbBundle.getMessage(JDCronometro.class, "JDCronometro.jBRegistrarTiempo.text")); // NOI18N
-        jBRegistrarTiempo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBRegistrarTiempoActionPerformed(evt);
-            }
-        });
 
         jTextAreaLog.setEditable(false);
         jTextAreaLog.setColumns(20);
@@ -75,15 +91,12 @@ public class JDCronometro extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jComboBoxDorsales, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBRegistrarTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLNombreCarrera, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cronometro1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLNombreCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(cronometro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -93,11 +106,7 @@ public class JDCronometro extends javax.swing.JDialog {
                 .addComponent(jLNombreCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cronometro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxDorsales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBRegistrarTiempo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -105,49 +114,21 @@ public class JDCronometro extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBRegistrarTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarTiempoActionPerformed
-        registrarTiempo();
-    }//GEN-LAST:event_jBRegistrarTiempoActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private cronometro.Cronometro cronometro1;
-    private javax.swing.JButton jBRegistrarTiempo;
-    private javax.swing.JComboBox<String> jComboBoxDorsales;
     private javax.swing.JLabel jLNombreCarrera;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaLog;
     // End of variables declaration//GEN-END:variables
 
-    private void rellenarCombo() {
+    private ArrayList<String> getArrayDorsales() {
         ArrayList<CorredorParaCarrera> corredores = carrera.getCorredores();
+        ArrayList<String> dorsales = new ArrayList<>();
         for (CorredorParaCarrera corredor : corredores) {
-            jComboBoxDorsales.addItem(String.valueOf(corredor.getDorsal()));
+            dorsales.add(String.valueOf(corredor.getDorsal()));
         }
+        return dorsales;
     }
-
-    private boolean registrarTiempo() {
-        Object selectedItem = jComboBoxDorsales.getSelectedItem();
-        ArrayList<CorredorParaCarrera> corredores = carrera.getCorredores();
-        for (CorredorParaCarrera corredor : corredores) {
-            if (corredor.getDorsal() == Integer.parseInt((String) selectedItem)) {
-                if (corredor.getTiempo().equals("00:00:00")) {
-                    corredor.setTiempo(cronometro1.getTiempo());
-                    if (corredor.getDorsal() < 10) {
-                        jTextAreaLog.append(corredor.getDorsal() + " ------------ " + corredor.getTiempo() + "\n");
-                    } else if (corredor.getDorsal() < 100) {
-                        jTextAreaLog.append(corredor.getDorsal() + " ----------- " + corredor.getTiempo() + "\n");
-                    } else if (corredor.getDorsal() < 1000) {
-                        jTextAreaLog.append(corredor.getDorsal() + " ---------- " + corredor.getTiempo() + "\n");
-                    } else if (corredor.getDorsal() < 10000) {
-                        jTextAreaLog.append(corredor.getDorsal() + " --------- " + corredor.getTiempo() + "\n");
-                    } else {
-                        jTextAreaLog.append(corredor.getDorsal() + " -------- " + corredor.getTiempo() + "\n");
-                    }
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+    
 }
